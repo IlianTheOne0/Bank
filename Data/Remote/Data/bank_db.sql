@@ -1,4 +1,4 @@
--- 1. Deleting existing objects (safer alternative)
+-- 1. Deleting existing objects (safer alternative).
 DROP SCHEMA IF EXISTS bank_system CASCADE;
 CREATE SCHEMA bank_system;
 SET search_path TO bank_system;
