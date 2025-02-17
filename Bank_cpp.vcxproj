@@ -137,7 +137,6 @@
     <ClInclude Include="Core\core.h" />
     <ClInclude Include="Core\Logger\logger.h" />
     <ClInclude Include="Data\data.h" />
-    <ClInclude Include="Data\Providers\clientProvider.h" />
     <ClInclude Include="Data\Queries\Queries-bank_db.h" />
     <ClInclude Include="Domain\domain.h" />
     <ClInclude Include="lib.h" />
@@ -146,7 +145,6 @@
     <ClInclude Include="Presentation\View\view.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="C:\Users\Ilian TheOne\Downloads\postgresql-17.3-1-windows-x64-binaries.zip" />
     <None Include="Data\Source\Remote\Migrations\bank_db.sql" />
   </ItemGroup>
   <ItemGroup>
