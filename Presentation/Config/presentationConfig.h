@@ -8,4 +8,4 @@
 using std::cout;
 using std::endl;
 
-#endif#pragma once
+#endif
