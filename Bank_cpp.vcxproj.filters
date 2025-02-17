@@ -41,7 +41,7 @@
     <ClInclude Include="Data\data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Source\Remote\queries.h">
+    <ClInclude Include="Data\Queries\Queries-bank_db.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Domain\domain.h">
@@ -59,9 +59,13 @@
     <ClInclude Include="Presentation\View\view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Data\Providers\clientProvider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Source\Remote\Migrations\bank_db.sql" />
+    <None Include="C:\Users\Ilian TheOne\Downloads\postgresql-17.3-1-windows-x64-binaries.zip" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Data\Source\Remote\Migrations\readme.md" />
