@@ -1,7 +1,7 @@
 #ifndef QUERIES_H
 #define QUERIES_H
 
-#include "../../lib.h"
+#include "../Config/dataConfig.h"
 
 namespace Queries {
 

@@ -1,8 +1,7 @@
 #ifndef TEST_H
 #define TEST_H
 
-#include "../../lib.h"
-#include "../../Core/core.h"
+#include "../Config/presentationConfig.h"
 
 class Test
 {
