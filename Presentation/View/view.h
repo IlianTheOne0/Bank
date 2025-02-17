@@ -1,8 +1,7 @@
 #ifndef VIEW_H
 #define VIEW_H
 
-#include "../../lib.h"
-#include "../../Core/core.h"
+#include "../Config/presentationConfig.h"
 
 class View
 {

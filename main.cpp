@@ -1,6 +1,4 @@
 #include "cfg.h"
-#include "lib.h"
-#include "Core/core.h"
 #include "Presentation/presentation.h"
 
 int main()

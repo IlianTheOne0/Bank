@@ -1,7 +1,7 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
-#include "../../lib.h"
+#include "../Config/CoreConfig.h"
 
 enum Colors
 {

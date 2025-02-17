@@ -134,12 +134,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cfg.h" />
+    <ClInclude Include="Core\Config\CoreConfig.h" />
     <ClInclude Include="Core\core.h" />
+    <ClInclude Include="Core\Libs\mainLib.h" />
     <ClInclude Include="Core\Logger\logger.h" />
+    <ClInclude Include="Data\Config\dataConfig.h" />
     <ClInclude Include="Data\data.h" />
     <ClInclude Include="Data\Queries\Queries-bank_db.h" />
+    <ClInclude Include="Domain\Config\domainConfig.h" />
     <ClInclude Include="Domain\domain.h" />
-    <ClInclude Include="lib.h" />
+    <ClInclude Include="Presentation\Config\presentationConfig.h" />
     <ClInclude Include="Presentation\presentation.h" />
     <ClInclude Include="Presentation\Tests\tests.h" />
     <ClInclude Include="Presentation\View\view.h" />

@@ -1,16 +1,7 @@
 #ifndef LIB_H
 #define LIB_H
 
-#include <iostream>
-#include <string>
-#include <Windows.h>
-
-using std::cout;
-using std::endl;
-using std::cin;
-
-using std::string;
-using std::to_string;
+#include "../Config/CoreConfig.h"
 
 #define CREATE_INFO(message) Logger::log(message, InfoADD)
 #define INFO(message) Logger::log(message, Info)
