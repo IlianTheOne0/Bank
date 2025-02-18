@@ -1,11 +1,11 @@
-#include "cfg.h"
+#include "Core/Libs/cfg/cfg.h"
 #include "Presentation/presentation.h"
 
 int main()
 {
 	INFO("The program is started");
 
-	Test::ExampleTest();
+	(Logger::getState()) ? Test::startTest() : View::Intro();
 
 	INFO("The program is closed");
 

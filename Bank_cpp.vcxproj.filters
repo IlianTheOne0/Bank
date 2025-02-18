@@ -21,15 +21,18 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Presentation\Tests\Tests\tests.cpp">
+    <ClCompile Include="Presentation\View\Intro\intro.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Presentation\View\Intro\intro.cpp">
+    <ClCompile Include="Presentation\Tests\Tests\libpqxxTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Libs\cfg\cfg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cfg.h">
+    <ClInclude Include="Core\Libs\cfg\cfg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\core.h">
@@ -47,9 +50,6 @@
     <ClInclude Include="Domain\domain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="lib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Presentation\presentation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -59,13 +59,36 @@
     <ClInclude Include="Presentation\View\view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Providers\clientProvider.h">
+    <ClInclude Include="Core\Config\CoreConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Libs\mainLib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Config\dataConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Config\domainConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Presentation\Config\presentationConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Libs\CoreConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Libs\dataConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Libs\domainConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Libs\presentationConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Source\Remote\Migrations\bank_db.sql" />
-    <None Include="C:\Users\Ilian TheOne\Downloads\postgresql-17.3-1-windows-x64-binaries.zip" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Data\Source\Remote\Migrations\readme.md" />

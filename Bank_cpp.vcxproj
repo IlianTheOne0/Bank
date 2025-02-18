@@ -104,10 +104,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -127,16 +131,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Libs\cfg\cfg.cpp" />
     <ClCompile Include="Core\Logger\logger.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Presentation\Tests\Tests\tests.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\libpqxxTest.cpp" />
     <ClCompile Include="Presentation\View\Intro\intro.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cfg.h" />
+    <ClInclude Include="Core\Libs\cfg\cfg.h" />
     <ClInclude Include="Core\Config\CoreConfig.h" />
     <ClInclude Include="Core\core.h" />
+    <ClInclude Include="Core\Libs\CoreConfig.h" />
+    <ClInclude Include="Core\Libs\dataConfig.h" />
+    <ClInclude Include="Core\Libs\domainConfig.h" />
     <ClInclude Include="Core\Libs\mainLib.h" />
+    <ClInclude Include="Core\Libs\presentationConfig.h" />
     <ClInclude Include="Core\Logger\logger.h" />
     <ClInclude Include="Data\Config\dataConfig.h" />
     <ClInclude Include="Data\data.h" />

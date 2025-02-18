@@ -20,3 +20,5 @@ void Logger::log(string message, LoggerTypes loggerType, Colors color)
         SetConsoleTextAttribute(hConsole, _default);
     }
 }
+
+bool Logger::getState() { return _isEnabled; }
