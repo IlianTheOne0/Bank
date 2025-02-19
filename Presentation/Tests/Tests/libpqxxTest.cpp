@@ -1,7 +1,7 @@
 #include <pqxx/pqxx>
 
 #include "../../../Core/Libs/cfg/cfg.h"
-#include "../../../Data/Queries/Queries-bank_db.h"
+#include "../../../Data/Queries/bank_db-Queries.h"
 #include "../tests.h"
 
 using pqxx::connection;

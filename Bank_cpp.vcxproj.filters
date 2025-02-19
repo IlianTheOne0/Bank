@@ -30,6 +30,15 @@
     <ClCompile Include="Core\Libs\cfg\cfg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Data\Providers\bank_db\connection\PROV_AConnection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Repositories\accounts\REP_accountsAbstraction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\accountsTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Libs\cfg\cfg.h">
@@ -44,7 +53,7 @@
     <ClInclude Include="Data\data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data\Queries\Queries-bank_db.h">
+    <ClInclude Include="Data\Queries\bank_db-Queries.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Domain\domain.h">
@@ -84,6 +93,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\Libs\presentationConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Providers\bank_db\connection\PROV_IConnection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Providers\bank_db\connection\PROV_AConnection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\Providers\bank_db\connection\PROV_Connection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Entities\Account\account.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Repositories\accounts\REP_accountsInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Repositories\accounts\REP_accountsAbstraction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

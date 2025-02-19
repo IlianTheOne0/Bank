@@ -10,6 +10,7 @@ private:
 	static const unsigned short testCounter;
 public:
 	static void libpqxxTest();
+	static void accountsTask();
 
 	static void startTest()
 	{
