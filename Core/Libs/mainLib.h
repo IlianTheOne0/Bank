@@ -1,7 +1,7 @@
 #ifndef LIB_H
 #define LIB_H
 
-#include "../Config/CoreConfig.h"
+#include "../core.h"
 
 #define CREATE_INFO(message) Logger::log(message, InfoADD)
 #define INFO(message) Logger::log(message, Info)

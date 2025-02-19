@@ -1,7 +1,7 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
-#include "../Config/CoreConfig.h"
+#include "../Libs/CoreConfig.h"
 
 enum Colors
 {
@@ -44,6 +44,7 @@ protected:
     static const unsigned short _default = 7;
 public:
     static void log(string message, LoggerTypes loggerType = LoggerTypes::DefaultLogger, Colors color = Colors::DefaultColor);
+    static bool getState();
 };
 
 #endif

@@ -8,4 +8,6 @@
 using std::cout;
 using std::endl;
 
+using std::exception;
+
 #endif

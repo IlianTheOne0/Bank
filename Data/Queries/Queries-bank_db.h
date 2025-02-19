@@ -1,7 +1,7 @@
 #ifndef QUERIES_H
 #define QUERIES_H
 
-#include "../Config/dataConfig.h"
+#include "../../Core/Libs/dataConfig.h"
 
 namespace Queries {
 
@@ -20,7 +20,7 @@ namespace Queries {
         "INSERT INTO clients (first_name, last_name, passport_number, phone, email) "
         "VALUES ($1, $2, $3, $4, $5) RETURNING client_id;";
 
-    const string GET_ALL_CLIENTS = "SELECT * FROM clients;";
+    const string GET_ALL_CLIENTS = "SELECT * FROM bank_system.clients;";
 
     // Accounts
     const string CREATE_ACCOUNTS_TABLE =
