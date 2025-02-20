@@ -9,14 +9,13 @@ class Test
 private:
 	static const unsigned short testCounter;
 public:
-	static void libpqxxTest();
-	static void accountsTask();
+	static void libTest();
 
 	static void startTest()
 	{
 		switch (testCounter)
 		{
-			case 0: { libpqxxTest(); } break;
+			case 0: { libTest(); } break;
 			default: { View::Intro(); }
 		}
 	}

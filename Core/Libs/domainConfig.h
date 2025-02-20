@@ -4,12 +4,7 @@
 #include "mainLib.h"
 
 #include <string>
-#include <pqxx/pqxx>
 
 using std::string;
-
-using pqxx::connection;
-using pqxx::work;
-using pqxx::result;
 
 #endif

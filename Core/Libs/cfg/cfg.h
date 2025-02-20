@@ -3,7 +3,7 @@
 
 #include "../CoreConfig.h"
 
-namespace Config {
+namespace ConnectionConfig {
     const string dbname = "postgres";
     const string user = "sa";
     const string password = "4235~!64ABC!123";

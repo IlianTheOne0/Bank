@@ -133,11 +133,7 @@
   <ItemGroup>
     <ClCompile Include="Core\Libs\cfg\cfg.cpp" />
     <ClCompile Include="Core\Logger\logger.cpp" />
-    <ClCompile Include="Data\Providers\bank_db\connection\PROV_AConnection.cpp" />
-    <ClCompile Include="Domain\Repositories\accounts\REP_accountsAbstraction.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Presentation\Tests\Tests\accountsTest.cpp" />
-    <ClCompile Include="Presentation\Tests\Tests\libpqxxTest.cpp" />
     <ClCompile Include="Presentation\View\Intro\intro.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,15 +148,9 @@
     <ClInclude Include="Core\Logger\logger.h" />
     <ClInclude Include="Data\Config\dataConfig.h" />
     <ClInclude Include="Data\data.h" />
-    <ClInclude Include="Data\Providers\bank_db\connection\PROV_AConnection.h" />
-    <ClInclude Include="Data\Providers\bank_db\connection\PROV_Connection.h" />
-    <ClInclude Include="Data\Providers\bank_db\connection\PROV_IConnection.h" />
     <ClInclude Include="Data\Queries\bank_db-Queries.h" />
     <ClInclude Include="Domain\Config\domainConfig.h" />
     <ClInclude Include="Domain\domain.h" />
-    <ClInclude Include="Domain\Entities\Account\account.h" />
-    <ClInclude Include="Domain\Repositories\accounts\REP_accountsAbstraction.h" />
-    <ClInclude Include="Domain\Repositories\accounts\REP_accountsInterface.h" />
     <ClInclude Include="Presentation\Config\presentationConfig.h" />
     <ClInclude Include="Presentation\presentation.h" />
     <ClInclude Include="Presentation\Tests\tests.h" />
