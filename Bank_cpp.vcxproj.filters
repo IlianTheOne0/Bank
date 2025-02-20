@@ -24,19 +24,10 @@
     <ClCompile Include="Presentation\View\Intro\intro.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Presentation\Tests\Tests\libpqxxTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Libs\cfg\cfg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Data\Providers\bank_db\connection\PROV_AConnection.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Domain\Repositories\accounts\REP_accountsAbstraction.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Presentation\Tests\Tests\accountsTest.cpp">
+    <ClCompile Include="Presentation\Tests\Tests\libTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -93,24 +84,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\Libs\presentationConfig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Providers\bank_db\connection\PROV_IConnection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Providers\bank_db\connection\PROV_AConnection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Data\Providers\bank_db\connection\PROV_Connection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Domain\Entities\Account\account.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Domain\Repositories\accounts\REP_accountsInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Domain\Repositories\accounts\REP_accountsAbstraction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

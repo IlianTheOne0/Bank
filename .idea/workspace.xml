@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0f1f5948-0844-4cd3-9a66-f9649e5ddb63" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Bank_cpp.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Bank_cpp.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bank_cpp.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/Bank_cpp.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Libs/cfg/cfg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Libs/cfg/cfg.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Queries/bank_db-Queries.h" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Queries/bank_db-Queries.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/Source/Remote/Migrations/bank_db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Source/Remote/Migrations/bank_db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Tests/Tests/libTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Tests/Tests/libTest.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;IlianTheOne0&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/IlianTheOne0/Bank_cpp.git&quot;,
+    &quot;accountId&quot;: &quot;39830d3d-6272-4968-a896-a4647a64f89e&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2tHWQDF2XZ5ZKKasKtbviSt6GNd" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenDatabaseViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "Features/DB-providers__DB-repositories",
+    "last_opened_file_path": "C:/Users/Ilian TheOne",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+</project>
