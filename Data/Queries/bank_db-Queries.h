@@ -2,9 +2,8 @@
 #define QUERIES_H
 
 #include "../../Core/Libs/dataConfig.h"
-#include <soci/soci.h>
 
-namespace Queries
+namespace TempQueries
 {
     // Accounts
     const string CREATE_ACCOUNTS_TABLE =
@@ -90,6 +89,29 @@ namespace Queries
 
     const string GET_TRANSACTIONS_BY_ACCOUNT =
         "SELECT * FROM bank_system.transactions WHERE from_account_id = $1 OR to_account_id = $1;";
+}
+
+namespace Queries
+{
+    namespace Clients
+    {
+        const string insertClient =
+            "INSERT INTO clients (first_name, last_name, passport_number, phone, email) "
+            "VALUES (:first, :last, :passport, :phone, :email)";
+        const string getID =
+            "SELECT currval(pg_get_serial_sequence('clients', 'client_id'))";
+        const string getClient =
+            "SELECT client_id, first_name, last_name, passport_number, phone, email, registration_date "
+            "FROM clients "
+            "WHERE client_id = :id";
+        const string updateClient =
+            "UPDATE clients "
+            "SET first_name = :first, last_name = :last, passport_number = :passport, phone = :phone, email = :email, registration_date = :date "
+            "WHERE client_id = :id";
+        const string deleteClient =
+            "DELETE FROM clients "
+            "WHERE client_id = :id";
+    }
 }
 
 #endif

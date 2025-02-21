@@ -27,7 +27,7 @@ using std::put_time;
 
 void getAccounts(session& sql, int accountId)
 {
-    rowset<row> result = (sql.prepare << Queries::GET_ACCOUNT_BY_ACCOUNTID, use(accountId));
+    rowset<row> result = (sql.prepare << TempQueries::GET_ACCOUNT_BY_ACCOUNTID, use(accountId));
     // The prefix 'f' means "fetched"
     for (auto it = result.begin(); it != result.end(); it++)
     {
@@ -59,14 +59,14 @@ void createAccount(session& sql)
     double balance{ 1000.7 };
     string currency = "USD";
     string status = "FROZEN";
-    
+
     cout << "Inserting account with values: " << endl;
     cout << "ClientId: " << clientId << endl;
     cout << "Balance: " << balance << endl;
     cout << "Currency: " << currency << endl;
     cout << "Status: " << status << endl;
 
-    sql << Queries::INSERT_ACCOUNT, use(clientId), use(balance), use(currency), use(status);
+    sql << TempQueries::INSERT_ACCOUNT, use(clientId), use(balance), use(currency), use(status);
     system("docker exec - it postgres - local psql - U sa - d postgres - c \"INSERT INTO clients(client_id, first_name, last_name, passport_number, phone, email) VALUES(31, 'asd!', 'dsa!', 465360000, +380900123123, 'emailmailemail@gmail.com')\"");
     cout << endl << endl;  getAccounts(sql, accountId);
 }
@@ -78,7 +78,7 @@ void Test::libTest()
         string connectionProperties{ "host=" + host + " port=" + port + " dbname=" + dbname + " user=" + user + " password=" + password };
         session sql(postgresql, connectionProperties); if (!sql.is_connected()) { throw runtime_error{ "The connection is not established. The database may not be running!" }; }
         sql << "SET search_path TO bank_system";
-        
+
         getAccounts(sql);
         for (size_t i = 0; i < 50; i++) { cout << "="; } cout << endl;
         createAccount(sql);

@@ -1,0 +1,94 @@
+#include "ClientRepository.h"
+
+#include "../../../Core/Libs/domainConfig.h"
+
+ClientRepository::ClientRepository(BankSystemDbProvider* dbProvider)
+	: _dbProvider(dbProvider)
+{ CREATE_INFO("ClientReporitory <- Constructor: called;"); }
+
+int ClientRepository::add(const Client* class_)
+{
+	INFO("ClientReporitory -> method add: called;");
+
+	try
+	{
+		session& sql = _dbProvider->connect();
+
+		sql << Queries::Clients::insertClient,
+			use(class_->firstName, "first"),
+			use(class_->lastName, "last"),
+			use(class_->passportNumber, "passport"),
+			use(class_->phone, "phone"),
+			use(class_->email, "email");
+
+		int newClientId = 0;
+		sql << Queries::Clients::getID, into(newClientId);
+		
+		INFO("ClientReporitory -> method add -> result: success;"); return newClientId;
+	}
+	catch (const soci_error& e) { ERROR(string("ClientReporitory -> method add -> try/catch (soci_error): ") + e.what() + ";"); return -1; }
+	catch (...) { ERROR("ClientReporitory -> method add -> try/catch (...): error!;"); return -1; }
+}
+Client* ClientRepository::get(int id)
+{
+	INFO("ClientReporitory -> method get: called;");
+
+	try
+	{
+		session& sql = _dbProvider->connect();
+		Client* client = new Client;
+
+		sql << Queries::Clients::getClient,
+			use(id, "id"),
+			into(client->clientId),
+			into(client->firstName),
+			into(client->lastName),
+			into(client->passportNumber),
+			into(client->phone),
+			into(client->registrationDate);
+
+		INFO("ClientReporitory -> method get -> result: success;"); return client;
+	}
+	catch (const soci_error& e) { ERROR(string("ClientReporitory -> method get -> try/catch (soci_error): ") + e.what() + ";"); return nullptr; }
+	catch (...) { ERROR("ClientReporitory -> method get -> try/catch (...): error!;"); return nullptr; }
+}
+
+bool ClientRepository::update(const Client* class_)
+{
+	INFO("ClientReporitory -> method update: called;");
+
+	try
+	{
+		session& sql = _dbProvider->connect();
+		
+		sql << Queries::Clients::updateClient,
+			use(class_->firstName, "first"),
+			use(class_->lastName, "last"),
+			use(class_->passportNumber, "passport"),
+			use(class_->phone, "phone"),
+			use(class_->email, "email"),
+			use(class_->registrationDate, "date"),
+			use(class_->clientId, "id");
+
+		INFO("ClientReporitory -> method update -> result: success;"); return true;
+	}
+	catch (const soci_error& e) { ERROR(string("ClientReporitory -> method update -> try/catch (soci_error): ") + e.what() + ";"); return false; }
+	catch (...) { ERROR("ClientReporitory -> method update -> try/catch (...): error!;"); return false; }
+}
+
+bool ClientRepository::deleteClass(int id)
+{
+	INFO("ClientReporitory -> method deleteClass: called;");
+	
+	try
+	{
+		session& sql = _dbProvider->connect();
+
+		sql << Queries::Clients::deleteClient,
+			use(id, "id");
+
+		INFO("ClientReporitory -> method deleteClass -> result: success;"); return true;
+	}
+	catch (const soci_error& e) { ERROR(string("ClientReporitory -> method deleteClass -> try/catch (soci_error): ") + e.what() + ";"); return false; }
+	catch (...) { ERROR("ClientReporitory -> method deleteClass -> try/catch (...): error!;"); return false; }
+}

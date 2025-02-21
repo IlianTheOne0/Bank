@@ -3,12 +3,15 @@
 
 #include "mainLib.h"
 
-#include <exception>
+#include <soci/soci.h>
+#include <soci/postgresql/soci-postgresql.h>
 #include <string>
 
-using std::exception;
+using soci::session;
+using soci::postgresql;
 
 using std::string;
+using std::to_string;
 
 #define DEFAULT_EMPTY_CONNECTION 0
 

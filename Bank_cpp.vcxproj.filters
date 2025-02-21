@@ -30,6 +30,18 @@
     <ClCompile Include="Presentation\Tests\Tests\libTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Data\Providers\bank_systemProvider.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Repositories\ClientRepository\lib\ClientRepository">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\clientRepositoryTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Repositories\ClientRepository\ClientRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Libs\cfg\cfg.h">
@@ -86,9 +98,19 @@
     <ClInclude Include="Core\Libs\presentationConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Domain\Entities\Client\client.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Repositories\IRepository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Repositories\ClientRepository\ClientRepository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Source\Remote\Migrations\bank_db.sql" />
+    <None Include="Domain\Repositories\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Data\Source\Remote\Migrations\readme.md" />
