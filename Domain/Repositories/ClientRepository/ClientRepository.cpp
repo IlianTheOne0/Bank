@@ -3,19 +3,25 @@
 
 ClientRepository::ClientRepository() { CREATE_INFO("ClientRepository <- Constructor: called;"); }
 
-int ClientRepository::add(const Client* client)
+size_t ClientRepository::add(const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email)
 {
-    INFO("ClientRepository -> method add: called;");
+    INFO("ClientRepository -> method add (values): called;");
 
     try
     {
-        size_t newClientId = stoi(Queries::executeCommand(Queries::Clients::insertClient(client->firstName, client->lastName, client->passportNumber, client->phone, client->email)));
+        size_t newClientId = stoi(Queries::executeCommand(Queries::Clients::insertClient(firstName, lastName, passportNumber, phone, email)));
 
         INFO("ClientRepository -> method add -> result: success;");
         return newClientId;
     }
     catch (const exception& e) { ERROR(string("ClientRepository -> method add -> try/catch (exception): ") + e.what() + ";"); return -1; }
-    catch (...) { ERROR("ClientRepository -> method add -> try/catch (...): error!;"); return -1;  }
+    catch (...) { ERROR("ClientRepository -> method add -> try/catch (...): error!;"); return -1; }
+}
+size_t ClientRepository::add(const Client* client)
+{
+    INFO("ClientRepository -> method add (obj): called;");
+
+    return add(client->firstName, client->lastName, client->passportNumber, client->phone, client->email);
 }
 
 Client* ClientRepository::get(size_t id)
@@ -47,32 +53,42 @@ Client* ClientRepository::get(size_t id)
     catch (...) { ERROR("ClientRepository -> method get -> try/catch (...): error!;"); return nullptr; }
 }
 
-bool ClientRepository::update(const Client* client)
+bool ClientRepository::update(const size_t& clientId, const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email, const string& clientRegistrationDateStr)
 {
-    INFO("ClientRepository -> method update: called;");
+    INFO("ClientRepository -> method update (value, clientRegistrationDate = type::string): called;");
 
     try
     {
-        unsigned int year = client->registrationDate.tm_year + 1900;
-        unsigned short month = client->registrationDate.tm_mon + 1;
-        unsigned short day = client->registrationDate.tm_mday;
-        if (day < 1) day = 1;
-
-        ostringstream dateStream;
-        dateStream << setw(4) << setfill('0') << year << "-"
-            << setw(2) << setfill('0') << month << "-"
-            << setw(2) << setfill('0') << day;
-        string clientRegistrationDate = dateStream.str();
-
-        string result = Queries::executeCommand(Queries::Clients::updateClient(
-            client->clientId, client->firstName, client->lastName, client->passportNumber, client->phone, client->email, clientRegistrationDate
-        ));
+        string result = Queries::executeCommand(Queries::Clients::updateClient( clientId, firstName, lastName, passportNumber, phone, email, clientRegistrationDateStr ));
 
         INFO("ClientRepository -> method update -> result: success;");
         return true;
     }
     catch (const exception& e) { ERROR(string("ClientRepository -> method update -> try/catch (exception): ") + e.what() + ";"); return false; }
     catch (...) { ERROR("ClientRepository -> method update -> try/catch (...): error!;"); return false; }
+}
+bool ClientRepository::update(const size_t& clientId, const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email, const tm& clientRegistrationDate)
+{
+    INFO("ClientRepository -> method update (value, clientRegistrationDate = type::tm): called;");
+
+    unsigned int year = clientRegistrationDate.tm_year + 1900;
+    unsigned short month = clientRegistrationDate.tm_mon + 1;
+    unsigned short day = clientRegistrationDate.tm_mday;
+    if (day < 1) day = 1;
+
+    ostringstream dateStream;
+    dateStream << setw(4) << setfill('0') << year << "-"
+        << setw(2) << setfill('0') << month << "-"
+        << setw(2) << setfill('0') << day;
+    string clientRegistrationDateStr = dateStream.str();
+
+    return update(clientId, firstName, lastName, passportNumber, phone, email, clientRegistrationDateStr);
+}
+bool ClientRepository::update(const Client* client)
+{
+    INFO("ClientRepository -> method update (obj): called;");
+    
+    return update(client->clientId, client->firstName, client->lastName, client->passportNumber, client->phone, client->email, client->registrationDate);
 }
 
 bool ClientRepository::deleteClass(size_t id)

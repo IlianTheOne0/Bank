@@ -5,7 +5,7 @@ template<typename TReturn>
 class IRepository
 {
 public:
-	virtual int add(const TReturn* class_) = 0;
+	virtual size_t add(const TReturn* class_) = 0;
 	virtual TReturn* get(size_t id) = 0;
 	virtual bool update(const TReturn* class_) = 0;
 	virtual bool deleteClass(size_t id) = 0;

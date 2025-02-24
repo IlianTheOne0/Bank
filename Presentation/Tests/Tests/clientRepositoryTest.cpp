@@ -1,18 +1,16 @@
 #include "../../../Domain/Repositories/ClientRepository/ClientRepository.h"
 
 #include "../tests.h"
+#include "../randomGenerator.h"
 
-#include <random>
 #include <iostream>
 
-using namespace std;
+void testAddClient(ClientRepository& clientRepo) {
+    Client client = { 0, "John", "Doe", to_string(generateRandomLongLong(100000, 999999)), "+380" + to_string(generateRandomLongLong(100000, 999999)), to_string(generateRandomLongLong(100000, 999999)) + "john.doe@example.com", {} };
+    int clientId = clientRepo.add(&client);
 
-long long generateRandomLongLong(long long min, long long max) {
-    std::random_device rd;
-    std::mt19937_64 eng(rd());
-    std::uniform_int_distribution<long long> distr(min, max);
-
-    return distr(eng);
+    if (clientId > 0) { cout << "AddClient test passed." << endl; }
+    else { cout << "AddClient test failed." << endl; }
 }
 
 void testUpdateClient(ClientRepository& clientRepo) {
@@ -26,6 +24,18 @@ void testUpdateClient(ClientRepository& clientRepo) {
     else { cout << "UpdateClient test failed." << endl; }
 }
 
+void testUpdateClientWithDate(ClientRepository& clientRepo) {
+    Client client = { 0, "John", "Doe", to_string(generateRandomLongLong(100000, 999999)), "+380" + to_string(generateRandomLongLong(100000, 999999)), to_string(generateRandomLongLong(100000, 999999)) + "john.doe@example.com", {} };
+    int clientId = clientRepo.add(&client);
+    client.clientId = clientId;
+    client.firstName = "Jane";
+    client.registrationDate = { 0, 0, 0, 1, 0, 121 }; // 2021-01-01
+    bool result = clientRepo.update(&client);
+
+    if (result) { cout << "UpdateClientWithDate test passed." << endl; }
+    else { cout << "UpdateClientWithDate test failed." << endl; }
+}
+
 void testDeleteClient(ClientRepository& clientRepo) {
     Client client = { 0, "John", "Doe", to_string(generateRandomLongLong(100000, 999999)), "+380" + to_string(generateRandomLongLong(100000, 999999)), to_string(generateRandomLongLong(1000000, 9999999)) + "john.doe@example.com", {} };
     int clientId = clientRepo.add(&client);
@@ -37,7 +47,7 @@ void testDeleteClient(ClientRepository& clientRepo) {
 
 void testGetClient(ClientRepository& clientRepo) {
     long long number = generateRandomLongLong(1000000, 9999999);
-    Client client = { 0, "John", "Doe", to_string(number), "+380" + to_string(number), to_string(number) + "john.doe@example.com", {}};
+    Client client = { 0, "John", "Doe", to_string(number), "+380" + to_string(number), to_string(number) + "john.doe@example.com", {} };
     int clientId = clientRepo.add(&client);
     Client* fetchedClient = clientRepo.get(clientId);
 
@@ -75,7 +85,9 @@ void Test::clientRepositoryTest()
     BankSystemDbProvider dbProvider;
     ClientRepository clientRepo;
 
+    testAddClient(clientRepo);
     testUpdateClient(clientRepo);
+    testUpdateClientWithDate(clientRepo);
     testDeleteClient(clientRepo);
     testGetClient(clientRepo);
 
