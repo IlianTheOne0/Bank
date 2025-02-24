@@ -27,19 +27,16 @@
     <ClCompile Include="Core\Libs\cfg\cfg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Presentation\Tests\Tests\libTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Data\Providers\bank_systemProvider.h">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Domain\Repositories\ClientRepository\lib\ClientRepository">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Presentation\Tests\Tests\clientRepositoryTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Domain\Repositories\ClientRepository\ClientRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\Queries\bank_db-Queries.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

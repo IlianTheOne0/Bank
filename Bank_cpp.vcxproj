@@ -134,11 +134,10 @@
     <ClCompile Include="Core\Libs\cfg\cfg.cpp" />
     <ClCompile Include="Core\Logger\logger.cpp" />
     <ClCompile Include="Data\Providers\bank_systemProvider.h" />
+    <ClCompile Include="Data\Queries\bank_db-Queries.cpp" />
     <ClCompile Include="Domain\Repositories\ClientRepository\ClientRepository.cpp" />
-    <ClCompile Include="Domain\Repositories\ClientRepository\lib\ClientRepository" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\clientRepositoryTest.cpp" />
-    <ClCompile Include="Presentation\Tests\Tests\libTest.cpp" />
     <ClCompile Include="Presentation\View\Intro\intro.cpp" />
   </ItemGroup>
   <ItemGroup>

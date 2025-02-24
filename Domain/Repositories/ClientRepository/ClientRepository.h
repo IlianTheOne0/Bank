@@ -8,16 +8,13 @@
 class ClientRepository
 	: public IRepository<Client>
 {
-private:
-	IBankSystemDbProvider* _dbProvider = nullptr;
 public:
-	ClientRepository() = delete;
-	ClientRepository(BankSystemDbProvider* dbProvider);
+	ClientRepository();
 
 	int add(const Client* class_) override;
-	Client* get(int id) override;
+	Client* get(size_t id) override;
 	bool update(const Client* class_) override;
-	bool deleteClass(int id) override;
+	bool deleteClass(size_t id) override;
 };
 
 #endif

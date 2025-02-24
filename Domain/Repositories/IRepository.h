@@ -6,9 +6,9 @@ class IRepository
 {
 public:
 	virtual int add(const TReturn* class_) = 0;
-	virtual TReturn* get(int id) = 0;
+	virtual TReturn* get(size_t id) = 0;
 	virtual bool update(const TReturn* class_) = 0;
-	virtual bool deleteClass(int id) = 0;
+	virtual bool deleteClass(size_t id) = 0;
 };
 
 #endif
