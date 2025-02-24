@@ -135,8 +135,12 @@
     <ClCompile Include="Core\Logger\logger.cpp" />
     <ClCompile Include="Data\Providers\bank_systemProvider.h" />
     <ClCompile Include="Data\Queries\bank_db-Queries.cpp" />
-    <ClCompile Include="Domain\Repositories\ClientRepository\ClientRepository.cpp" />
+    <ClCompile Include="Domain\Repositories\AccountRepository\accountRepository.cpp" />
+    <ClCompile Include="Domain\Repositories\ClientRepository\clientRepository.cpp" />
+    <ClCompile Include="Domain\Repositories\conversation.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Presentation\Tests\randomGenerator.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\accountRepositoryTest.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\clientRepositoryTest.cpp" />
     <ClCompile Include="Presentation\View\Intro\intro.cpp" />
   </ItemGroup>
@@ -144,7 +148,7 @@
     <ClInclude Include="Core\Libs\cfg\cfg.h" />
     <ClInclude Include="Core\Config\CoreConfig.h" />
     <ClInclude Include="Core\core.h" />
-    <ClInclude Include="Core\Libs\CoreConfig.h" />
+    <ClInclude Include="Core\Libs\coreConfig.h" />
     <ClInclude Include="Core\Libs\dataConfig.h" />
     <ClInclude Include="Core\Libs\domainConfig.h" />
     <ClInclude Include="Core\Libs\mainLib.h" />
@@ -155,8 +159,12 @@
     <ClInclude Include="Data\Queries\bank_db-Queries.h" />
     <ClInclude Include="Domain\Config\domainConfig.h" />
     <ClInclude Include="Domain\domain.h" />
+    <ClInclude Include="Domain\Entities\Account\account.h" />
+    <ClInclude Include="Domain\Entities\Account\statusEnum.h" />
     <ClInclude Include="Domain\Entities\Client\client.h" />
-    <ClInclude Include="Domain\Repositories\ClientRepository\ClientRepository.h" />
+    <ClInclude Include="Domain\Repositories\AccountRepository\accountRepository.h" />
+    <ClInclude Include="Domain\Repositories\ClientRepository\clientRepository.h" />
+    <ClInclude Include="Domain\Repositories\conversation.h" />
     <ClInclude Include="Domain\Repositories\IRepository.h" />
     <ClInclude Include="Presentation\Config\presentationConfig.h" />
     <ClInclude Include="Presentation\presentation.h" />
@@ -166,7 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Source\Remote\Migrations\bank_db.sql" />
-    <None Include="Domain\Repositories\readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Data\Source\Remote\Migrations\readme.md" />

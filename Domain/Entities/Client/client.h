@@ -5,7 +5,7 @@
 
 struct Client
 {
-	int clientId;
+	size_t clientId;
 	string firstName;
 	string lastName;
 	string passportNumber;

@@ -28,9 +28,9 @@ namespace Queries
 
     namespace Accounts
     {
-        string insertAccount(const double& balance, const string& currency, const string& status);
+        string insertAccount(size_t& clientId, const float& balance, const string& currency, const string& status);
         string getAccount(size_t id);
-        string updateAccount(size_t accountId, double balance, const string& currency, const string& openedDate, const string& closedDate, const string& status);
+        string updateAccount(size_t accountId, const float& balance, const string& currency, const string& openedDate, const string& closedDate, const string& status);
         string deleteAccount(size_t id);
     }
 }

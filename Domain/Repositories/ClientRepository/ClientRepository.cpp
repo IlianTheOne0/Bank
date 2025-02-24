@@ -1,11 +1,12 @@
 #include "../../../Core/Libs/domainConfig.h"
+#include "../conversation.h"
 #include "ClientRepository.h"
 
 ClientRepository::ClientRepository() { CREATE_INFO("ClientRepository <- Constructor: called;"); }
 
 size_t ClientRepository::add(const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email)
 {
-    INFO("ClientRepository -> method add (values): called;");
+    INFO("ClientRepository -> method add (value): called;");
 
     try
     {
@@ -44,7 +45,7 @@ Client* ClientRepository::get(size_t id)
         getline(iss, token, '|'); client->passportNumber = token;
         getline(iss, token, '|'); client->phone = token;
         getline(iss, token, '|'); client->email = token;
-        getline(iss, token, '|'); istringstream dateStream(token); dateStream >> get_time(&client->registrationDate, "%Y-%m-%d");
+        getline(iss, token, '|'); client->registrationDate = Conversation::dateConversion(token);
 
         INFO("ClientRepository -> method get -> result: success;");
         return client;
@@ -59,7 +60,7 @@ bool ClientRepository::update(const size_t& clientId, const string& firstName, c
 
     try
     {
-        string result = Queries::executeCommand(Queries::Clients::updateClient( clientId, firstName, lastName, passportNumber, phone, email, clientRegistrationDateStr ));
+        string result = Queries::executeCommand(Queries::Clients::updateClient( clientId, firstName, lastName, passportNumber, phone, email, clientRegistrationDateStr));
 
         INFO("ClientRepository -> method update -> result: success;");
         return true;
@@ -71,18 +72,7 @@ bool ClientRepository::update(const size_t& clientId, const string& firstName, c
 {
     INFO("ClientRepository -> method update (value, clientRegistrationDate = type::tm): called;");
 
-    unsigned int year = clientRegistrationDate.tm_year + 1900;
-    unsigned short month = clientRegistrationDate.tm_mon + 1;
-    unsigned short day = clientRegistrationDate.tm_mday;
-    if (day < 1) day = 1;
-
-    ostringstream dateStream;
-    dateStream << setw(4) << setfill('0') << year << "-"
-        << setw(2) << setfill('0') << month << "-"
-        << setw(2) << setfill('0') << day;
-    string clientRegistrationDateStr = dateStream.str();
-
-    return update(clientId, firstName, lastName, passportNumber, phone, email, clientRegistrationDateStr);
+    return update(clientId, firstName, lastName, passportNumber, phone, email, Conversation::dateConversion(clientRegistrationDate));
 }
 bool ClientRepository::update(const Client* client)
 {
@@ -98,7 +88,6 @@ bool ClientRepository::deleteClass(size_t id)
     try
     {
         Queries::executeCommand(Queries::Clients::deleteClient(id));
-        ostringstream commandStream;
 
         INFO("ClientRepository -> method deleteClass -> result: success;");
         return true;

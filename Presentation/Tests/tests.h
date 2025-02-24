@@ -10,12 +10,14 @@ private:
 	static const unsigned short testCounter;
 public:
 	static void clientRepositoryTest();
+	static void accountRepositoryTest();
 
 	static void startTest()
 	{
 		switch (testCounter)
 		{
 			case 0: { clientRepositoryTest(); } break;
+			case 1: { accountRepositoryTest(); } break;
 			default: { View::Intro(); }
 		}
 	}

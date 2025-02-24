@@ -10,7 +10,7 @@ namespace Queries
         ostringstream commandStream;
         commandStream << Queries::defaultCommand << "\"" << value << "\"";
         string command = commandStream.str();
-        LOG_OWN(command, Colors::LightPink);
+        LOG_OWN("[COMMAND] " + command + ";", Colors::LightPink);
 
         array<char, 128> buffer;
         string result;
@@ -148,13 +148,13 @@ namespace Queries
 
     namespace Accounts
     {
-        string insertAccount(const double& balance, const string& currency, const string& status)
+        string insertAccount(size_t& clientId, const float& balance, const string& currency, const string& status)
         {
             cout << "insertAccount" << endl;
             ostringstream queryStream;
             queryStream
-                << "INSERT INTO bank_system.accounts (balance, currency, status) "
-                << "VALUES (" << balance << ", '" << currency << "', '" << status << "') "
+                << "INSERT INTO bank_system.accounts (client_id, balance, currency, status) "
+                << "VALUES (" << clientId << ", " << balance << ", '" << currency << "', '" << status << "') "
                 << "RETURNING account_id"
                 << ";";
             return queryStream.str();
@@ -170,7 +170,7 @@ namespace Queries
             return queryStream.str();
         }
 
-        string updateAccount(size_t accountId, double balance, const string& currency, const string& openedDate, const string& closedDate, const string& status)
+        string updateAccount(size_t accountId, const float& balance, const string& currency, const string& openedDate, const string& closedDate, const string& status)
         {
             ostringstream queryStream;
             queryStream
