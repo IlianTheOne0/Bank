@@ -136,11 +136,13 @@
     <ClCompile Include="Data\Providers\bank_systemProvider.h" />
     <ClCompile Include="Data\Queries\bank_db-Queries.cpp" />
     <ClCompile Include="Domain\Repositories\AccountRepository\accountRepository.cpp" />
+    <ClCompile Include="Domain\Repositories\CardRepository\cardRepository.cpp" />
     <ClCompile Include="Domain\Repositories\ClientRepository\clientRepository.cpp" />
     <ClCompile Include="Domain\Repositories\conversation.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Presentation\Tests\randomGenerator.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\accountRepositoryTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\cardRepositoryTest.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\clientRepositoryTest.cpp" />
     <ClCompile Include="Presentation\View\Intro\intro.cpp" />
   </ItemGroup>
@@ -161,8 +163,10 @@
     <ClInclude Include="Domain\domain.h" />
     <ClInclude Include="Domain\Entities\Account\account.h" />
     <ClInclude Include="Domain\Entities\Account\statusEnum.h" />
+    <ClInclude Include="Domain\Entities\Card\card.h" />
     <ClInclude Include="Domain\Entities\Client\client.h" />
     <ClInclude Include="Domain\Repositories\AccountRepository\accountRepository.h" />
+    <ClInclude Include="Domain\Repositories\CardRepository\cardRepository.h" />
     <ClInclude Include="Domain\Repositories\ClientRepository\clientRepository.h" />
     <ClInclude Include="Domain\Repositories\conversation.h" />
     <ClInclude Include="Domain\Repositories\IRepository.h" />

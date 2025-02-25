@@ -33,6 +33,14 @@ namespace Queries
         string updateAccount(size_t accountId, const float& balance, const string& currency, const string& openedDate, const string& closedDate, const string& status);
         string deleteAccount(size_t id);
     }
+
+    namespace Cards
+    {
+        string insertCard(size_t& accountId, const string& card_number, const bool& isBlocked);
+        string getCard(size_t id);
+        string updateCard(const size_t& accountId, const string& cardNumber, const string& expiryDateStr, const string& isBlockedStr, const string& issueDateStr);
+        string deleteCard(size_t id);
+    }
 }
 
 #endif

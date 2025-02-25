@@ -11,6 +11,7 @@ private:
 public:
 	static void clientRepositoryTest();
 	static void accountRepositoryTest();
+	static void cardRepositoryTest();
 
 	static void startTest()
 	{
@@ -18,6 +19,7 @@ public:
 		{
 			case 0: { clientRepositoryTest(); } break;
 			case 1: { accountRepositoryTest(); } break;
+			case 2: { cardRepositoryTest(); } break;
 			default: { View::Intro(); }
 		}
 	}

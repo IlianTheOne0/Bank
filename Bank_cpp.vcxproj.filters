@@ -30,9 +30,6 @@
     <ClCompile Include="Data\Providers\bank_systemProvider.h">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Presentation\Tests\Tests\clientRepositoryTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Domain\Repositories\ClientRepository\clientRepository.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -49,6 +46,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Presentation\Tests\randomGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Repositories\CardRepository\cardRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\clientRepositoryTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\cardRepositoryTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -129,6 +135,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Domain\Repositories\conversation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Entities\Card\card.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Repositories\CardRepository\cardRepository.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
