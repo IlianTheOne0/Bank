@@ -4,9 +4,9 @@
 
 CardRepository::CardRepository() { CREATE_INFO("CardRepository <- Constructor: called;"); }
 
-size_t CardRepository::_add(size_t& accountId, const string& cardNumber, const bool& isBlocked)
+size_t CardRepository::_add(size_t& accountId, const string& cardNumber, const string& isBlocked)
 {
-    INFO("CardRepository -> method add (value, dates = type::string): called;");
+    INFO("CardRepository -> method add (value, isBlocked = type::string): called;");
 
     try
     {
@@ -20,9 +20,9 @@ size_t CardRepository::_add(size_t& accountId, const string& cardNumber, const b
 }
 size_t CardRepository::add(size_t& accountId, const string& cardNumber, const bool& isBlocked)
 {
-    INFO("CardRepository -> method add (value, status = type::Status): called;");
+    INFO("CardRepository -> method add (value, isBlocked = type::bool): called;");
 
-    return _add(accountId, cardNumber, isBlocked);
+    return _add(accountId, cardNumber, isBlocked ? "t" : "f");
 }
 size_t CardRepository::add(const Card* card)
 {
@@ -63,7 +63,7 @@ Card* CardRepository::get(size_t id)
 
 bool CardRepository::_update(const size_t& accountId, const string& cardNumber, const string& expiryDateStr, const string& isBlockedStr, const string& issueDateStr)
 {
-    INFO("CardRepository -> method update (value, dates = type::string, clientRegistrationDate = type::string): called;");
+    INFO("CardRepository -> method update (value, dates = type::string, isBlocked = type::string, dates = type::string): called;");
 
     try
     {
@@ -77,7 +77,7 @@ bool CardRepository::_update(const size_t& accountId, const string& cardNumber, 
 }
 bool CardRepository::update(const size_t& accountId, const string& cardNumber, const tm& expiryDate, const bool& isBlocked, const tm& issueDate)
 {
-    INFO("CardRepository -> method update (value, dates = type::tm, status = type::Status): called;");
+    INFO("CardRepository -> method update (value, isBlocked = type::bool, dates = type::tm): called;");
 
     return _update(accountId, cardNumber, Conversation::dateConversion(expiryDate), isBlocked ? "t" : "f", Conversation::dateConversion(issueDate));
 }

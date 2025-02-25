@@ -144,7 +144,7 @@ namespace Queries
 
     namespace Cards
     {
-        string insertCard(size_t& accountId, const string& card_number, const bool& isBlocked)
+        string insertCard(size_t& accountId, const string& card_number, const string& isBlocked)
         {
             ostringstream queryStream;
             queryStream

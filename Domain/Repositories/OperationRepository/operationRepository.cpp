@@ -6,7 +6,7 @@ OperationRepository::OperationRepository() { CREATE_INFO("OperationRepository <-
 
 size_t OperationRepository::_add(const string& name, const string& isIncomeStr, const string& needsApprovalStr)
 {
-    INFO("OperationRepository -> method add (value, status = type::string): called;");
+    INFO("OperationRepository -> method add (value, booleans = type::string): called;");
 
     try
     {
@@ -20,7 +20,7 @@ size_t OperationRepository::_add(const string& name, const string& isIncomeStr, 
 }
 size_t OperationRepository::add(const string& name, const bool& isIncome, const bool& needsApproval)
 {
-    INFO("OperationRepository -> method add (value, status = type::Status): called;");
+    INFO("OperationRepository -> method add (value, booleans = type::bool): called;");
     
     return _add(name, isIncome ? "t" : "f", needsApproval ? "t" : "f");
 }
@@ -60,7 +60,7 @@ Operation* OperationRepository::get(size_t id)
 
 bool OperationRepository::_update(size_t& operationId, const string& name, const string& isIncomeStr, const string& needsApprovalStr)
 {
-    INFO("OperationRepository -> method update (value, dates = type::string, clientRegistrationDate = type::string): called;");
+    INFO("OperationRepository -> method update (value, booleans = type::string): called;");
 
     try
     {
@@ -74,7 +74,7 @@ bool OperationRepository::_update(size_t& operationId, const string& name, const
 }
 bool OperationRepository::update(size_t& operationId, const string& name, const bool& isIncome, const bool& needsApproval)
 {
-    INFO("OperationRepository -> method update (value, dates = type::tm, status = type::Status): called;");
+    INFO("OperationRepository -> method update (value, booleans = type::bool): called;");
 
     return _update(operationId, name, isIncome ? "t" : "f", needsApproval ? "t" : "f");
 }

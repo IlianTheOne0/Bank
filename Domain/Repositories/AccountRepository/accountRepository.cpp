@@ -20,7 +20,7 @@ size_t AccountRepository::_add(size_t& clientId, const float& balance, const str
 }
 size_t AccountRepository::add(size_t& clientId, const float& balance, const string& currency, const AccountStatus& status)
 {
-    INFO("AccountRepository -> method add (value, status = type::Status): called;");
+    INFO("AccountRepository -> method add (value, status = type::AccountStatus): called;");
     
     return _add(clientId, balance, currency, Conversation::statusConversion(status));
 }
@@ -78,7 +78,7 @@ bool AccountRepository::_update(const size_t& accountId, const float& balance, c
 }
 bool AccountRepository::update(const size_t& accountId, const float& balance, const string& currency, const tm& openedDate, const tm& closedDate, const AccountStatus& status)
 {
-    INFO("AccountRepository -> method update (value, dates = type::tm, status = type::Status): called;");
+    INFO("AccountRepository -> method update (value, dates = type::tm, status = type::AccountStatus): called;");
 
     return _update(accountId, balance, currency, Conversation::dateConversion(openedDate), Conversation::dateConversion(closedDate), Conversation::statusConversion(status));
 }

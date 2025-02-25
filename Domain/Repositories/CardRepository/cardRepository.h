@@ -9,7 +9,7 @@ class CardRepository
 	: public IRepository<Card>
 {
 protected:
-	virtual size_t _add(size_t& accountId, const string& cardNumber, const bool& isBlocked);
+	virtual size_t _add(size_t& accountId, const string& cardNumber, const string& isBlocked);
 	virtual bool _update(const size_t& accountId, const string& cardNumber, const string& expiryDateStr, const string& isBlockedStr, const string& issueDateStr);
 public:
 	CardRepository();

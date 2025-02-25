@@ -6,7 +6,7 @@ TransactionRepository::TransactionRepository() { CREATE_INFO("TransactionReposit
 
 size_t TransactionRepository::_add(const size_t& fromAccountId, const size_t& toAccountId, const float& amount, const size_t& operationType, const string& transactionDateStr, const string& description, const string& statusStr)
 {
-    INFO("TransactionRepository -> method add (value, status = type::string): called;");
+    INFO("TransactionRepository -> method add (value, dates = type::string, status = type::string): called;");
 
     try
     {
@@ -20,7 +20,7 @@ size_t TransactionRepository::_add(const size_t& fromAccountId, const size_t& to
 }
 size_t TransactionRepository::add(const size_t& fromAccountId, const size_t& toAccountId, const float& amount, const size_t& operationType, const tm& transactionDate, const string& description, const TransactionStatus& status)
 {
-    INFO("TransactionRepository -> method add (value, status = type::Status): called;");
+    INFO("TransactionRepository -> method add (value, dates = type::tm, status = type::TransactionStatus): called;");
     
     return _add(fromAccountId, toAccountId, amount, operationType, Conversation::dateConversion(transactionDate), description, Conversation::statusConversion(status, true));
 }
@@ -65,7 +65,7 @@ Transaction* TransactionRepository::get(size_t id)
 
 bool TransactionRepository::_update(size_t& transactionId, const size_t& fromAccountId, const size_t& toAccountId, const float& amount, const size_t& operationType, const string& transactionDateStr, const string& description, const string& statusStr)
 {
-    INFO("TransactionRepository -> method update (value, dates = type::string, clientRegistrationDate = type::string): called;");
+    INFO("TransactionRepository -> method update (value, dates = type::string, status = type::string): called;");
 
     try
     {
@@ -79,7 +79,7 @@ bool TransactionRepository::_update(size_t& transactionId, const size_t& fromAcc
 }
 bool TransactionRepository::update(size_t& transactionId, const size_t& fromAccountId, const size_t& toAccountId, const float& amount, const size_t& operationType, const tm& transactionDate, const string& description, const TransactionStatus& status)
 {
-    INFO("TransactionRepository -> method update (value, dates = type::tm, status = type::Status): called;");
+    INFO("TransactionRepository -> method update (value, dates = type::tm, status = type::TransactionStatus): called;");
 
     return _update(transactionId, fromAccountId, toAccountId, amount, operationType, Conversation::dateConversion(transactionDate), description, Conversation::statusConversion(status, true));
 }

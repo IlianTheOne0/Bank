@@ -36,7 +36,7 @@ namespace Queries
 
     namespace Cards
     {
-        string insertCard(size_t& accountId, const string& card_number, const bool& isBlocked);
+        string insertCard(size_t& accountId, const string& card_number, const string& isBlocked);
         string getCard(size_t id);
         string updateCard(const size_t& accountId, const string& cardNumber, const string& expiryDateStr, const string& isBlockedStr, const string& issueDateStr);
         string deleteCard(size_t id);
