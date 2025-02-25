@@ -92,7 +92,6 @@ bool ClientRepository::deleteClass(size_t id)
         INFO("ClientRepository -> method deleteClass -> result: success;");
         return true;
     }
-    catch (const exception& e) { ERROR(string("ClientRepository -> method deleteClass -> try/catch (exception): ") + e.what() + ";"); return false;
-    }
+    catch (const exception& e) { ERROR(string("ClientRepository -> method deleteClass -> try/catch (exception): ") + e.what() + ";"); return false; }
     catch (...) { ERROR("ClientRepository -> method deleteClass -> try/catch (...): error!;"); return false; }
 }

@@ -189,4 +189,102 @@ namespace Queries
             return queryStream.str();
         }
     }
+
+    namespace Transactions
+    {
+        string insertTransaction(const size_t& fromAccountId, const size_t& toAccountId, const float& amount, const size_t& operationType, const string& transactionDateStr, const string& description, const string& statusStr)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "INSERT INTO bank_system.transactions (from_account_id, to_account_id, amount, operation_type, transaction_date, description, status) "
+                << "VALUES (" << fromAccountId << ", '" << toAccountId << "', '" << amount << "', '" << operationType << "', '" << transactionDateStr << "', '" << description << "', '" << statusStr << "') "
+                << "RETURNING transaction_id"
+                << ";";
+            return queryStream.str();
+        }
+
+        string getTransaction(size_t id)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT * FROM bank_system.transactions "
+                << "WHERE transaction_id = " << id
+                << ";";
+            return queryStream.str();
+        }
+
+        string updateTransaction(size_t& transactionId, const size_t& fromAccountId, const size_t& toAccountId, const float& amount, const size_t& operationType, const string& transactionDateStr, const string& description, const string& statusStr)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "UPDATE bank_system.transactions SET "
+                << "from_account_id = '" << fromAccountId << "', "
+                << "to_account_id = '" << toAccountId << "', "
+                << "amount = '" << amount << "', "
+                << "operation_type = '" << operationType << "', "
+                << "transaction_date = '" << transactionDateStr << "', "
+                << "description = '" << description << "', "
+                << "status = '" << statusStr << "' "
+                << "WHERE transaction_id = " << transactionId
+                << ";";
+            return queryStream.str();
+        }
+
+        string deleteTransaction(size_t id)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "DELETE FROM bank_system.transactions "
+                << "WHERE transaction_id = " << id
+                << ";";
+            return queryStream.str();
+        }
+    }
+
+    namespace Operations
+    {
+        string insertOperation(const string& name, const string& isIncomeStr, const string& needsApprovalStr)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "INSERT INTO bank_system.operation_types (name, is_income, needs_approval) "
+                << "VALUES ('" << name << "', '" << isIncomeStr << "', '" << needsApprovalStr << "') "
+                << "RETURNING operation_type_id"
+                << ";";
+            return queryStream.str();
+        }
+
+        string getOperation(size_t id)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT * FROM bank_system.operation_types "
+                << "WHERE operation_type_id = " << id
+                << ";";
+            return queryStream.str();
+        }
+
+        string updateOperation(size_t& operationId, const string& name, const string& isIncomeStr, const string& needsApprovalStr)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "UPDATE bank_system.operation_types SET "
+                << "name = '" << name << "', "
+                << "is_income = '" << isIncomeStr << "', "
+                << "needs_approval = '" << needsApprovalStr << "' "
+                << "WHERE operation_type_id = " << operationId
+                << ";";
+            return queryStream.str();
+        }
+
+        string deleteOperation(size_t id)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "DELETE FROM bank_system.operation_types "
+                << "WHERE operation_type_id = " << id
+                << ";";
+            return queryStream.str();
+        }
+    }
 }

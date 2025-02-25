@@ -1,7 +1,7 @@
 #ifndef ACCOUNT_STATUS_ENUM_H
 #define ACCOUNT_STATUS_ENUM_H
 
-enum Status
+enum AccountStatus
 {
 	active = 0,
 	frozen = 1,

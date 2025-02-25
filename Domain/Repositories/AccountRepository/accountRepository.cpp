@@ -18,7 +18,7 @@ size_t AccountRepository::_add(size_t& clientId, const float& balance, const str
     catch (const exception& e) { ERROR(string("AccountRepository -> method add -> try/catch (exception): ") + e.what() + ";"); return -1; }
     catch (...) { ERROR("AccountRepository -> method add -> try/catch (...): error!;"); return -1; }
 }
-size_t AccountRepository::add(size_t& clientId, const float& balance, const string& currency, const Status& status)
+size_t AccountRepository::add(size_t& clientId, const float& balance, const string& currency, const AccountStatus& status)
 {
     INFO("AccountRepository -> method add (value, status = type::Status): called;");
     
@@ -53,7 +53,7 @@ Account* AccountRepository::get(size_t id)
         getline(iss, token, '|'); account->currency = token;
         getline(iss, token, '|'); account->openedDate = Conversation::dateConversion(token);
         getline(iss, token, '|'); account->closedDate = Conversation::dateConversion(token);
-        getline(iss, token, '|'); string statusStr = token;
+        getline(iss, token, '|'); account->status = Conversation::statusConversion(token);
 
         INFO("AccountRepository -> method get -> result: success;");
         return account;
@@ -76,7 +76,7 @@ bool AccountRepository::_update(const size_t& accountId, const float& balance, c
     catch (const exception& e) { ERROR(string("AccountRepository -> method update -> try/catch (exception): ") + e.what() + ";"); return false; }
     catch (...) { ERROR("AccountRepository -> method update -> try/catch (...): error!;"); return false; }
 }
-bool AccountRepository::update(const size_t& accountId, const float& balance, const string& currency, const tm& openedDate, const tm& closedDate, const Status& status)
+bool AccountRepository::update(const size_t& accountId, const float& balance, const string& currency, const tm& openedDate, const tm& closedDate, const AccountStatus& status)
 {
     INFO("AccountRepository -> method update (value, dates = type::tm, status = type::Status): called;");
 
@@ -100,7 +100,6 @@ bool AccountRepository::deleteClass(size_t id)
         INFO("AccountRepository -> method deleteClass -> result: success;");
         return true;
     }
-    catch (const exception& e) { ERROR(string("AccountRepository -> method deleteClass -> try/catch (exception): ") + e.what() + ";"); return false;
-    }
+    catch (const exception& e) { ERROR(string("AccountRepository -> method deleteClass -> try/catch (exception): ") + e.what() + ";"); return false; }
     catch (...) { ERROR("AccountRepository -> method deleteClass -> try/catch (...): error!;"); return false; }
 }

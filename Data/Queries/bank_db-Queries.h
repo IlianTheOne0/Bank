@@ -41,6 +41,22 @@ namespace Queries
         string updateCard(const size_t& accountId, const string& cardNumber, const string& expiryDateStr, const string& isBlockedStr, const string& issueDateStr);
         string deleteCard(size_t id);
     }
+
+    namespace Transactions
+    {
+        string insertTransaction(const size_t& fromAccountId, const size_t& toAccountId, const float& amount, const size_t& operationType, const string& transactionDateStr, const string& description, const string& statusStr);
+        string getTransaction(size_t id);
+        string updateTransaction(size_t& transactionId, const size_t& fromAccountId, const size_t& toAccountId, const float& amount, const size_t& operationType, const string& transactionDateStr, const string& description, const string& statusStr);
+        string deleteTransaction(size_t id);
+    }
+
+    namespace Operations
+    {
+        string insertOperation(const string& name, const string& isIncomeStr, const string& needsApprovalStr);
+        string getOperation(size_t id);
+        string updateOperation(size_t& operationId, const string& name, const string& isIncomeStr, const string& needsApprovalStr);
+        string deleteOperation(size_t id);
+    }
 }
 
 #endif

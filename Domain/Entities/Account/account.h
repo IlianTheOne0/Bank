@@ -2,7 +2,7 @@
 #define TEMP_ACCOUNT_H
 
 #include "../../../Core/Libs/domainConfig.h"
-#include "statusEnum.h"
+#include "accountStatusEnum.h"
 
 struct Account
 {
@@ -12,7 +12,7 @@ struct Account
     string currency;
     tm openedDate;
     tm closedDate;
-    Status status;
+    AccountStatus status;
 };
 
 #endif

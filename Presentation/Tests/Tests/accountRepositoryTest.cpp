@@ -13,7 +13,7 @@ void setupClient(BankSystemDbProvider& dbProvider) {
 }
 
 void testAddAccount(AccountRepository& accountRepo) {
-    Account account = { 0, 1, 456.45f, "USD", {}, { 0, 0, 0, 1, 0, 121 }, Status::closed };
+    Account account = { 0, 1, 456.45f, "USD", {}, { 0, 0, 0, 1, 0, 121 }, AccountStatus::closed };
     int accountId = accountRepo.add(&account);
 
     if (accountId > 0) { std::cout << "AddAccount test passed." << std::endl; }
@@ -21,7 +21,7 @@ void testAddAccount(AccountRepository& accountRepo) {
 }
 
 void testUpdateAccount(AccountRepository& accountRepo) {
-    Account account = { 0, 1, 1000.0f, "USD", {}, { 0, 0, 0, 1, 0, 121 }, Status::closed };
+    Account account = { 0, 1, 1000.0f, "USD", {}, { 0, 0, 0, 1, 0, 121 }, AccountStatus::closed };
     int accountId = accountRepo.add(&account);
     account.accountId = accountId;
     account.balance = 2000.0f;
@@ -32,7 +32,7 @@ void testUpdateAccount(AccountRepository& accountRepo) {
 }
 
 void testDeleteAccount(AccountRepository& accountRepo) {
-    Account account = { 0, 1, 1000.0f, "USD", {}, { 0, 0, 0, 1, 0, 121 }, Status::closed };
+    Account account = { 0, 1, 1000.0f, "USD", {}, { 0, 0, 0, 1, 0, 121 }, AccountStatus::closed };
     int accountId = accountRepo.add(&account);
     bool result = accountRepo.deleteClass(accountId);
 
@@ -41,7 +41,7 @@ void testDeleteAccount(AccountRepository& accountRepo) {
 }
 
 void testGetAccount(AccountRepository& accountRepo) {
-    Account account = { 0, 1, 1000.0f, "USD", {}, { 0, 0, 0, 1, 0, 121 }, Status::closed };
+    Account account = { 0, 1, 1000.0f, "USD", {}, { 0, 0, 0, 1, 0, 121 }, AccountStatus::closed };
     int accountId = accountRepo.add(&account);
     Account* fetchedAccount = accountRepo.get(accountId);
 

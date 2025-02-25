@@ -57,6 +57,21 @@
     <ClCompile Include="Presentation\Tests\Tests\cardRepositoryTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Domain\Repositories\TransactionRepository\transactionRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\transactionRepositoryTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Repositories\OperationRepository\operationRepository.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\operationRepositoryTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\mainRepositoriesTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Libs\cfg\cfg.h">
@@ -131,7 +146,7 @@
     <ClInclude Include="Domain\Repositories\AccountRepository\accountRepository.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Domain\Entities\Account\statusEnum.h">
+    <ClInclude Include="Domain\Entities\Account\accountStatusEnum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Domain\Repositories\conversation.h">
@@ -141,6 +156,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Domain\Repositories\CardRepository\cardRepository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Entities\Transaction\transaction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Entities\Transaction\transactionStatusEnum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Repositories\TransactionRepository\transactionRepository.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Entities\Operation\operation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Repositories\OperationRepository\operationRepository.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -23,24 +23,46 @@ tm Conversation::dateConversion(const string& date)
     return tm;
 }
 
-string Conversation::statusConversion(const Status& status)
+string Conversation::statusConversion(const AccountStatus& status)
 {
     INFO("AccountRepository -> method status—onversion (type::status): called;");
 
     switch (status)
     {
-        case Status::active: { return "ACTIVE"; } break;
-        case Status::frozen: { return "FROZEN"; } break;
-        case Status::closed: { return "CLOSED"; } break;
+        case AccountStatus::active: { return "ACTIVE"; } break;
+        case AccountStatus::frozen: { return "FROZEN"; } break;
+        case AccountStatus::closed: { return "CLOSED"; } break;
         default: { return "FROZEN"; }
     }
 }
-Status Conversation::statusConversion(const string& status)
+AccountStatus Conversation::statusConversion(const string& status)
 {
     INFO("AccountRepository -> method status—onversion (type::string): called;");
 
-    if (status == "ACTIVE") { return Status::active; }
-    else if (status == "FROZEN") { return Status::frozen; }
-    else if (status == "CLOSED") { return Status::closed; }
-    else { return Status::frozen; }
+    if (status == "ACTIVE") { return AccountStatus::active; }
+    else if (status == "FROZEN") { return AccountStatus::frozen; }
+    else if (status == "CLOSED") { return AccountStatus::closed; }
+    else { return AccountStatus::frozen; }
+}
+
+string Conversation::statusConversion(const TransactionStatus& status, bool indi)
+{
+    INFO("AccountRepository -> method status—onversion (type::status): called;");
+
+    switch (status)
+    {
+    case TransactionStatus::pending: { return "PENDING"; } break;
+    case TransactionStatus::completed: { return "COMPLETED"; } break;
+    case TransactionStatus::canceled: { return "CANCELED"; } break;
+    default: { return "PENDING"; }
+    }
+}
+TransactionStatus Conversation::statusConversion(const string& status, bool indi)
+{
+    INFO("AccountRepository -> method status—onversion (type::string): called;");
+
+    if (status == "PENDING") { return TransactionStatus::pending; }
+    else if (status == "COMPLETED") { return TransactionStatus::completed; }
+    else if (status == "CANCELED") { return TransactionStatus::canceled; }
+    else { return TransactionStatus::pending; }
 }

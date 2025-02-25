@@ -17,7 +17,6 @@ public:
 	virtual size_t add(size_t& accountId, const string& cardNumber, const bool& isBlocked);
 	size_t add(const Card* account) override;
 	Card* get(size_t id) override;
-	
 	virtual bool update(const size_t& accountId, const string& cardNumber, const tm& expiryDate, const bool& isBlocked, const tm& issueDate);
 	bool update(const Card* class_) override;
 	bool deleteClass(size_t id) override;

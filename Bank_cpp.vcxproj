@@ -139,11 +139,16 @@
     <ClCompile Include="Domain\Repositories\CardRepository\cardRepository.cpp" />
     <ClCompile Include="Domain\Repositories\ClientRepository\clientRepository.cpp" />
     <ClCompile Include="Domain\Repositories\conversation.cpp" />
+    <ClCompile Include="Domain\Repositories\OperationRepository\operationRepository.cpp" />
+    <ClCompile Include="Domain\Repositories\TransactionRepository\transactionRepository.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Presentation\Tests\randomGenerator.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\accountRepositoryTest.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\cardRepositoryTest.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\clientRepositoryTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\mainRepositoriesTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\operationRepositoryTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\transactionRepositoryTest.cpp" />
     <ClCompile Include="Presentation\View\Intro\intro.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -162,14 +167,19 @@
     <ClInclude Include="Domain\Config\domainConfig.h" />
     <ClInclude Include="Domain\domain.h" />
     <ClInclude Include="Domain\Entities\Account\account.h" />
-    <ClInclude Include="Domain\Entities\Account\statusEnum.h" />
+    <ClInclude Include="Domain\Entities\Account\accountStatusEnum.h" />
     <ClInclude Include="Domain\Entities\Card\card.h" />
     <ClInclude Include="Domain\Entities\Client\client.h" />
+    <ClInclude Include="Domain\Entities\Operation\operation.h" />
+    <ClInclude Include="Domain\Entities\Transaction\transaction.h" />
+    <ClInclude Include="Domain\Entities\Transaction\transactionStatusEnum.h" />
     <ClInclude Include="Domain\Repositories\AccountRepository\accountRepository.h" />
     <ClInclude Include="Domain\Repositories\CardRepository\cardRepository.h" />
     <ClInclude Include="Domain\Repositories\ClientRepository\clientRepository.h" />
     <ClInclude Include="Domain\Repositories\conversation.h" />
     <ClInclude Include="Domain\Repositories\IRepository.h" />
+    <ClInclude Include="Domain\Repositories\OperationRepository\operationRepository.h" />
+    <ClInclude Include="Domain\Repositories\TransactionRepository\transactionRepository.h" />
     <ClInclude Include="Presentation\Config\presentationConfig.h" />
     <ClInclude Include="Presentation\presentation.h" />
     <ClInclude Include="Presentation\Tests\randomGenerator.h" />

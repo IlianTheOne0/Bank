@@ -100,7 +100,6 @@ bool CardRepository::deleteClass(size_t id)
         return true;
     }
     catch (const exception& e) {
-        ERROR(string("CardRepository -> method deleteClass -> try/catch (exception): ") + e.what() + ";"); return false;
-    }
+        ERROR(string("CardRepository -> method deleteClass -> try/catch (exception): ") + e.what() + ";"); return false; }
     catch (...) { ERROR("CardRepository -> method deleteClass -> try/catch (...): error!;"); return false; }
 }
