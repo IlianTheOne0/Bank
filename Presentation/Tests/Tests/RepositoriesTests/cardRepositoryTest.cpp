@@ -1,8 +1,8 @@
-#include "../../../Domain/Repositories/CardRepository/cardRepository.h"
-#include "../../../Domain/Repositories/AccountRepository/accountRepository.h"
-#include "../../../Domain/Repositories/ClientRepository/clientRepository.h"
+#include "../../../../Domain/Repositories/CardRepository/cardRepository.h"
+#include "../../../../Domain/Repositories/AccountRepository/accountRepository.h"
+#include "../../../../Domain/Repositories/ClientRepository/clientRepository.h"
 
-#include "../tests.h"
+#include "../../tests.h"
 #include "../randomGenerator.h"
 
 void setupClientAndAccount(BankSystemDbProvider& dbProvider, size_t& clientId, size_t& accountId) {

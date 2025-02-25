@@ -1,5 +1,6 @@
-#include "../../../Domain/Repositories/OperationRepository/operationRepository.h"
-#include "../tests.h"
+#include "../../../../Domain/Repositories/OperationRepository/operationRepository.h"
+
+#include "../../tests.h"
 #include "../randomGenerator.h"
 
 #include <iostream>

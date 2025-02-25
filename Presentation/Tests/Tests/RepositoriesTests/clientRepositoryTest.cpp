@@ -1,6 +1,6 @@
-#include "../../../Domain/Repositories/ClientRepository/clientRepository.h"
+#include "../../../../Domain/Repositories/ClientRepository/clientRepository.h"
 
-#include "../tests.h"
+#include "../../tests.h"
 #include "../randomGenerator.h"
 
 #include <iostream>

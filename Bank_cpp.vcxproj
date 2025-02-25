@@ -142,13 +142,13 @@
     <ClCompile Include="Domain\Repositories\OperationRepository\operationRepository.cpp" />
     <ClCompile Include="Domain\Repositories\TransactionRepository\transactionRepository.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Presentation\Tests\randomGenerator.cpp" />
-    <ClCompile Include="Presentation\Tests\Tests\accountRepositoryTest.cpp" />
-    <ClCompile Include="Presentation\Tests\Tests\cardRepositoryTest.cpp" />
-    <ClCompile Include="Presentation\Tests\Tests\clientRepositoryTest.cpp" />
-    <ClCompile Include="Presentation\Tests\Tests\mainRepositoriesTest.cpp" />
-    <ClCompile Include="Presentation\Tests\Tests\operationRepositoryTest.cpp" />
-    <ClCompile Include="Presentation\Tests\Tests\transactionRepositoryTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\randomGenerator.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\accountRepositoryTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\cardRepositoryTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\clientRepositoryTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\mainRepositiresTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\operationRepositoryTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\transactionRepositoryTest.cpp" />
     <ClCompile Include="Presentation\View\Intro\intro.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -182,8 +182,8 @@
     <ClInclude Include="Domain\Repositories\TransactionRepository\transactionRepository.h" />
     <ClInclude Include="Presentation\Config\presentationConfig.h" />
     <ClInclude Include="Presentation\presentation.h" />
-    <ClInclude Include="Presentation\Tests\randomGenerator.h" />
     <ClInclude Include="Presentation\Tests\tests.h" />
+    <ClInclude Include="Presentation\Tests\Tests\randomGenerator.h" />
     <ClInclude Include="Presentation\View\view.h" />
   </ItemGroup>
   <ItemGroup>

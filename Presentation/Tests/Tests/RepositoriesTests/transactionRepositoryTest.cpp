@@ -1,9 +1,9 @@
-#include "../../../Domain/Repositories/TransactionRepository/transactionRepository.h"
-#include "../../../Domain/Repositories/AccountRepository/accountRepository.h"
-#include "../../../Domain/Repositories/ClientRepository/clientRepository.h"
-#include "../../../Domain/Repositories/OperationRepository/operationRepository.h"
+#include "../../../../Domain/Repositories/TransactionRepository/transactionRepository.h"
+#include "../../../../Domain/Repositories/AccountRepository/accountRepository.h"
+#include "../../../../Domain/Repositories/ClientRepository/clientRepository.h"
+#include "../../../../Domain/Repositories/OperationRepository/operationRepository.h"
 
-#include "../tests.h"
+#include "../../tests.h"
 #include "../randomGenerator.h"
 
 #include <iostream>
@@ -30,8 +30,8 @@ void testAddTransaction(TransactionRepository& transactionRepo, size_t fromAccou
     Transaction transaction = { 0, fromAccountId, toAccountId, 500.0f, operationId, {}, "Test transaction", TransactionStatus::pending };
     int transactionId = transactionRepo.add(&transaction);
 
-    if (transactionId > 0) { std::cout << "AddTransaction test passed." << std::endl; }
-    else { std::cout << "AddTransaction test failed." << std::endl; }
+    if (transactionId > 0) { cout << "AddTransaction test passed." << endl; }
+    else { cout << "AddTransaction test failed." << endl; }
 }
 
 void testUpdateTransaction(TransactionRepository& transactionRepo, size_t fromAccountId, size_t toAccountId, size_t operationId) {
@@ -41,8 +41,8 @@ void testUpdateTransaction(TransactionRepository& transactionRepo, size_t fromAc
     transaction.amount = 1000.0f;
     bool result = transactionRepo.update(&transaction);
 
-    if (result) { std::cout << "UpdateTransaction test passed." << std::endl; }
-    else { std::cout << "UpdateTransaction test failed." << std::endl; }
+    if (result) { cout << "UpdateTransaction test passed." << endl; }
+    else { cout << "UpdateTransaction test failed." << endl; }
 }
 
 void testDeleteTransaction(TransactionRepository& transactionRepo, size_t fromAccountId, size_t toAccountId, size_t operationId) {
@@ -50,8 +50,8 @@ void testDeleteTransaction(TransactionRepository& transactionRepo, size_t fromAc
     int transactionId = transactionRepo.add(&transaction);
     bool result = transactionRepo.deleteClass(transactionId);
 
-    if (result) { std::cout << "DeleteTransaction test passed." << std::endl; }
-    else { std::cout << "DeleteTransaction test failed." << std::endl; }
+    if (result) { cout << "DeleteTransaction test passed." << endl; }
+    else { cout << "DeleteTransaction test failed." << endl; }
 }
 
 void testGetTransaction(TransactionRepository& transactionRepo, size_t fromAccountId, size_t toAccountId, size_t operationId) {
@@ -62,16 +62,16 @@ void testGetTransaction(TransactionRepository& transactionRepo, size_t fromAccou
     bool testPassed = true;
 
     if (fetchedTransaction->amount != 500.0f) {
-        std::cout << "amount mismatch: expected 500.0, got " << fetchedTransaction->amount << std::endl;
+        cout << "amount mismatch: expected 500.0, got " << fetchedTransaction->amount << endl;
         testPassed = false;
     }
     if (fetchedTransaction->description != "Test transaction") {
-        std::cout << "description mismatch: expected 'Test transaction', got " << fetchedTransaction->description << std::endl;
+        cout << "description mismatch: expected 'Test transaction', got " << fetchedTransaction->description << endl;
         testPassed = false;
     }
 
-    if (testPassed) { std::cout << "GetTransaction test passed." << std::endl; }
-    else { std::cout << "GetTransaction test failed." << std::endl; }
+    if (testPassed) { cout << "GetTransaction test passed." << endl; }
+    else { cout << "GetTransaction test failed." << endl; }
 
     delete fetchedTransaction;
 }

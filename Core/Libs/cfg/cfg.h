@@ -4,10 +4,10 @@
 #include "../CoreConfig.h"
 
 namespace ConnectionConfig {
-    const string containter = "postgres-local";
-    const string user = "sa";
-    const string dbname = "postgres";
-    const unsigned short queryTime = 5;
+    extern const string containter;
+    extern const string user;
+    extern const string dbname;
+    extern const unsigned short queryTime;
 }
 
 #endif
