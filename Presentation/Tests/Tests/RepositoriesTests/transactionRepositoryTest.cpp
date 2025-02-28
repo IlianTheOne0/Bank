@@ -81,6 +81,8 @@ void Test::transactionRepositoryTest()
     BankSystemDbProvider dbProvider;
     TransactionRepository transactionRepo;
 
+    dbProvider.deleteTablesData();
+
     size_t clientId1, clientId2;
     setupClient(dbProvider, clientId1);
     setupClient(dbProvider, clientId2);
@@ -96,6 +98,4 @@ void Test::transactionRepositoryTest()
     testUpdateTransaction(transactionRepo, fromAccountId, toAccountId, operationId);
     testDeleteTransaction(transactionRepo, fromAccountId, toAccountId, operationId);
     testGetTransaction(transactionRepo, fromAccountId, toAccountId, operationId);
-
-    //dbProvider.deleteTablesData();
 }
