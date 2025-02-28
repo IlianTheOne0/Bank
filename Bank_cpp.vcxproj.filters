@@ -176,7 +176,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Source\Remote\Migrations\bank_db.sql" />
-    <None Include="class.mdpuml" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Data\Source\Remote\Migrations\readme.md" />

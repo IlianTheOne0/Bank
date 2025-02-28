@@ -187,7 +187,6 @@
     <ClInclude Include="Presentation\View\view.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="class.mdpuml" />
     <None Include="Data\Source\Remote\Migrations\bank_db.sql" />
   </ItemGroup>
   <ItemGroup>
