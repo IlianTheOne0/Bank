@@ -165,15 +165,14 @@ namespace Queries
             return queryStream.str();
         }
 
-        string updateCard(const size_t& accountId, const string& cardNumber, const string& expiryDateStr, const string& isBlockedStr, const string& issueDateStr)
+        string updateCard(const size_t& accountId, const string& expiryDateStr, const string& isBlockedStr)
         {
             ostringstream queryStream;
             queryStream
                 << "UPDATE bank_system.cards SET "
-                << "card_number = '" << cardNumber << "', "
                 << "expiry_date = '" << expiryDateStr << "', "
-                << "is_blocked = '" << isBlockedStr << "', "
-                << "issue_date = '" << issueDateStr << "' "
+                << "is_blocked = '" << isBlockedStr << "' "
+
                 << "WHERE account_id = " << accountId
                 << ";";
             return queryStream.str();

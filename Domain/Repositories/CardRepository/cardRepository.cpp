@@ -61,13 +61,13 @@ Card* CardRepository::get(size_t id)
     catch (...) { ERROR("CardRepository -> method get -> try/catch (...): error!;"); return nullptr; }
 }
 
-bool CardRepository::_update(const size_t& accountId, const string& cardNumber, const string& expiryDateStr, const string& isBlockedStr, const string& issueDateStr)
+bool CardRepository::_update(const size_t& accountId, const string& expiryDateStr, const string& isBlockedStr)
 {
     INFO("CardRepository -> method update (value, dates = type::string, isBlocked = type::string, dates = type::string): called;");
 
     try
     {
-        string result = Queries::executeCommand(Queries::Cards::updateCard(accountId, cardNumber, expiryDateStr, isBlockedStr, issueDateStr));
+        string result = Queries::executeCommand(Queries::Cards::updateCard(accountId, expiryDateStr, isBlockedStr));
 
         INFO("CardRepository -> method update -> result: success;");
         return true;
@@ -75,17 +75,17 @@ bool CardRepository::_update(const size_t& accountId, const string& cardNumber, 
     catch (const exception& e) { ERROR(string("CardRepository -> method update -> try/catch (exception): ") + e.what() + ";"); return false; }
     catch (...) { ERROR("CardRepository -> method update -> try/catch (...): error!;"); return false; }
 }
-bool CardRepository::update(const size_t& accountId, const string& cardNumber, const tm& expiryDate, const bool& isBlocked, const tm& issueDate)
+bool CardRepository::update(const size_t& accountId, const tm& expiryDate, const bool& isBlocked)
 {
     INFO("CardRepository -> method update (value, isBlocked = type::bool, dates = type::tm): called;");
 
-    return _update(accountId, cardNumber, Conversation::dateConversion(expiryDate), isBlocked ? "t" : "f", Conversation::dateConversion(issueDate));
+    return _update(accountId,  Conversation::dateConversion(expiryDate), isBlocked ? "t" : "f");
 }
 bool CardRepository::update(const Card* card)
 {
     INFO("CardRepository -> method update (obj): called;");
 
-    return update(card->accountId, card->cardNumber, card->expiryDate, card->isBlocked, card->issueDate);
+    return update(card->accountId, card->expiryDate, card->isBlocked);
 }
 
 bool CardRepository::deleteClass(size_t id)

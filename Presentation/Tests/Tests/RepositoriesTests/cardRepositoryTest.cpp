@@ -29,13 +29,14 @@ void testUpdateCard(CardRepository& cardRepo, size_t accountId) {
     size_t cardId = cardRepo.add(&card);
     card.cardId = cardId;
     card.isBlocked = true;
-    Card card2 = { 0, accountId, to_string(generateRandomLongLong(100000, 999999)) + "4187060861", {}, true, {} };
+    Card card2 = { 0, accountId, to_string(generateRandomLongLong(100000, 999999)) + "4187060860", {}, true, {} };
     executeCommand("SELECT * FROM bank_system.cards WHERE card_number = '" + card2.cardNumber + "';");
     bool result = cardRepo.update(&card2);
 
     if (result) { cout << "UpdateCard test passed." << endl; }
     else { cout << "UpdateCard test failed." << endl; }
 }
+
 
 void testDeleteCard(CardRepository& cardRepo, size_t accountId) {
     Card card = { 0, accountId, to_string(generateRandomLongLong(100000, 999999)) + "4187060861", {}, false, {} };
@@ -72,6 +73,8 @@ void testGetCard(CardRepository& cardRepo, size_t accountId) {
 void Test::cardRepositoryTest()
 {
     BankSystemDbProvider dbProvider;
+   /* dbProvider.deleteTablesData();*/
+
     CardRepository cardRepo;
     size_t clientId, accountId;
 
