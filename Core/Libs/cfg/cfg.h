@@ -3,12 +3,11 @@
 
 #include "../CoreConfig.h"
 
-namespace Config {
-    const string dbname = "postgres";
-    const string user = "sa";
-    const string password = "4235~!64ABC!123";
-    const string host = "localhost";
-    const string port = "5432";
+namespace ConnectionConfig {
+    extern const string containter;
+    extern const string user;
+    extern const string dbname;
+    extern const unsigned short queryTime;
 }
 
 #endif
