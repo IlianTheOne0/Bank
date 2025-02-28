@@ -9,23 +9,13 @@ class Test
 private:
 	static const unsigned short testCounter;
 public:
-	static void clientRepositoryTest();
-	static void accountRepositoryTest();
-	static void cardRepositoryTest();
-	static void operationRepositoryTest();
-	static void transactionRepositoryTest();
-	static void mainRepositoriesTest();
+	static void libpqxxTest();
 
 	static void startTest()
 	{
 		switch (testCounter)
 		{
-			case 0: { clientRepositoryTest(); } break;
-			case 1: { accountRepositoryTest(); } break;
-			case 2: { cardRepositoryTest(); } break;
-			case 3: { operationRepositoryTest(); } break;
-			case 4: { transactionRepositoryTest(); } break;
-			case 5: { mainRepositoriesTest(); } break;
+			case 0: { libpqxxTest(); } break;
 			default: { View::Intro(); }
 		}
 	}
