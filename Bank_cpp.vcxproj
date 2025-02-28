@@ -133,8 +133,21 @@
   <ItemGroup>
     <ClCompile Include="Core\Libs\cfg\cfg.cpp" />
     <ClCompile Include="Core\Logger\logger.cpp" />
+    <ClCompile Include="Data\Queries\bank_db-Queries.cpp" />
+    <ClCompile Include="Domain\Repositories\AccountRepository\accountRepository.cpp" />
+    <ClCompile Include="Domain\Repositories\CardRepository\cardRepository.cpp" />
+    <ClCompile Include="Domain\Repositories\ClientRepository\ClientRepository.cpp" />
+    <ClCompile Include="Domain\Repositories\conversation.cpp" />
+    <ClCompile Include="Domain\Repositories\OperationRepository\operationRepository.cpp" />
+    <ClCompile Include="Domain\Repositories\TransactionRepository\transactionRepository.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Presentation\Tests\Tests\libpqxxTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\randomGenerator.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\accountRepositoryTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\cardRepositoryTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\clientRepositoryTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\mainRepositiresTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\operationRepositoryTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\transactionRepositoryTest.cpp" />
     <ClCompile Include="Presentation\View\Intro\intro.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,12 +162,28 @@
     <ClInclude Include="Core\Logger\logger.h" />
     <ClInclude Include="Data\Config\dataConfig.h" />
     <ClInclude Include="Data\data.h" />
-    <ClInclude Include="Data\Queries\Queries-bank_db.h" />
+    <ClInclude Include="Data\Providers\bank_systemProvider.h" />
+    <ClInclude Include="Data\Queries\bank_db-Queries.h" />
     <ClInclude Include="Domain\Config\domainConfig.h" />
     <ClInclude Include="Domain\domain.h" />
+    <ClInclude Include="Domain\Entities\Account\account.h" />
+    <ClInclude Include="Domain\Entities\Account\accountStatusEnum.h" />
+    <ClInclude Include="Domain\Entities\Card\card.h" />
+    <ClInclude Include="Domain\Entities\Client\client.h" />
+    <ClInclude Include="Domain\Entities\Operation\operation.h" />
+    <ClInclude Include="Domain\Entities\Transaction\transaction.h" />
+    <ClInclude Include="Domain\Entities\Transaction\transactionStatusEnum.h" />
+    <ClInclude Include="Domain\Repositories\AccountRepository\accountRepository.h" />
+    <ClInclude Include="Domain\Repositories\CardRepository\cardRepository.h" />
+    <ClInclude Include="Domain\Repositories\ClientRepository\ClientRepository.h" />
+    <ClInclude Include="Domain\Repositories\conversation.h" />
+    <ClInclude Include="Domain\Repositories\IRepository.h" />
+    <ClInclude Include="Domain\Repositories\OperationRepository\operationRepository.h" />
+    <ClInclude Include="Domain\Repositories\TransactionRepository\transactionRepository.h" />
     <ClInclude Include="Presentation\Config\presentationConfig.h" />
     <ClInclude Include="Presentation\presentation.h" />
     <ClInclude Include="Presentation\Tests\tests.h" />
+    <ClInclude Include="Presentation\Tests\Tests\randomGenerator.h" />
     <ClInclude Include="Presentation\View\view.h" />
   </ItemGroup>
   <ItemGroup>

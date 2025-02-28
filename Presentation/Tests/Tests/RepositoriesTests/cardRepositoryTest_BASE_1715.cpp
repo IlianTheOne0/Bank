@@ -82,10 +82,9 @@ void Test::cardRepositoryTest()
 
     testAddCard(cardRepo, accountId);
     testUpdateCard(cardRepo, accountId);
-    testDeleteCard(cardRepo, accountId);
-    testGetCard(cardRepo, accountId);
-    
-    //dbProvider.deleteTablesData();
+   /* testDeleteCard(cardRepo, accountId);*/
+    /*testGetCard(cardRepo, accountId);*/
+
 }
 
 // docker exec -it postgres-local psql -U sa -d postgres -c "SELECT conname, condeferrable, convalidated, pg_get_constraintdef(oid) FROM pg_constraint WHERE conrelid = 'bank_system.cards'::regclass;"

@@ -84,7 +84,7 @@ void Test::cardRepositoryTest()
     testUpdateCard(cardRepo, accountId);
     testDeleteCard(cardRepo, accountId);
     testGetCard(cardRepo, accountId);
-    
+
     //dbProvider.deleteTablesData();
 }
 
