@@ -39,7 +39,10 @@ CREATE TABLE accounts (
     currency VARCHAR(3) NOT NULL DEFAULT 'USD',
     opened_date DATE NOT NULL DEFAULT CURRENT_DATE,
     closed_date DATE CHECK (closed_date IS NULL OR closed_date > opened_date),
-    status VARCHAR(20) DEFAULT 'ACTIVE' CHECK (status IN ('ACTIVE', 'FROZEN', 'CLOSED'))
+    status VARCHAR(20) DEFAULT 'ACTIVE' CHECK (status IN ('ACTIVE', 'FROZEN', 'CLOSED')),
+    password_hash CHAR(64) NOT NULL,
+    salt CHAR(16) NOT NULL,
+    admin_status BOOLEAN DEFAULT FALSE
 );
 
 -- 5. Transactions with improved validation
@@ -77,7 +80,9 @@ CREATE TABLE cards (
     card_number CHAR(16) UNIQUE NOT NULL CHECK (card_number ~ '^[0-9]{16}$'),
     expiry_date DATE NOT NULL DEFAULT (CURRENT_DATE + INTERVAL '3 years'),
     is_blocked BOOLEAN NOT NULL DEFAULT FALSE,
-    issue_date DATE NOT NULL DEFAULT CURRENT_DATE
+    issue_date DATE NOT NULL DEFAULT CURRENT_DATE,
+    is_jar BOOLEAN DEFAULT FALSE,
+    jar_percentage NUMERIC(15, 2) DEFAULT 0.00 CHECK (jar_percentage >= 0 AND jar_percentage <= 100)
 );
 
 -- 7. Extended trigger with error handling
@@ -115,13 +120,14 @@ AFTER INSERT ON transactions
 FOR EACH ROW EXECUTE FUNCTION process_transaction();
 
 -- 8. Example usage of CTE for data insertion
-/*WITH new_clients AS (
+/*
+WITH new_clients AS (
     INSERT INTO clients (first_name, last_name, passport_number, phone, email)
     VALUES
         ('Ivan', 'Petrov', '1234567890', '+380000000000', 'ivan.petrov@example.com'),
         ('Maria', 'Sidorova', '0987654321', '+380111111111', 'maria.sidorova@example.com')
     RETURNING client_id
-)
+),
 new_accounts AS (
     INSERT INTO accounts (client_id, balance)
     SELECT client_id, 150000.00 FROM new_clients

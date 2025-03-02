@@ -24,21 +24,23 @@ namespace Queries
         string getClient(size_t id);
         string updateClient(size_t clientId, const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email, const string& registrationDate);
         string deleteClient(size_t id);
+
+        string checkByPassport(string passportNumber);
     }
 
     namespace Accounts
     {
-        string insertAccount(size_t& clientId, const float& balance, const string& currency, const string& status);
+        string insertAccount(size_t& clientId, const float& balance, const string& currency, const string& status, const string& password, const string& salt, const string& adminStatus);
         string getAccount(size_t id);
-        string updateAccount(size_t accountId, const float& balance, const string& currency, const string& openedDate, const string& closedDate, const string& status);
+        string updateAccount(size_t accountId, const float& balance, const string& currency, const string& openedDate, const string& closedDate, const string& status, const string& password, const string& adminStatus);
         string deleteAccount(size_t id);
     }
 
     namespace Cards
     {
-        string insertCard(size_t& accountId, const string& card_number, const string& isBlocked);
+        string insertCard(size_t& accountId, const string& card_number, const string& isBlocked, const string& isJar, const unsigned short& jarPercentage);
         string getCard(size_t id);
-        string updateCard(const size_t& accountId,  const string& expiryDateStr, const string& isBlockedStr);
+        string updateCard(const size_t& accountId,  const string& expiryDateStr, const string& isBlockedStr, const string& isJar, const unsigned short& jarPercentage);
         string deleteCard(size_t id);
     }
 

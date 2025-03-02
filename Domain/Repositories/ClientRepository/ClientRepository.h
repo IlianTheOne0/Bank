@@ -18,6 +18,8 @@ public:
 	virtual bool update(const size_t& clientId, const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email, const tm& clientRegistrationDate);
 	bool update(const Client* class_) override;
 	bool deleteClass(size_t id) override;
+
+	bool checkByPassport(const string& passportNumber);
 };
 
 #endif

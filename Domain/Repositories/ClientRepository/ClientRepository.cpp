@@ -95,3 +95,23 @@ bool ClientRepository::deleteClass(size_t id)
     catch (const exception& e) { ERROR(string("ClientRepository -> method deleteClass -> try/catch (exception): ") + e.what() + ";"); return false; }
     catch (...) { ERROR("ClientRepository -> method deleteClass -> try/catch (...): error!;"); return false; }
 }
+
+bool ClientRepository::checkByPassport(const string& passportNumber)
+{
+    INFO("ClientRepository -> method checkByPassport: called;");
+
+    try
+    {
+        string result = Queries::executeCommand(Queries::Clients::checkByPassport(passportNumber));
+        
+        istringstream iss(result);
+        string token;
+
+        bool isExist;
+        getline(iss, token, '|');
+        if (token.empty()) { INFO("ClientRepository -> method checkByPassport -> result: false;"); return false; }
+        else { INFO("ClientRepository -> method checkByPassport -> result: true;"); return true; }
+    }
+    catch (const exception& e) { ERROR(string("ClientRepository -> method deleteClass -> try/catch (exception): ") + e.what() + ";"); return false; }
+    catch (...) { ERROR("ClientRepository -> method deleteClass -> try/catch (...): error!;"); return false; }
+}

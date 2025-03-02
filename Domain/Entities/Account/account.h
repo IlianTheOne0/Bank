@@ -13,6 +13,8 @@ struct Account
     tm openedDate;
     tm closedDate;
     AccountStatus status;
+    string password;
+    bool adminStatus;
 };
 
 #endif

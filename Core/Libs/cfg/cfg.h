@@ -10,4 +10,6 @@ namespace ConnectionConfig {
     extern const unsigned short queryTime;
 }
 
+extern const unsigned short testCounter;
+
 #endif

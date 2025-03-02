@@ -11,6 +11,8 @@ struct Card
 	tm expiryDate;
 	bool isBlocked;
 	tm issueDate;
+	bool isJar;
+	unsigned short jarPercentage;
 };
 
 #endif
