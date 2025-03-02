@@ -51,22 +51,22 @@
     <ClCompile Include="Presentation\Tests\Tests\randomGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\accountRepositoryTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\cardRepositoryTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\accountRepositoryTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\clientRepositoryTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\mainRepositiresTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\operationRepositoryTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\transactionRepositoryTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\mainRepositiresTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

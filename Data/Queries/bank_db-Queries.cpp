@@ -91,16 +91,27 @@ namespace Queries
                 << ";";
             return queryStream.str();
         }
+
+        string checkByPassport(string passportNumber)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT passport_number "
+                << "FROM bank_system.clients "
+                << "WHERE passport_number = '" << passportNumber << "'"
+                << ";";
+            return queryStream.str();
+        }
     }
 
     namespace Accounts
     {
-        string insertAccount(size_t& clientId, const float& balance, const string& currency, const string& status)
+        string insertAccount(size_t& clientId, const float& balance, const string& currency, const string& status, const string& password, const string& salt, const string& adminStatus)
         {
             ostringstream queryStream;
             queryStream
-                << "INSERT INTO bank_system.accounts (client_id, balance, currency, status) "
-                << "VALUES (" << clientId << ", " << balance << ", '" << currency << "', '" << status << "') "
+                << "INSERT INTO bank_system.accounts (client_id, balance, currency, status, password_hash, salt, admin_status) "
+                << "VALUES (" << clientId << ", " << balance << ", '" << currency << "', '" << status << "', '" << password << "', '" << salt << "', '" << adminStatus << "') "
                 << "RETURNING account_id"
                 << ";";
             return queryStream.str();
@@ -116,7 +127,7 @@ namespace Queries
             return queryStream.str();
         }
 
-        string updateAccount(size_t accountId, const float& balance, const string& currency, const string& openedDate, const string& closedDate, const string& status)
+        string updateAccount(size_t accountId, const float& balance, const string& currency, const string& openedDate, const string& closedDate, const string& status, const string& password, const string& adminStatus)
         {
             ostringstream queryStream;
             queryStream
@@ -125,7 +136,9 @@ namespace Queries
                 << "currency = '" << currency << "', "
                 << "opened_date = '" << openedDate << "', "
                 << "closed_date = '" << closedDate << "', "
-                << "status = '" << status << "' "
+                << "status = '" << status << "', "
+                << "password_hash = '" << password << "', "
+                << "admin_status = '" << adminStatus << "' "
                 << "WHERE account_id = " << accountId
                 << ";";
             return queryStream.str();
@@ -144,12 +157,12 @@ namespace Queries
 
     namespace Cards
     {
-        string insertCard(size_t& accountId, const string& card_number, const string& isBlocked)
+        string insertCard(size_t& accountId, const string& card_number, const string& isBlocked, const string& isJar, const unsigned short& jarPercentage)
         {
             ostringstream queryStream;
             queryStream
-                << "INSERT INTO bank_system.cards (account_id, card_number, is_blocked) "
-                << "VALUES (" << accountId << ", '" << card_number << "', '" << isBlocked << "') "
+                << "INSERT INTO bank_system.cards (account_id, card_number, is_blocked, is_jar, jar_percentage) "
+                << "VALUES (" << accountId << ", '" << card_number << "', '" << isBlocked << "', '" << isJar << "', '" << jarPercentage << "') "
                 << "RETURNING card_id"
                 << ";";
             return queryStream.str();
@@ -165,13 +178,15 @@ namespace Queries
             return queryStream.str();
         }
 
-        string updateCard(const size_t& accountId, const string& expiryDateStr, const string& isBlockedStr)
+        string updateCard(const size_t& accountId, const string& expiryDateStr, const string& isBlockedStr, const string& isJar, const unsigned short& jarPercentage)
         {
             ostringstream queryStream;
             queryStream
                 << "UPDATE bank_system.cards SET "
                 << "expiry_date = '" << expiryDateStr << "', "
-                << "is_blocked = '" << isBlockedStr << "' "
+                << "is_blocked = '" << isBlockedStr << "', "
+                << "is_jar = '" << isJar << "', "
+                << "jar_percentage = '" << jarPercentage << "' "
 
                 << "WHERE account_id = " << accountId
                 << ";";
