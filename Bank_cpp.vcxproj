@@ -134,6 +134,7 @@
     <ClCompile Include="Core\Libs\cfg\cfg.cpp" />
     <ClCompile Include="Core\Logger\logger.cpp" />
     <ClCompile Include="Data\Queries\bank_db-Queries.cpp" />
+    <ClCompile Include="Domain\Entities\Account\account.cpp" />
     <ClCompile Include="Domain\Repositories\AccountRepository\accountRepository.cpp" />
     <ClCompile Include="Domain\Repositories\CardRepository\cardRepository.cpp" />
     <ClCompile Include="Domain\Repositories\ClientRepository\ClientRepository.cpp" />
@@ -152,7 +153,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Libs\cfg\cfg.h" />
-    <ClInclude Include="Core\Config\CoreConfig.h" />
     <ClInclude Include="Core\core.h" />
     <ClInclude Include="Core\Libs\CoreConfig.h" />
     <ClInclude Include="Core\Libs\dataConfig.h" />
@@ -160,11 +160,9 @@
     <ClInclude Include="Core\Libs\mainLib.h" />
     <ClInclude Include="Core\Libs\presentationConfig.h" />
     <ClInclude Include="Core\Logger\logger.h" />
-    <ClInclude Include="Data\Config\dataConfig.h" />
     <ClInclude Include="Data\data.h" />
     <ClInclude Include="Data\Providers\bank_systemProvider.h" />
     <ClInclude Include="Data\Queries\bank_db-Queries.h" />
-    <ClInclude Include="Domain\Config\domainConfig.h" />
     <ClInclude Include="Domain\domain.h" />
     <ClInclude Include="Domain\Entities\Account\account.h" />
     <ClInclude Include="Domain\Entities\Account\accountStatusEnum.h" />

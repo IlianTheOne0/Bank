@@ -29,8 +29,8 @@ size_t AccountRepository::add(const Account* account, const string& salt)
 {
     INFO("AccountRepository -> method add (obj): called;");
 
-    size_t clientId = account->clientId;
-    return add(clientId, account->balance, account->currency, account->status, account->password, salt, account->adminStatus);
+    size_t clientId = account->getClientId();
+    return add(clientId, account->getBalance(), account->currency, account->status, account->password, salt, account->adminStatus);
 }
 
 Account* AccountRepository::get(size_t id)
