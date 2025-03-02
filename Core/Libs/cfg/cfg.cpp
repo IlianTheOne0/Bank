@@ -8,6 +8,6 @@ namespace ConnectionConfig {
 }
 
 #include "../../Logger/logger.h"
-bool Logger::_isEnabled = true;
+bool Logger::_isEnabled = false;
 
-static constexpr unsigned short testCounter = 2;
+static constexpr unsigned short testCounter = 99;

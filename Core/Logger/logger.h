@@ -2,36 +2,8 @@
 #define LOGGER_H
 
 #include "../Libs/CoreConfig.h"
-
-enum Colors
-{
-    DefaultColor = 7,
-
-    Blue = 1,
-    Green = 2,
-    Cyan = 3,
-    Red = 4,
-    Pink = 5,
-    Yellow = 6,
-    White = 7,
-    LightBlue = 9,
-    LightGreen = 10,
-    LightCyan = 11,
-    LightRed = 12,
-    LightPink = 13,
-    LightYellow = 14,
-    LightWhite = 15
-};
-
-enum LoggerTypes
-{
-    Info = 9,
-    InfoADD = 11,
-    Error = 12,
-    Warning = 14,
-    DefaultLogger = 7,
-    Own
-};
+#include "colorsEnum.h"
+#include "loggerTypesEnum.h"
 
 class Logger
 {

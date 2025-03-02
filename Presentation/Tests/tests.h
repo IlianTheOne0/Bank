@@ -24,7 +24,7 @@ public:
 			//case 3: { operationRepositoryTest(); } break;
 			//case 4: { transactionRepositoryTest(); } break;
 			//case 5: { mainRepositoriesTest(); } break;
-			default: { View::Intro(); }
+			default: { View::startTheProgram(); }
 		}
 	}
 };
