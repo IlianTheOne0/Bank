@@ -12,7 +12,7 @@ public:
 	ClientRepository();
 
 	virtual size_t add(const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email);
-	size_t add(const Client* class_) override;
+	//size_t add(const Client* class_) override;
 	Client* get(size_t id) override;
 	virtual bool update(const size_t& clientId, const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email, const string& clientRegistrationDate);
 	virtual bool update(const size_t& clientId, const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email, const tm& clientRegistrationDate);

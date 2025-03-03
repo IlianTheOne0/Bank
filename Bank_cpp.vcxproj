@@ -135,6 +135,7 @@
     <ClCompile Include="Core\Logger\logger.cpp" />
     <ClCompile Include="Data\Queries\bank_db-Queries.cpp" />
     <ClCompile Include="Domain\Entities\Account\account.cpp" />
+    <ClCompile Include="Domain\Entities\Client\client.cpp" />
     <ClCompile Include="Domain\Repositories\AccountRepository\accountRepository.cpp" />
     <ClCompile Include="Domain\Repositories\CardRepository\cardRepository.cpp" />
     <ClCompile Include="Domain\Repositories\ClientRepository\ClientRepository.cpp" />
