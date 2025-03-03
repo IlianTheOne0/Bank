@@ -112,6 +112,26 @@ bool ClientRepository::checkByPassport(const string& passportNumber)
         if (token.empty()) { INFO("ClientRepository -> method checkByPassport -> result: false;"); return false; }
         else { INFO("ClientRepository -> method checkByPassport -> result: true;"); return true; }
     }
-    catch (const exception& e) { ERROR(string("ClientRepository -> method deleteClass -> try/catch (exception): ") + e.what() + ";"); return false; }
-    catch (...) { ERROR("ClientRepository -> method deleteClass -> try/catch (...): error!;"); return false; }
+    catch (const exception& e) { ERROR(string("ClientRepository -> method checkByPassport -> try/catch (exception): ") + e.what() + ";"); return false; }
+    catch (...) { ERROR("ClientRepository -> method checkByPassport -> try/catch (...): error!;"); return false; }
+}
+
+bool ClientRepository::checkByPhone(const string& phoneNumber)
+{
+    INFO("ClientRepository -> method checkByPhone: called;");
+
+    try
+    {
+        string result = Queries::executeCommand(Queries::Clients::checkByPhone(phoneNumber));
+
+        istringstream iss(result);
+        string token;
+
+        bool isExist;
+        getline(iss, token, '|');
+        if (token.empty()) { INFO("ClientRepository -> method checkByPhone -> result: false;"); return false; }
+        else { INFO("ClientRepository -> method checkByPhone -> result: true;"); return true; }
+    }
+    catch (const exception& e) { ERROR(string("ClientRepository -> method checkByPhone -> try/catch (exception): ") + e.what() + ";"); return false; }
+    catch (...) { ERROR("ClientRepository -> method checkByPhone -> try/catch (...): error!;"); return false; }
 }

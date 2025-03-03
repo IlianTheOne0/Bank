@@ -8,15 +8,15 @@ void View::LanguageSelection_()
 	do
 	{
 		clear;
-		printWithColor_(MESSAGE_DEFAULT_LANGUAGESELECTION, Colors::LightWhite); cout << endl;
+		printWithColor(MESSAGE_LANGUAGESELECTION, Colors::LightWhite); cout << endl;
 
-		print_(MESSAGE_DEFAULT_LANGUAGESELECTION_FORSELECTING); cout << endl;
+		print(MESSAGE_LANGUAGESELECTION_ACTION); cout << endl;
 
 		unsigned short option;
-		printWithColor_(MESSAGE_DEFAULT_DEFAULT_OPTION, Colors::LightYellow, false);
+		printWithColor(MESSAGE_OPTION, Colors::LightYellow, false);
 		cin >> option;
 
-		if (option < 0 || option > 2) { INFO("View -> method LanguageSelection -> loop: invalid option!;"); printWithColor_(MESSAGE_DEFAULT_DEFAULT_INVALIDOPTION, Colors::LightRed, true, true); continue; }
+		if (option < 0 || option > 2) { INFO("View -> method LanguageSelection -> loop: invalid option!;"); printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true); continue; }
 		switch (option)
 		{
 			case 1: { INFO("View -> method LanguageSelection -> selected language: english;"); selectedLanguage = Languages::English; } break;

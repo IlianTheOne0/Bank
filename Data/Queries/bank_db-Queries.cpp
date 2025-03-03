@@ -92,13 +92,24 @@ namespace Queries
             return queryStream.str();
         }
 
-        string checkByPassport(string passportNumber)
+        string checkByPassport(const string& passportNumber)
         {
             ostringstream queryStream;
             queryStream
                 << "SELECT passport_number "
                 << "FROM bank_system.clients "
                 << "WHERE passport_number = '" << passportNumber << "'"
+                << ";";
+            return queryStream.str();
+        }
+
+        string checkByPhone(const string& phoneNumber)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT phone "
+                << "FROM bank_system.clients "
+                << "WHERE phone = '" << phoneNumber << "'"
                 << ";";
             return queryStream.str();
         }

@@ -25,7 +25,8 @@ namespace Queries
         string updateClient(size_t clientId, const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email, const string& registrationDate);
         string deleteClient(size_t id);
 
-        string checkByPassport(string passportNumber);
+        string checkByPassport(const string& passportNumber);
+        string checkByPhone(const string& phoneNumber);
     }
 
     namespace Accounts

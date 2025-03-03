@@ -1,4 +1,5 @@
 #include "../view.h"
+#include "../../../Domain/domain.h"
 
 void Signin();
 void Login();
@@ -10,16 +11,16 @@ unsigned short View::Registration_()
 	do
 	{
 		clear;
-		printWithColor_(MESSAGE_DEFAULT_REGISTRATION, Colors::LightWhite);
-		printWithColor_(MESSAGE_DEFAULT_DEFAULT_SELECT, Colors::Yellow); cout << endl;
+		printWithColor(MESSAGE_REGISTRATION, Colors::LightWhite);
+		printWithColor(MESSAGE_SELECT, Colors::Yellow); cout << endl;
 		
-		print_(MESSAGE_DEFAULT_REGISTRATION_FORSELECTING); cout << endl;
+		print(MESSAGE_REGISTRATIONACTION); cout << endl;
 
 		unsigned short option;
-		printWithColor_(MESSAGE_DEFAULT_DEFAULT_OPTION, Colors::LightYellow, false);
+		printWithColor(MESSAGE_OPTION, Colors::LightYellow, false);
 		cin >> option;
 
-		if (option < 0 || option > 3) { INFO("View -> method Registration -> loop: invalid option!;"); printWithColor_(MESSAGE_DEFAULT_DEFAULT_INVALIDOPTION, Colors::LightRed, true, true); continue; }
+		if (option < 0 || option > 3) { INFO("View -> method Registration -> loop: invalid option!;"); printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true); continue; }
 		switch (option)
 		{
 			case 1: { INFO("View -> method Registration -> selected option: sign in;");  Signin(); } break;
@@ -35,10 +36,89 @@ unsigned short View::Registration_()
 void Signin()
 {
 	INFO("method Sigin: called;");
+	
+	string firstName;
+	string lastName;
+	string passportNumber;
+	string phone;
+	string email;
 
+	auto printStartMessage = []()
+		{
+			clear;
+			printWithColor(MESSAGE_REGISTRATION, Colors::LightWhite);
+			printWithColor(MESSAGE_INSERTDATA, Colors::Yellow); cout << endl;
+		};
+
+	do { printStartMessage(); print(MESSAGE_SIGNIN_NAME, false); cin >> firstName; if (firstName.empty()) { INFO("View -> method Signin -> loop (name): invalid option!;"); printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true); continue; } break; } while (true);
+	do { printStartMessage(); print(MESSAGE_SIGNIN_LASTNAME, false); cin >> lastName; if (lastName.empty()) { INFO("View -> method Signin -> loop (last name): invalid option!;"); printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true); continue; } break; } while (true);
 	do
 	{
-		pause;
+		printStartMessage();
+
+		print(MESSAGE_SIGNIN_PASSPORTNUMBER, false);
+		cin >> passportNumber;
+
+		if (passportNumber.empty())
+		{
+			INFO("View -> method Signin -> loop (phone): invalid option!;");
+			printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true);
+			continue;
+		}
+		string checkPassport = SignInUseCase::checkPhoneNumber(passportNumber);
+		if (passportNumber != "true")
+		{
+			INFO("View -> method Signin -> loop (phone): invalid option!;");
+			printWithColor(checkPassport, Colors::LightRed, true, true);
+			continue;
+		}
+
+		break;
+	} while (true);
+	do
+	{
+		printStartMessage();
+
+		print(MESSAGE_SIGNIN_PHONE, false);
+		cin >> phone;
+		
+		if (phone.empty())
+		{
+			INFO("View -> method Signin -> loop (phone): invalid option!;");
+			printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true);
+			continue;
+		}
+		string checkPhone = SignInUseCase::checkPhoneNumber(phone);
+		if (checkPhone != "true")
+		{
+			INFO("View -> method Signin -> loop (phone): invalid option!;");
+			printWithColor(checkPhone, Colors::LightRed, true, true);
+			continue;
+		}
+
+		break;
+	} while (true);
+	do
+	{
+		printStartMessage();
+
+		print(MESSAGE_SIGNIN_PHONE, false);
+		cin >> email;
+
+		if (email.empty())
+		{
+			INFO("View -> method Signin -> loop (phone): invalid option!;");
+			printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true);
+			continue;
+		}
+		string checkEmail = SignInUseCase::checkPhoneNumber(email);
+		if (checkEmail != "true")
+		{
+			INFO("View -> method Signin -> loop (phone): invalid option!;");
+			printWithColor(checkEmail, Colors::LightRed, true, true);
+			continue;
+		}
+
 		break;
 	} while (true);
 }
