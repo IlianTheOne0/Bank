@@ -12,23 +12,29 @@ enum Languages
 #define MESSAGE_OPTION "option"
 #define MESSAGE_INVALIDOPTION "invalid option"
 
+
 #define MESSAGE_LANGUAGESELECTION "select the language"
 #define MESSAGE_LANGUAGESELECTION_ACTION "languages list"
+
 
 #define MESSAGE_REGISTRATION "registration and login manu"
 #define MESSAGE_REGISTRATIONACTION "log in and sign in (list to-do)"
 
+
 #define MESSAGE_SIGNIN "signin"
 #define MESSAGE_SIGNIN_NAME "signin name"
 #define MESSAGE_SIGNIN_LASTNAME "signin last name"
+
 #define MESSAGE_SIGNIN_PASSPORTNUMBER "signin passport number"
 #define MESSAGE_SIGNIN_PASSPORT_LENGTH "signin passport length error"
 #define MESSAGE_SINGIN_PASSPORT_EXIST "signin passport already exist"
+
 #define MESSAGE_SIGNIN_PHONE "signin phone number"
 #define MESSAGE_SIGNIN_PHONE_NOTWITH "signin starting not with +380"
 #define MESSAGE_SIGNIN_PHONE_LENGTH "signin phone length error"
 #define MESSAGE_SIGNIN_PHONE_NOTNUMERIC "signin not numeric"
 #define MESSAGE_SINGIN_PHONE_EXIST "signin phone already exist"
+
 #define MESSAGE_SIGNIN_EMAIL "signin email"
 #define MESSAGE_SIGNIN_EMAIL_INVALID "signin email invalid"
 
@@ -48,14 +54,17 @@ enum Languages
 #define MESSAGE_ENGLISH_SIGNIN "SIGNIN"
 #define MESSAGE_ENGLISH_SIGNIN_NAME "Your name: "
 #define MESSAGE_ENGLISH_SIGNIN_LASTNAME "Your last name: "
+
 #define MESSAGE_ENGLISH_SIGNIN_PASSPORTNUMBER "Your passport number: "
-#define MESSAGE_ENGLISH_SIGNIN_PASSPORT_LENGTH "Insufficient number of characters (must be 20)!"
+#define MESSAGE_ENGLISH_SIGNIN_PASSPORT_LENGTH "Insufficient number of characters (must be 7)!"
 #define MESSAGE_ENGLISH_SINGIN_PASSPORT_EXIST "This passport number already exists in the database!"
+
 #define MESSAGE_ENGLISH_SIGNIN_PHONE "Your phone number: "
 #define MESSAGE_ENGLISH_SIGNIN_PHONE_NOTWITH "The phone number does not start with \"+380\"!"
-#define MESSAGE_ENGLISH_SIGNIN_PHONE_LENGTH "Insufficient number of characters (must be 15)!"
+#define MESSAGE_ENGLISH_SIGNIN_PHONE_LENGTH "Insufficient number of characters (must be 13)!"
 #define MESSAGE_ENGLISH_SIGNIN_PHONE_NOTNUMERIC "The phone number must consist of digits!"
 #define MESSAGE_ENGLISH_SINGIN_PHONE_EXIST "This number already exists in the database!"
+
 #define MESSAGE_ENGLISH_SIGNIN_EMAIL "Your email: "
 #define MESSAGE_ENGLISH_SIGNIN_EMAIL_INVALID "The mail is incorrect!"
 
@@ -75,14 +84,17 @@ enum Languages
 #define MESSAGE_UKRAINIAN_SIGNIN "ЗАРЕЄСТРУВАТИСЯ"
 #define MESSAGE_UKRAINIAN_SIGNIN_NAME "Ваше iм'я: "
 #define MESSAGE_UKRAINIAN_SIGNIN_LASTNAME "Ваше прiзвище: "
+
 #define MESSAGE_UKRAINIAN_SIGNIN_PASSPORTNUMBER "Номер Вашого паспорта: "
-#define MESSAGE_UKRAINIAN_SIGNIN_PASSPORT_LENGTH "Неправильна довжина номера (повинно бути 20)!"
+#define MESSAGE_UKRAINIAN_SIGNIN_PASSPORT_LENGTH "Неправильна довжина номера (повинно бути 7)!"
 #define MESSAGE_UKRAINIAN_SINGIN_PASSPORT_EXIST "Цей номер паспорта вже iснує в базi даних!"
+
 #define MESSAGE_UKRAINIAN_SIGNIN_PHONE "Ваш номер телефона: "
 #define MESSAGE_UKRAINIAN_SIGNIN_PHONE_NOTWITH "Ваш номер телефона починається не з \"+380\"!"
-#define MESSAGE_UKRAINIAN_SIGNIN_PHONE_LENGTH "Неправильна довжина номера (повинно бути 15)!"
+#define MESSAGE_UKRAINIAN_SIGNIN_PHONE_LENGTH "Неправильна довжина номера (повинно бути 13)!"
 #define MESSAGE_UKRAINIAN_SINGIN_PHONE_EXIST "Цей номер вже iснує в базi даних!"
-#define MESSAGE_UKRAINIAN_SIGNIN_PHONE_NOTNUMERIC "Номер повинен складатися із цифр!"
+#define MESSAGE_UKRAINIAN_SIGNIN_PHONE_NOTNUMERIC "Номер повинен складатися iз цифр!"
+
 #define MESSAGE_UKRAINIAN_SIGNIN_EMAIL "Ваша пошта: "
 #define MESSAGE_UKRAINIAN_SIGNIN_EMAIL_INVALID "Пошта не правильна!"
 

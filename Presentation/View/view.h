@@ -3,6 +3,7 @@
 
 #include "../../Core/Libs/presentationConfig.h"
 #include "Items/LanguageSelection/languagesEnum.h"
+#include "../../Domain/Entities/Client/client.h"
 
 extern Languages selectedLanguage;
 
@@ -19,6 +20,7 @@ class View
 private:
 	static void LanguageSelection_();
 	static unsigned short Registration_();
+	static Client* Signin_();
 public:
 
 	static void startTheProgram();

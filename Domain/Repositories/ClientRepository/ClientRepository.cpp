@@ -109,7 +109,7 @@ bool ClientRepository::checkByPassport(const string& passportNumber)
 
         bool isExist;
         getline(iss, token, '|');
-        if (token.empty()) { INFO("ClientRepository -> method checkByPassport -> result: false;"); return false; }
+        if (!token.empty()) { INFO("ClientRepository -> method checkByPassport -> result: false;"); return false; }
         else { INFO("ClientRepository -> method checkByPassport -> result: true;"); return true; }
     }
     catch (const exception& e) { ERROR(string("ClientRepository -> method checkByPassport -> try/catch (exception): ") + e.what() + ";"); return false; }
@@ -129,7 +129,7 @@ bool ClientRepository::checkByPhone(const string& phoneNumber)
 
         bool isExist;
         getline(iss, token, '|');
-        if (token.empty()) { INFO("ClientRepository -> method checkByPhone -> result: false;"); return false; }
+        if (!token.empty()) { INFO("ClientRepository -> method checkByPhone -> result: false;"); return false; }
         else { INFO("ClientRepository -> method checkByPhone -> result: true;"); return true; }
     }
     catch (const exception& e) { ERROR(string("ClientRepository -> method checkByPhone -> try/catch (exception): ") + e.what() + ";"); return false; }

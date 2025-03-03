@@ -29,23 +29,39 @@ void print(const string& message, const bool& isEnd, const bool& isPause)
 			else if (message == MESSAGE_INSERTDATA) { printMessage(MESSAGE_ENGLISH_DEFAULT_INSERTDATA); }
 			else if (message == MESSAGE_INVALIDOPTION) { printMessage(MESSAGE_ENGLISH_DEFAULT_INVALIDOPTION); }
 
+
 			else if (message == MESSAGE_LANGUAGESELECTION) { printMessage(MESSAGE_ENGLISH_LANGUAGESELECTION); }
 			else if (message == MESSAGE_LANGUAGESELECTION_ACTION) { printMessage(MESSAGE_ENGLISH_LANGUAGESELECTION_ACTION); }
+
 
 			else if (message == MESSAGE_REGISTRATION) { printMessage(string(MESSAGE_ENGLISH_SIGNIN) + " / " + MESSAGE_ENGLISH_LOGIN); }
 			else if (message == MESSAGE_REGISTRATIONACTION) { printMessage(MESSAGE_ENGLISH_DEFAULT_REGISTRATION_ACTION); }
 
+
 			else if (message == MESSAGE_SIGNIN) { printMessage(MESSAGE_ENGLISH_SIGNIN); }
 			else if (message == MESSAGE_SIGNIN_NAME) { printMessage(MESSAGE_ENGLISH_SIGNIN_NAME); }
 			else if (message == MESSAGE_SIGNIN_LASTNAME) { printMessage(MESSAGE_ENGLISH_SIGNIN_LASTNAME); }
+			
 			else if (message == MESSAGE_SIGNIN_PASSPORTNUMBER) { printMessage(MESSAGE_ENGLISH_SIGNIN_PASSPORTNUMBER); }
+			else if (message == MESSAGE_SIGNIN_PASSPORT_LENGTH) { printMessage(MESSAGE_ENGLISH_SIGNIN_PASSPORT_LENGTH); }
+			else if (message == MESSAGE_SINGIN_PASSPORT_EXIST) { printMessage(MESSAGE_ENGLISH_SINGIN_PASSPORT_EXIST); }
+
 			else if (message == MESSAGE_SIGNIN_PHONE) { printMessage(MESSAGE_ENGLISH_SIGNIN_PHONE); }
+			else if (message == MESSAGE_SIGNIN_PHONE_NOTWITH) { printMessage(MESSAGE_ENGLISH_SIGNIN_PHONE_NOTWITH); }
+			else if (message == MESSAGE_SIGNIN_PHONE_LENGTH) { printMessage(MESSAGE_ENGLISH_SIGNIN_PHONE_LENGTH); }
+			else if (message == MESSAGE_SIGNIN_PHONE_NOTNUMERIC) { printMessage(MESSAGE_ENGLISH_SIGNIN_PHONE_NOTNUMERIC); }
+			else if (message == MESSAGE_SINGIN_PHONE_EXIST) { printMessage(MESSAGE_ENGLISH_SINGIN_PHONE_EXIST); }
+
 			else if (message == MESSAGE_SIGNIN_EMAIL) { printMessage(MESSAGE_ENGLISH_SIGNIN_EMAIL); }
+			else if (message == MESSAGE_SIGNIN_EMAIL_INVALID) { printMessage(MESSAGE_ENGLISH_SIGNIN_EMAIL_INVALID); }
+
 
 			else if (message == MESSAGE_LOGIN) { printMessage(MESSAGE_ENGLISH_LOGIN); }
+
+
 			else { printMessageWithColor("Error: " + string(TRANSLATION_ERROR), Colors::LightRed); }
 		} break;
-		
+
 		case Languages::Ukrainian:
 		{
 			if (message == MESSAGE_SELECT) { printMessage(MESSAGE_UKRAINIAN_DEFAULT_SELECT); }
@@ -53,20 +69,36 @@ void print(const string& message, const bool& isEnd, const bool& isPause)
 			else if (message == MESSAGE_INSERTDATA) { printMessage(MESSAGE_UKRAINIAN_DEFAULT_INSERTDATA); }
 			else if (message == MESSAGE_INVALIDOPTION) { printMessage(MESSAGE_UKRAINIAN_DEFAULT_INVALIDOPTION); }
 
+
 			else if (message == MESSAGE_LANGUAGESELECTION) { printMessage(MESSAGE_UKRAINIAN_LANGUAGESELECTION); }
 			else if (message == MESSAGE_LANGUAGESELECTION_ACTION) { printMessage(MESSAGE_UKRAINIAN_LANGUAGESELECTION_ACTION); }
+
 
 			else if (message == MESSAGE_REGISTRATION) { printMessage(string(MESSAGE_UKRAINIAN_SIGNIN) + " / " + MESSAGE_UKRAINIAN_LOGIN); }
 			else if (message == MESSAGE_REGISTRATIONACTION) { printMessage(MESSAGE_UKRAINIAN_DEFAULT_REGISTRATION_ACTION); }
 
+
 			else if (message == MESSAGE_SIGNIN) { printMessage(MESSAGE_UKRAINIAN_SIGNIN); }
 			else if (message == MESSAGE_SIGNIN_NAME) { printMessage(MESSAGE_UKRAINIAN_SIGNIN_NAME); }
 			else if (message == MESSAGE_SIGNIN_LASTNAME) { printMessage(MESSAGE_UKRAINIAN_SIGNIN_LASTNAME); }
+
 			else if (message == MESSAGE_SIGNIN_PASSPORTNUMBER) { printMessage(MESSAGE_UKRAINIAN_SIGNIN_PASSPORTNUMBER); }
+			else if (message == MESSAGE_SIGNIN_PASSPORT_LENGTH) { printMessage(MESSAGE_UKRAINIAN_SIGNIN_PASSPORT_LENGTH); }
+			else if (message == MESSAGE_SINGIN_PASSPORT_EXIST) { printMessage(MESSAGE_UKRAINIAN_SINGIN_PASSPORT_EXIST); }
+
 			else if (message == MESSAGE_SIGNIN_PHONE) { printMessage(MESSAGE_UKRAINIAN_SIGNIN_PHONE); }
+			else if (message == MESSAGE_SIGNIN_PHONE_NOTWITH) { printMessage(MESSAGE_UKRAINIAN_SIGNIN_PHONE_NOTWITH); }
+			else if (message == MESSAGE_SIGNIN_PHONE_LENGTH) { printMessage(MESSAGE_UKRAINIAN_SIGNIN_PHONE_LENGTH); }
+			else if (message == MESSAGE_SIGNIN_PHONE_NOTNUMERIC) { printMessage(MESSAGE_UKRAINIAN_SIGNIN_PHONE_NOTNUMERIC); }
+			else if (message == MESSAGE_SINGIN_PHONE_EXIST) { printMessage(MESSAGE_UKRAINIAN_SINGIN_PHONE_EXIST); }
+
 			else if (message == MESSAGE_SIGNIN_EMAIL) { printMessage(MESSAGE_UKRAINIAN_SIGNIN_EMAIL); }
+			else if (message == MESSAGE_SIGNIN_EMAIL_INVALID) { printMessage(MESSAGE_UKRAINIAN_SIGNIN_EMAIL_INVALID); }
+			
 
 			else if (message == MESSAGE_LOGIN) { printMessage(MESSAGE_UKRAINIAN_LOGIN); }
+
+
 			else { printMessageWithColor("Error: " + string(TRANSLATION_ERROR), Colors::LightRed); }
 		} break;
 		
