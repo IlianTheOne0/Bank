@@ -18,12 +18,12 @@ size_t ClientRepository::add(const string& firstName, const string& lastName, co
     catch (const exception& e) { ERROR(string("ClientRepository -> method add -> try/catch (exception): ") + e.what() + ";"); return -1; }
     catch (...) { ERROR("ClientRepository -> method add -> try/catch (...): error!;"); return -1; }
 }
-size_t ClientRepository::add(const Client* client)
-{
-    INFO("ClientRepository -> method add (obj): called;");
-
-    return add(client->firstName, client->lastName, client->passportNumber, client->phone, client->email);
-}
+//size_t ClientRepository::add(const Client* client)
+//{
+//    INFO("ClientRepository -> method add (obj): called;");
+//
+//    return add(client->getFirstName(), client->getLastName(), client->getPassportNumber(), client->getPhone(), client->getEmail());
+//}
 
 Client* ClientRepository::get(size_t id)
 {
@@ -40,12 +40,12 @@ Client* ClientRepository::get(size_t id)
         istringstream iss(result);
         string token;
 
-        getline(iss, token, '|'); client->firstName = token;
-        getline(iss, token, '|'); client->lastName = token;
-        getline(iss, token, '|'); client->passportNumber = token;
-        getline(iss, token, '|'); client->phone = token;
-        getline(iss, token, '|'); client->email = token;
-        getline(iss, token, '|'); client->registrationDate = Conversation::dateConversion(token);
+        getline(iss, token, '|'); client->setFirstName(token);
+        getline(iss, token, '|'); client->setLastName(token);
+        getline(iss, token, '|'); client->setPassportNumber(token);
+        getline(iss, token, '|'); client->setPhone(token);
+        getline(iss, token, '|'); client->setEmail(token);
+        getline(iss, token, '|'); client->setRegistrationDate(Conversation::dateConversion(token));
 
         INFO("ClientRepository -> method get -> result: success;");
         return client;
@@ -78,7 +78,7 @@ bool ClientRepository::update(const Client* client)
 {
     INFO("ClientRepository -> method update (obj): called;");
     
-    return update(client->clientId, client->firstName, client->lastName, client->passportNumber, client->phone, client->email, client->registrationDate);
+    return update(client->getClientId(), client->getFirstName(), client->getLastName(), client->getPassportNumber(), client->getPhone(), client->getEmail(), client->getRegistrationDate());
 }
 
 bool ClientRepository::deleteClass(size_t id)
@@ -112,6 +112,26 @@ bool ClientRepository::checkByPassport(const string& passportNumber)
         if (token.empty()) { INFO("ClientRepository -> method checkByPassport -> result: false;"); return false; }
         else { INFO("ClientRepository -> method checkByPassport -> result: true;"); return true; }
     }
-    catch (const exception& e) { ERROR(string("ClientRepository -> method deleteClass -> try/catch (exception): ") + e.what() + ";"); return false; }
-    catch (...) { ERROR("ClientRepository -> method deleteClass -> try/catch (...): error!;"); return false; }
+    catch (const exception& e) { ERROR(string("ClientRepository -> method checkByPassport -> try/catch (exception): ") + e.what() + ";"); return false; }
+    catch (...) { ERROR("ClientRepository -> method checkByPassport -> try/catch (...): error!;"); return false; }
+}
+
+bool ClientRepository::checkByPhone(const string& phoneNumber)
+{
+    INFO("ClientRepository -> method checkByPhone: called;");
+
+    try
+    {
+        string result = Queries::executeCommand(Queries::Clients::checkByPhone(phoneNumber));
+
+        istringstream iss(result);
+        string token;
+
+        bool isExist;
+        getline(iss, token, '|');
+        if (token.empty()) { INFO("ClientRepository -> method checkByPhone -> result: false;"); return false; }
+        else { INFO("ClientRepository -> method checkByPhone -> result: true;"); return true; }
+    }
+    catch (const exception& e) { ERROR(string("ClientRepository -> method checkByPhone -> try/catch (exception): ") + e.what() + ";"); return false; }
+    catch (...) { ERROR("ClientRepository -> method checkByPhone -> try/catch (...): error!;"); return false; }
 }

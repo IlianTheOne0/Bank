@@ -25,13 +25,13 @@ size_t AccountRepository::add(size_t& clientId, const float& balance, const stri
     string adminStatusStr = ((adminStatus) ? "t" : "f");
     return _add(clientId, balance, currency, Conversation::statusConversion(status), password, salt, adminStatusStr);
 }
-size_t AccountRepository::add(const Account* account, const string& salt)
-{
-    INFO("AccountRepository -> method add (obj): called;");
-
-    size_t clientId = account->getClientId();
-    return add(clientId, account->getBalance(), account->currency, account->status, account->password, salt, account->adminStatus);
-}
+//size_t AccountRepository::add(const Account* account, const string& salt)
+//{
+//    INFO("AccountRepository -> method add (obj): called;");
+//
+//    size_t clientId = account->getClientId();
+//    return add(clientId, account->getBalance(), account->getCurrency(), account->getStatus(), account->getPassword(), salt, account->getAdminStatus());
+//}
 
 Account* AccountRepository::get(size_t id)
 {
@@ -48,13 +48,13 @@ Account* AccountRepository::get(size_t id)
         istringstream iss(result);
         string token;
 
-        getline(iss, token, '|'); account->accountId = stoi(token);
-        getline(iss, token, '|'); account->clientId = stoi(token);
-        getline(iss, token, '|'); account->balance = stof(token);
-        getline(iss, token, '|'); account->currency = token;
-        getline(iss, token, '|'); account->openedDate = Conversation::dateConversion(token);
-        getline(iss, token, '|'); account->closedDate = Conversation::dateConversion(token);
-        getline(iss, token, '|'); account->status = Conversation::statusConversion(token);
+        getline(iss, token, '|'); account->setAccountId(stoi(token));
+        getline(iss, token, '|'); account->setClientId(stoi(token));
+        getline(iss, token, '|'); account->setBalance(stof(token));
+        getline(iss, token, '|'); account->setCurrency(token);
+        getline(iss, token, '|'); account->setOpenedDate(Conversation::dateConversion(token));
+        getline(iss, token, '|'); account->setClosedDate(Conversation::dateConversion(token));
+        getline(iss, token, '|'); account->setStatus(Conversation::statusConversion(token));
 
         INFO("AccountRepository -> method get -> result: success;");
         return account;
@@ -88,7 +88,7 @@ bool AccountRepository::update(const Account* account)
 {
     INFO("AccountRepository -> method update (obj): called;");
     
-    return update(account->accountId, account->balance, account->currency, account->openedDate, account->closedDate, account->status, account->password, account->adminStatus);
+    return update(account->getAccountId(), account->getBalance(), account->getCurrency(), account->getOpenedDate(), account->getClosedDate(), account->getStatus(), account->getPassword(), account->getAdminStatus());
 }
 
 bool AccountRepository::deleteClass(size_t id)

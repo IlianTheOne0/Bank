@@ -13,4 +13,6 @@
 #include "Repositories/OperationRepository/operationRepository.h"
 #include "Repositories/TransactionRepository/transactionRepository.h"
 
+#include "UseCases/Registration/signinUseCase.h"
+
 #endif

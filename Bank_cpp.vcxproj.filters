@@ -21,9 +21,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Presentation\View\Intro\intro.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Libs\cfg\cfg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -69,6 +66,27 @@
     <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\transactionRepositoryTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Presentation\View\Items\registration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\View\Items\startTheProgram.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\View\view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\View\Items\LanguageSelection\languageSelection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Entities\Account\account.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Entities\Client\client.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\UseCases\Registration\signinUseCase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Libs\cfg\cfg.h">
@@ -95,16 +113,10 @@
     <ClInclude Include="Presentation\View\view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Config\CoreConfig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Libs\mainLib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Data\Config\dataConfig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Domain\Config\domainConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Presentation\Config\presentationConfig.h">
@@ -171,6 +183,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Presentation\Tests\Tests\randomGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Logger\colorsEnum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Logger\loggerTypesEnum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Presentation\View\Items\LanguageSelection\languagesEnum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\UseCases\Registration\signinUseCase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
