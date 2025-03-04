@@ -1,31 +1,27 @@
 #include "createAccountUseCase.h"
-#include "../../../Presentation/View/Items/LanguageSelection/languagesEnum.h"
+#include "../../Core/Libs/presentationConfig.h"
 
-#include <random>
-#include <sstream>
-//#include <iomanip>
-	
 pair<string, string> CreateAccountUseCase::encryptPassword_(const string& password) 
 {
 	INFO("CreateAccountUseCase -> static method encryptPassword: called;");
 
-	// Генерация случайной соли (16 символов)
-	std::random_device rd;
-	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> distrib(33, 126); // Символы в ASCII
+	// Generating a random salt (16 characters)
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<> distrib(33, 126); // Символы в ASCII
 
 	string salt;
 	for (int i = 0; i < 16; ++i) {
 		salt += static_cast<char>(distrib(gen));
 	}
 
-	// Хешируем пароль + соль через std::hash (не криптостойкий, но лучше, чем просто пароль)
-	std::hash<string> hasher;
+	// Hash password + salt via hash (not crypto-resistant, but better than just password)
+	hash<string> hasher;
 	size_t hashed = hasher(password + salt);
 
-	// Конвертируем хеш в строку (hex)
-	std::stringstream ss;
-	ss << std::hex << hashed;
+	// Convert hash to string (hex)
+	stringstream ss;
+	ss << hex << hashed;
 	string hashedPassword = ss.str();
 
 	return {hashedPassword, salt};

@@ -4,14 +4,14 @@
 class BankUseCase
 {
 public:
-    // Пример регистрации клиента
+    // Example of client registration
     bool registerClient(const std::string& name, const std::string& email, const std::string& password);
     
-    // Операции со счетом
+    // Account transactions
     bool deposit(int accountId, double amount);
     bool withdraw(int accountId, double amount);
     bool transfer(int fromAccountId, int toAccountId, double amount);
     
-    // Калькулятор депозитов с учетом сложных процентов
+    // Deposit calculator with compound interest
     double calculateDeposit(double principal, double rate, int months);
 };
