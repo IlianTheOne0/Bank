@@ -122,6 +122,6 @@ Client* View::Signin_()
 Client* View::Login_()
 {
 	INFO("View -> method Login: called;");
-
+	// check by email and password hash
 	return nullptr;
 }
