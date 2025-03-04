@@ -119,8 +119,6 @@ Client* View::Signin_()
 	return SignInUseCase::signIn(firstName, lastName, passportNumber, phone, email);
 }
 
-//______________________________________________________________________________________________________________________
-
 Client* View::Login_()
 {
     INFO("View -> method Login: called;");
@@ -133,7 +131,7 @@ Client* View::Login_()
     auto printStartMessage = []()
     {
         clear;
-        printWithColor(MESSAGE_LOGIN, Colors::LightWhite); // MESSAGE_LOGIN must be defined like the other messages
+        printWithColor(MESSAGE_LOGIN, Colors::LightWhite);
         printWithColor(MESSAGE_INSERTDATA, Colors::Yellow); cout << endl;
     };
 	
@@ -148,7 +146,7 @@ Client* View::Login_()
             printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true);
             continue;
         }
-        //  If it contains ‘@’, we assume it is an email, otherwise it is a phone number
+
         if (identifier.find('@') != string::npos)
         {
             string checkEmail = SignInUseCase::checkEmail(identifier);
@@ -172,7 +170,6 @@ Client* View::Login_()
         break;
     } while (true);
 
-    // get pass
     do
     {
         printStartMessage();
@@ -188,7 +185,6 @@ Client* View::Login_()
         break;
     } while (true);
 
-    // Вызываем функцию логина из UseCase
 	Client* client = signInUseCase.login(identifier, password);
     if (!client)
     {

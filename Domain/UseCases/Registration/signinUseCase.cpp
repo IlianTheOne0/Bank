@@ -1,57 +1,71 @@
 #include "SignInUseCase.h"
-#include "../BankUseCase/BankUseCase.h"
-#include <string>
+#include "../../Repositories/ClientRepository/ClientRepository.h"
 
-// Статический метод для проверки номера паспорта
-std::string SignInUseCase::checkPassport(const std::string& passportNumber) {
-    // Пример: валидный, если длина равна 9 символам
-    if (passportNumber.length() == 9) {
-        return "true";
-    } else {
-        return "Неверный номер паспорта";
-    }
+#include "../../../Core/Libs/domainConfig.h"
+#include "../../../Presentation/presentation.h"
+
+string SignInUseCase::checkPassport(const string& passportNumber)
+{
+    INFO("SignInUseCase -> static method checkPassport: called;");
+
+    if (passportNumber.length() == 7) { return "true"; }
+    else { return MESSAGE_SIGNIN_PASSPORT_LENGTH; }
+    
+    ClientRepository clientRepo;
+	if (clientRepo.checkByPassport(passportNumber)) { return "true"; }
+	else { return MESSAGE_SINGIN_PASSPORT_EXIST; }
 }
 
-// Статический метод для проверки номера телефона
-std::string SignInUseCase::checkPhoneNumber(const std::string& phoneNumber) {
-    // Пример: валидный, если начинается с '+' и длиннее 1 символа
-    if (!phoneNumber.empty() && phoneNumber[0] == '+' && phoneNumber.length() > 1) {
-        return "true";
-    } else {
-        return "Неверный номер телефона";
-    }
+string SignInUseCase::checkPhoneNumber(const string& phoneNumber)
+{
+    INFO("SignInUseCase -> static method checkPhoneNumber: called;");
+
+    if (
+        phoneNumber[0] != '+' &&
+        phoneNumber[1] != '3' &&
+        phoneNumber[2] != '8' &&
+        phoneNumber[3] != '0'
+        )
+    { return MESSAGE_SIGNIN_PHONE_NOTWITH; }
+    if (phoneNumber.size() != 13) { return MESSAGE_SIGNIN_PHONE_LENGTH; }
+    char ch;
+    for (unsigned short i = 2; i < 12; i++) { ch = phoneNumber[i]; if (ch < '0' || ch > '9') { return MESSAGE_SIGNIN_PHONE_NOTNUMERIC; } }
+    
+    ClientRepository clientRepo;
+    if (!clientRepo.checkByPhone(phoneNumber)) { return MESSAGE_SINGIN_PHONE_EXIST; }
+
+    return "true";
 }
 
-// Статический метод для проверки email
-std::string SignInUseCase::checkEmail(const std::string& email) {
-    // Пример: валидный, если содержит '@', за которым следует '.'
+string SignInUseCase::checkEmail(const string& email) {
+    INFO("SignInUseCase -> static method checkEmail: called;");
+
     size_t atPos = email.find('@');
     size_t dotPos = email.find('.', atPos);
-    if (atPos != std::string::npos && dotPos != std::string::npos && dotPos > atPos) {
-        return "true";
-    } else {
-        return "Неверный email";
-    }
+
+    if (atPos != string::npos && dotPos != string::npos && dotPos > atPos) { return "true"; }
+    else { return MESSAGE_SIGNIN_EMAIL_INVALID; }
+
+    ClientRepository clientRepo;
+    if (!clientRepo.checkByEmail(email)) { return MESSAGE_SIGNIN_EMAIL_EXIST; }
 }
 
-// Статический метод для регистрации клиента
-Client* SignInUseCase::signIn(const std::string& firstName, const std::string& lastName, 
-                              const std::string& passportNumber, const std::string& phone, 
-                              const std::string& email) {
-    // Проверяем все входные данные перед созданием клиента
+Client* SignInUseCase::signIn(const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email) {
+    ClientRepository clientRepo;
+
     if (checkPassport(passportNumber) == "true" &&
         checkPhoneNumber(phone) == "true" &&
         checkEmail(email) == "true") {
-        // Предполагаем, что у Client есть конструктор, соответствующий этим параметрам
-        return new Client(firstName, lastName, passportNumber, phone, email);
-    } else {
-        return nullptr;
+
+        size_t clientId = clientRepo.add(firstName, lastName, passportNumber, phone, email);
+        Client* client = clientRepo.get(clientId);
+        return client;
     }
+    else { return nullptr; }
 }
 
-// Нестатический метод для логина (уже реализован)
-Client* SignInUseCase::login(const std::string& identifier, const std::string& password) {
-    BankUseCase bankUseCase;
+Client* SignInUseCase::login(const string& identifier, const string& password) {
+    //BankUseCase bankUseCase;
 
-    return nullptr; // Заглушка; замени на реальную реализацию, если нужно
+    return nullptr;
 }

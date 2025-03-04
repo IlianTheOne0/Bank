@@ -133,7 +133,7 @@ namespace Queries
             ostringstream queryStream;
             queryStream
                 << "INSERT INTO bank_system.accounts (client_id, balance, currency, status, password_hash, salt, admin_status) "
-                << "VALUES (" << clientId << ", " << balance << ", '" << currency << "', '" << status << "', '" << password << "', '" << salt << "', '" << adminStatus << "') "
+                << "VALUES (" << clientId << ", " << balance << ", '" << currency << "', '" << status << "', E'" << password << "', E'" << salt << "', '" << adminStatus << "') "
                 << "RETURNING account_id"
                 << ";";
             return queryStream.str();

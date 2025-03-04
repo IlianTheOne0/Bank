@@ -1,9 +1,17 @@
 #include "createAccountUseCase.h"
-#include "../../Core/Libs/presentationConfig.h"
+#include "../../../Core/Libs/presentationConfig.h"
 
 pair<string, string> CreateAccountUseCase::encryptPassword_(const string& password) 
 {
 	INFO("CreateAccountUseCase -> static method encryptPassword: called;");
+
+	auto escapeString = [](const string& value)
+		{
+			string result;
+
+			for (char ch : value) { if (ch == '\'') { result += "''"; } else { result += ch; } }
+			return result;
+		};
 
 	// Generating a random salt (16 characters)
 	random_device rd;
@@ -24,7 +32,7 @@ pair<string, string> CreateAccountUseCase::encryptPassword_(const string& passwo
 	ss << hex << hashed;
 	string hashedPassword = ss.str();
 
-	return {hashedPassword, salt};
+	return {escapeString(hashedPassword), escapeString(salt)};
 }
 
 Account* CreateAccountUseCase::createAccount(size_t& clientId, const string& currency, const string& password)
@@ -33,6 +41,8 @@ Account* CreateAccountUseCase::createAccount(size_t& clientId, const string& cur
 
 	pair<string, string> encryptedPassword = encryptPassword_(password);
 
+	cout << "Password / salt" << endl << "  " << encryptedPassword.first << endl << "  " << encryptedPassword.second << endl;
 	AccountRepository accountRepo;
-	return accountRepo.get(accountRepo.add(clientId, 0, currency, AccountStatus::active, encryptedPassword.first, encryptedPassword.second, false));
+	size_t accountId = accountRepo.add(clientId, 0, currency, AccountStatus::active, encryptedPassword.first, encryptedPassword.second, false);
+	return accountRepo.get(accountId);
 }
