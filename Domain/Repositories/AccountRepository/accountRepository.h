@@ -15,12 +15,14 @@ public:
 	AccountRepository();
 
 	virtual size_t add(size_t& clientId, const float& balance, const string& currency, const AccountStatus& status, const string& password, const string& salt, const bool& adminStatus);
-	//size_t add(const Account* account) override { return 0; };
+	size_t add(const Account* account) override { return 0; };
 	//virtual size_t add(const Account* account, const string& salt);
 	Account* get(size_t id) override;
 	virtual bool update(const size_t& accountId, const float& balance, const string& currency, const tm& openedDateStr, const tm& closedDateStr, const AccountStatus& status, const string& password, const bool& adminStatusStr);
 	bool update(const Account* class_) override;
 	bool deleteClass(size_t id) override;
+
+	bool checkByClientId(const size_t& clientId);
 };
 
 #endif

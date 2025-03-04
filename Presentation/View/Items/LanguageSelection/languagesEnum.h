@@ -37,8 +37,18 @@ enum Languages
 
 #define MESSAGE_SIGNIN_EMAIL "signin email"
 #define MESSAGE_SIGNIN_EMAIL_INVALID "signin email invalid"
+#define MESSAGE_SIGNIN_EMAIL_EXIST "signin email already exist"
+
 
 #define MESSAGE_LOGIN "login"
+
+
+#define MESSAGE_CREATEACCOUNT "create account"
+#define MESSAGE_CREATEACCOUNT_CURRENCY "create account currency"
+#define MESSAGE_CREATEACCOUNT_PASSWORD "create account password"
+
+
+#define MESSAGE_MENU "menu"
 
 // ENGLISH
 #define MESSAGE_ENGLISH_DEFAULT_SELECT "Select please"
@@ -46,10 +56,12 @@ enum Languages
 #define MESSAGE_ENGLISH_DEFAULT_OPTION "Option: "
 #define MESSAGE_ENGLISH_DEFAULT_INVALIDOPTION "Invalid option!"
 
+
 #define MESSAGE_ENGLISH_LANGUAGESELECTION "SELECT THE LANGUAGE"
 #define MESSAGE_ENGLISH_LANGUAGESELECTION_ACTION "1. English\n2. Ukrainian"
 
 #define MESSAGE_ENGLISH_DEFAULT_REGISTRATION_ACTION "1. Sign in\n2. Log in\n3. Exit the program"
+
 
 #define MESSAGE_ENGLISH_SIGNIN "SIGNIN"
 #define MESSAGE_ENGLISH_SIGNIN_NAME "Your name: "
@@ -67,8 +79,18 @@ enum Languages
 
 #define MESSAGE_ENGLISH_SIGNIN_EMAIL "Your email: "
 #define MESSAGE_ENGLISH_SIGNIN_EMAIL_INVALID "The mail is incorrect!"
+#define MESSAGE_ENGLISH_SINGIN_EMAIL_EXIST "This email number already exists in the database!"
+
 
 #define MESSAGE_ENGLISH_LOGIN "LOGIN"
+
+
+#define MESSAGE_ENGLISH_CREATEACCOUNT "CREATING AN ACCOUNT"
+#define MESSAGE_ENGLISH_CREATEACCOUNT_CURRENCY "Enter the currency: "
+#define MESSAGE_ENGLISH_CREATEACCOUNT_PASSWORD "Enter the password: "
+
+
+#define MESSAGE_ENGLISH_MENU "MENU"
 
 // UKRAINIAN
 #define MESSAGE_UKRAINIAN_DEFAULT_SELECT "Будь ласка, оберiть"
@@ -76,10 +98,12 @@ enum Languages
 #define MESSAGE_UKRAINIAN_DEFAULT_OPTION "Вибiр: "
 #define MESSAGE_UKRAINIAN_DEFAULT_INVALIDOPTION "Не правильний вибiр!"
 
+
 #define MESSAGE_UKRAINIAN_LANGUAGESELECTION "ОБЕРIТЬ МОВУ"
 #define MESSAGE_UKRAINIAN_LANGUAGESELECTION_ACTION "1. Ангiйська\n2. Українська"
 
 #define MESSAGE_UKRAINIAN_DEFAULT_REGISTRATION_ACTION "1. Зареєструватися\n2. Увiйти\n3. Вийти з програми"
+
 
 #define MESSAGE_UKRAINIAN_SIGNIN "ЗАРЕЄСТРУВАТИСЯ"
 #define MESSAGE_UKRAINIAN_SIGNIN_NAME "Ваше iм'я: "
@@ -97,8 +121,17 @@ enum Languages
 
 #define MESSAGE_UKRAINIAN_SIGNIN_EMAIL "Ваша пошта: "
 #define MESSAGE_UKRAINIAN_SIGNIN_EMAIL_INVALID "Пошта не правильна!"
+#define MESSAGE_UKRAINIAN_SINGIN_EMAIL_EXIST "Ця пошта вже iснує в базi даних!"
+
 
 #define MESSAGE_UKRAINIAN_LOGIN "УВIЙТИ"
+
+#define MESSAGE_UKRAINIAN_CREATEACCOUNT "СТВОРЕННЯ АКАУНТУ"
+#define MESSAGE_UKRAINIAN_CREATEACCOUNT_CURRENCY "Введiть валюту: "
+#define MESSAGE_UKRAINIAN_CREATEACCOUNT_PASSWORD "Введiть пароль: "
+
+
+#define MESSAGE_UKRAINIAN_MENU "МЕНЮ"
 
 // ERRORS
 #define LANGUAGE_ERROR "Language error!"

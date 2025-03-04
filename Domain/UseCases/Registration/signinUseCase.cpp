@@ -27,8 +27,7 @@ string SignInUseCase::checkPhoneNumber(const string& phoneNumber)
 		)
 	{ return MESSAGE_SIGNIN_PHONE_NOTWITH; }
 	if (phoneNumber.size() != 13) { return MESSAGE_SIGNIN_PHONE_LENGTH; }
-	//for (char ch : phoneNumber) { if (ch < '0' || ch > '9') { return MESSAGE_SIGNIN_PHONE_NOTNUMERIC; } }
-	char ch = phoneNumber[2];
+	char ch;
 	for (unsigned short i = 2; i < 12; i++) { ch = phoneNumber[i]; if (ch < '0' || ch > '9') { return MESSAGE_SIGNIN_PHONE_NOTNUMERIC; } }
 	if (!clientRepo.checkByPhone(phoneNumber)) { return MESSAGE_SINGIN_PHONE_EXIST; }
 
@@ -39,9 +38,11 @@ string SignInUseCase::checkEmail(const string& email)
 {
 	INFO("SignInUseCase -> static method checkEmail: called;");
 
+	ClientRepository clientRepo;
 	bool exists{ false };
 
 	for (char ch : email) { if (ch == '@') { exists = true; break; } }
+	if (!clientRepo.checkByEmail(email)) { return MESSAGE_SIGNIN_EMAIL_EXIST; }
 
 	return (exists ? "true" : MESSAGE_SIGNIN_EMAIL_INVALID);
 }

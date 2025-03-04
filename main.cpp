@@ -5,7 +5,7 @@ int main()
 {
 	INFO("The program is started");
 
-	(Logger::getState()) ? Test::startTest() : View::startTheProgram();
+	(Logger::getState()) ? Test::startTest() : View::Loop();
 
 	INFO("The program is closed");
 

@@ -16,7 +16,7 @@ CREATE TABLE clients (
     last_name VARCHAR(50) NOT NULL,
     passport_number VARCHAR(7) UNIQUE NOT NULL,
     phone phone_number UNIQUE NOT NULL,
-    email email_type NOT NULL,
+    email email_type UNIQUE NOT NULL,
     registration_date DATE DEFAULT CURRENT_DATE
 );
 

@@ -66,10 +66,10 @@
     <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\transactionRepositoryTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Presentation\View\Items\registration.cpp">
+    <ClCompile Include="Presentation\View\Items\Registration\registration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Presentation\View\Items\startTheProgram.cpp">
+    <ClCompile Include="Presentation\View\Items\loop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Presentation\View\view.cpp">
@@ -85,6 +85,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Domain\UseCases\Registration\signinUseCase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\View\Items\menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\UseCases\Registration\createAccountUseCase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\View\Items\Registration\createAccount.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -195,6 +204,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Domain\UseCases\Registration\signinUseCase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\UseCases\Registration\createAccountUseCase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

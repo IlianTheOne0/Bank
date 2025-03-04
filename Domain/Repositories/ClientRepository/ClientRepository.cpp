@@ -40,6 +40,7 @@ Client* ClientRepository::get(size_t id)
         istringstream iss(result);
         string token;
 
+        client->setClientId(id);
         getline(iss, token, '|'); client->setFirstName(token);
         getline(iss, token, '|'); client->setLastName(token);
         getline(iss, token, '|'); client->setPassportNumber(token);
@@ -134,4 +135,24 @@ bool ClientRepository::checkByPhone(const string& phoneNumber)
     }
     catch (const exception& e) { ERROR(string("ClientRepository -> method checkByPhone -> try/catch (exception): ") + e.what() + ";"); return false; }
     catch (...) { ERROR("ClientRepository -> method checkByPhone -> try/catch (...): error!;"); return false; }
+}
+
+bool ClientRepository::checkByEmail(const string& email)
+{
+    INFO("ClientRepository -> method checkByPhone: called;");
+
+    try
+    {
+        string result = Queries::executeCommand(Queries::Clients::checkByEmail(email));
+
+        istringstream iss(result);
+        string token;
+
+        bool isExist;
+        getline(iss, token, '|');
+        if (!token.empty()) { INFO("ClientRepository -> method checkByEmail -> result: false;"); return false; }
+        else { INFO("ClientRepository -> method checkByEmail -> result: true;"); return true; }
+    }
+    catch (const exception& e) { ERROR(string("ClientRepository -> method checkByEmail -> try/catch (exception): ") + e.what() + ";"); return false; }
+    catch (...) { ERROR("ClientRepository -> method checkByEmail -> try/catch (...): error!;"); return false; }
 }

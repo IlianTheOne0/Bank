@@ -105,3 +105,23 @@ bool AccountRepository::deleteClass(size_t id)
     catch (const exception& e) { ERROR(string("AccountRepository -> method deleteClass -> try/catch (exception): ") + e.what() + ";"); return false; }
     catch (...) { ERROR("AccountRepository -> method deleteClass -> try/catch (...): error!;"); return false; }
 }
+
+bool AccountRepository::checkByClientId(const size_t& clientId)
+{
+    INFO("ClientRepository -> method checkByPhone: called;");
+
+    try
+    {
+        string result = Queries::executeCommand(Queries::Accounts::checkByClientId(clientId));
+
+        istringstream iss(result);
+        string token;
+
+        bool isExist;
+        getline(iss, token, '|');
+        if (!token.empty()) { INFO("ClientRepository -> method checkByEmail -> result: false;"); return false; }
+        else { INFO("ClientRepository -> method checkByEmail -> result: true;"); return true; }
+    }
+    catch (const exception& e) { ERROR(string("ClientRepository -> method checkByEmail -> try/catch (exception): ") + e.what() + ";"); return false; }
+    catch (...) { ERROR("ClientRepository -> method checkByEmail -> try/catch (...): error!;"); return false; }
+}

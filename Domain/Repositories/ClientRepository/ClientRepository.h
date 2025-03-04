@@ -21,6 +21,7 @@ public:
 
 	bool checkByPassport(const string& passportNumber);
 	bool checkByPhone(const string& phoneNumber);
+	bool checkByEmail(const string& email);
 };
 
 #endif

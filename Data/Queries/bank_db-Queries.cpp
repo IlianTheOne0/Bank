@@ -113,6 +113,17 @@ namespace Queries
                 << ";";
             return queryStream.str();
         }
+
+        string checkByEmail(const string& email)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT email "
+                << "FROM bank_system.clients "
+                << "WHERE email = '" << email << "'"
+                << ";";
+            return queryStream.str();
+        }
     }
 
     namespace Accounts
@@ -161,6 +172,17 @@ namespace Queries
             queryStream
                 << "DELETE FROM bank_system.accounts "
                 << "WHERE account_id = " << id
+                << ";";
+            return queryStream.str();
+        }
+
+        string checkByClientId(size_t clientId)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT client_id "
+                << "FROM bank_system.clients "
+                << "WHERE client_id = '" << clientId << "'"
                 << ";";
             return queryStream.str();
         }
