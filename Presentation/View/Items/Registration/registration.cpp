@@ -119,9 +119,83 @@ Client* View::Signin_()
 	return SignInUseCase::signIn(firstName, lastName, passportNumber, phone, email);
 }
 
+//______________________________________________________________________________________________________________________
+
 Client* View::Login_()
 {
-	INFO("View -> method Login: called;");
-	// check by email and password hash
-	return nullptr;
+    INFO("View -> method Login: called;");
+
+    string identifier;
+    string password;
+
+	SignInUseCase signInUseCase;
+	
+    auto printStartMessage = []()
+    {
+        clear;
+        printWithColor(MESSAGE_LOGIN, Colors::LightWhite); // MESSAGE_LOGIN must be defined like the other messages
+        printWithColor(MESSAGE_INSERTDATA, Colors::Yellow); cout << endl;
+    };
+	
+    do
+    {
+        printStartMessage();
+        print("Введите email или номер телефона:", false);
+        cin >> identifier;
+        if (identifier.empty())
+        {
+            INFO("View -> method Login -> loop (identifier): invalid option!;");
+            printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true);
+            continue;
+        }
+        //  If it contains ‘@’, we assume it is an email, otherwise it is a phone number
+        if (identifier.find('@') != string::npos)
+        {
+            string checkEmail = SignInUseCase::checkEmail(identifier);
+            if (checkEmail != "true")
+            {
+                INFO("View -> method Login -> loop (email): invalid option!;");
+                printWithColor(checkEmail, Colors::LightRed, true, true);
+                continue;
+            }
+        }
+        else
+        {
+            string checkPhone = SignInUseCase::checkPhoneNumber(identifier);
+            if (checkPhone != "true")
+            {
+                INFO("View -> method Login -> loop (phone): invalid option!;");
+                printWithColor(checkPhone, Colors::LightRed, true, true);
+                continue;
+            }
+        }
+        break;
+    } while (true);
+
+    // get pass
+    do
+    {
+        printStartMessage();
+        print("Введите пароль:", false);
+        cin >> password;
+        if (password.empty())
+        {
+            INFO("View -> method Login -> loop (password): invalid option!;");
+            printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true);
+            continue;
+        }
+        
+        break;
+    } while (true);
+
+    // Вызываем функцию логина из UseCase
+	Client* client = signInUseCase.login(identifier, password);
+    if (!client)
+    {
+        INFO("View -> method Login -> authentication failed;");
+        printWithColor("Неправильный email/телефон или пароль", Colors::LightRed, true, true);
+        return nullptr;
+    }
+
+    return client;
 }
