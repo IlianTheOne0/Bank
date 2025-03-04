@@ -19,6 +19,19 @@ public:
 	Client(const Client&& other) noexcept;
 	~Client();
 
+	Client(const string& firstName, const string& lastName, 
+			   const string& passportNumber, const string& phone, 
+			   const string& email) 
+			: _firstName(firstName), _lastName(lastName),
+			  _passportNumber(passportNumber), _phone(phone), _email(email)
+	{
+		// Генерируем _clientId (например, случайно или по времени)
+		_clientId = static_cast<size_t>(time(nullptr)); // Простой пример, замени на реальный генератор
+		// Устанавливаем текущую дату регистрации
+		time_t now = time(nullptr);
+		_registrationDate = *localtime(&now);
+	}
+	
 	const size_t& getClientId() const;
 	const string& getFirstName() const;
 	const string& getLastName() const;

@@ -11,6 +11,7 @@ public:
 	static string checkPhoneNumber(const string& phoneNumber);
 	static string checkEmail(const string& email);
 	static Client* signIn(const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email);
+	Client* login(const string& string, const std::string& password);
 };
 
 #endif
