@@ -1,5 +1,5 @@
-#include "../view.h"
-#include "../../../Domain/domain.h"
+#include "../../view.h"
+#include "../../../../Domain/domain.h"
 
 unsigned short View::Registration_()
 {
@@ -32,7 +32,7 @@ unsigned short View::Registration_()
 
 Client* View::Signin_()
 {
-	INFO("method Sigin: called;");
+	INFO("View -> method Sigin: called;");
 	
 	string firstName;
 	string lastName;
@@ -43,7 +43,7 @@ Client* View::Signin_()
 	auto printStartMessage = []()
 		{
 			clear;
-			printWithColor(MESSAGE_REGISTRATION, Colors::LightWhite);
+			printWithColor(MESSAGE_SIGNIN, Colors::LightWhite);
 			printWithColor(MESSAGE_INSERTDATA, Colors::Yellow); cout << endl;
 		};
 
@@ -115,16 +115,13 @@ Client* View::Signin_()
 		break;
 	} while (true);
 
+	clear;
 	return SignInUseCase::signIn(firstName, lastName, passportNumber, phone, email);
 }
 
-void Login()
+Client* View::Login_()
 {
-	INFO("method Login: called;");
+	INFO("View -> method Login: called;");
 
-	do
-	{
-		pause;
-		break;
-	} while (true);
+	return nullptr;
 }

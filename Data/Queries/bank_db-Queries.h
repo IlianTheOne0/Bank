@@ -27,6 +27,7 @@ namespace Queries
 
         string checkByPassport(const string& passportNumber);
         string checkByPhone(const string& phoneNumber);
+        string checkByEmail(const string& email);
     }
 
     namespace Accounts
@@ -35,6 +36,8 @@ namespace Queries
         string getAccount(size_t id);
         string updateAccount(size_t accountId, const float& balance, const string& currency, const string& openedDate, const string& closedDate, const string& status, const string& password, const string& adminStatus);
         string deleteAccount(size_t id);
+
+        string checkByClientId(size_t clientId);
     }
 
     namespace Cards

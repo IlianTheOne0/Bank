@@ -54,10 +54,18 @@ void print(const string& message, const bool& isEnd, const bool& isPause)
 
 			else if (message == MESSAGE_SIGNIN_EMAIL) { printMessage(MESSAGE_ENGLISH_SIGNIN_EMAIL); }
 			else if (message == MESSAGE_SIGNIN_EMAIL_INVALID) { printMessage(MESSAGE_ENGLISH_SIGNIN_EMAIL_INVALID); }
+			else if (message == MESSAGE_SIGNIN_EMAIL_EXIST) { printMessage(MESSAGE_ENGLISH_SINGIN_EMAIL_EXIST); }
 
 
 			else if (message == MESSAGE_LOGIN) { printMessage(MESSAGE_ENGLISH_LOGIN); }
+			
+			
+			else if (message == MESSAGE_CREATEACCOUNT) { printMessage(MESSAGE_ENGLISH_CREATEACCOUNT); }
+			else if (message == MESSAGE_CREATEACCOUNT_CURRENCY) { printMessage(MESSAGE_ENGLISH_CREATEACCOUNT_CURRENCY); }
+			else if (message == MESSAGE_CREATEACCOUNT_PASSWORD) { printMessage(MESSAGE_ENGLISH_CREATEACCOUNT_PASSWORD); }
 
+
+			else if (message == MESSAGE_MENU) { printMessage(MESSAGE_ENGLISH_MENU); }
 
 			else { printMessageWithColor("Error: " + string(TRANSLATION_ERROR), Colors::LightRed); }
 		} break;
@@ -94,9 +102,18 @@ void print(const string& message, const bool& isEnd, const bool& isPause)
 
 			else if (message == MESSAGE_SIGNIN_EMAIL) { printMessage(MESSAGE_UKRAINIAN_SIGNIN_EMAIL); }
 			else if (message == MESSAGE_SIGNIN_EMAIL_INVALID) { printMessage(MESSAGE_UKRAINIAN_SIGNIN_EMAIL_INVALID); }
-			
+			else if (message == MESSAGE_SIGNIN_EMAIL_EXIST) { printMessage(MESSAGE_UKRAINIAN_SINGIN_EMAIL_EXIST); }
+
 
 			else if (message == MESSAGE_LOGIN) { printMessage(MESSAGE_UKRAINIAN_LOGIN); }
+
+
+			else if (message == MESSAGE_CREATEACCOUNT) { printMessage(MESSAGE_UKRAINIAN_CREATEACCOUNT); }
+			else if (message == MESSAGE_CREATEACCOUNT_CURRENCY) { printMessage(MESSAGE_UKRAINIAN_CREATEACCOUNT_CURRENCY); }
+			else if (message == MESSAGE_CREATEACCOUNT_PASSWORD) { printMessage(MESSAGE_UKRAINIAN_CREATEACCOUNT_PASSWORD); }
+			
+			
+			else if (message == MESSAGE_MENU) { printMessage(MESSAGE_UKRAINIAN_MENU); }
 
 
 			else { printMessageWithColor("Error: " + string(TRANSLATION_ERROR), Colors::LightRed); }
