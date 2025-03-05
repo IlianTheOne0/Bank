@@ -19,7 +19,7 @@ public:
 	Client(const Client&& other) noexcept;
 	~Client();
 
-	Client(const string& firstName, const string& lastName, 
+	/*Client(const string& firstName, const string& lastName,
 			   const string& passportNumber, const string& phone, 
 			   const string& email) 
 			: _firstName(firstName), _lastName(lastName),
@@ -30,7 +30,7 @@ public:
 		// Устанавливаем текущую дату регистрации
 		time_t now = time(nullptr);
 		_registrationDate = *localtime(&now);
-	}
+	}*/
 	
 	const size_t& getClientId() const;
 	const string& getFirstName() const;

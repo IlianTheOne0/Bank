@@ -1,5 +1,4 @@
 #include "../../view.h"
-#include <limits>
 
 void View::LanguageSelection_()
 {
@@ -16,7 +15,7 @@ void View::LanguageSelection_()
 		printWithColor(MESSAGE_OPTION, Colors::LightYellow, false);
 		cin >> option;
 
-		if (option < 0 || option > 2) { INFO("View -> method LanguageSelection -> loop: invalid option!;"); printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true); continue; }
+		if (option < 1 || option > 2) { INFO("View -> method LanguageSelection -> loop: invalid option!;"); printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true); continue; }
 		switch (option)
 		{
 			case 1: { INFO("View -> method LanguageSelection -> selected language: english;"); selectedLanguage = Languages::English; } break;

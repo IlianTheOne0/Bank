@@ -124,6 +124,27 @@ namespace Queries
                 << ";";
             return queryStream.str();
         }
+
+        string getClientByPhone(const string& phone)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT client_id "
+                << "FROM bank_system.clients "
+                << "WHERE phone = '" << phone << "'"
+                << ";";
+            return queryStream.str();
+        }
+        string getClientByEmail(const string& email)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT client_id "
+                << "FROM bank_system.clients "
+                << "WHERE email = '" << email << "'"
+                << ";";
+            return queryStream.str();
+        }
     }
 
     namespace Accounts
@@ -133,7 +154,7 @@ namespace Queries
             ostringstream queryStream;
             queryStream
                 << "INSERT INTO bank_system.accounts (client_id, balance, currency, status, password_hash, salt, admin_status) "
-                << "VALUES (" << clientId << ", " << balance << ", '" << currency << "', '" << status << "', '" << password << "', '" << salt << "', '" << adminStatus << "') "
+                << "VALUES (" << clientId << ", " << balance << ", '" << currency << "', '" << status << "', E'" << password << "', E'" << salt << "', '" << adminStatus << "') "
                 << "RETURNING account_id"
                 << ";";
             return queryStream.str();
@@ -181,7 +202,29 @@ namespace Queries
             ostringstream queryStream;
             queryStream
                 << "SELECT client_id "
-                << "FROM bank_system.clients "
+                << "FROM bank_system.accounts "
+                << "WHERE client_id = '" << clientId << "'"
+                << ";";
+            return queryStream.str();
+        }
+
+        string checkByPassword(string password)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT password "
+                << "FROM bank_system.accounts "
+                << "WHERE password = '" << password << "'"
+                << ";";
+            return queryStream.str();
+        }
+
+        string getSaltByClientId(const size_t& clientId)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT salt "
+                << "FROM bank_system.accounts "
                 << "WHERE client_id = '" << clientId << "'"
                 << ";";
             return queryStream.str();

@@ -21,5 +21,5 @@ Account* View::createAccount_(const Client* client)
 
 	clear;
 	
-	return CreateAccountUseCase::createAccount(clientId, currency, password);
+	return AccountUseCase::createAccount(clientId, currency, password);
 }

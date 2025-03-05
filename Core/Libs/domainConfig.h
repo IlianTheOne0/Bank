@@ -18,5 +18,6 @@ using std::setw;
 using std::setfill;
 using std::move;
 using std::pair;
+using std::string;
 
 #endif

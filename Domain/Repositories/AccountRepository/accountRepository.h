@@ -22,7 +22,9 @@ public:
 	bool update(const Account* class_) override;
 	bool deleteClass(size_t id) override;
 
-	bool checkByClientId(const size_t& clientId);
+	virtual bool checkByClientId(const size_t& clientId);
+	virtual bool checkByPassword(const string& password);
+	virtual string getSaltByClientId(const size_t& clientId);
 };
 
 #endif

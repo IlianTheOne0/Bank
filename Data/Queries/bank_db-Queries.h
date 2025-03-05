@@ -28,6 +28,8 @@ namespace Queries
         string checkByPassport(const string& passportNumber);
         string checkByPhone(const string& phoneNumber);
         string checkByEmail(const string& email);
+        string getClientByPhone(const string& phone);
+        string getClientByEmail(const string& email);
     }
 
     namespace Accounts
@@ -38,6 +40,8 @@ namespace Queries
         string deleteAccount(size_t id);
 
         string checkByClientId(size_t clientId);
+        string checkByPassword(string password);
+        string getSaltByClientId(const size_t& clientId);
     }
 
     namespace Cards
