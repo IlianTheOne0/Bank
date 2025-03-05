@@ -41,12 +41,14 @@ enum Languages
 
 
 #define MESSAGE_LOGIN "login"
+#define MESSAGE_LOGIN_LOGIN "login email or phone"
+#define MESSAGE_LOGIN_PASSWORD "login password"
+#define MESSAGE_LOGIN_PASSWORD_INCORRECT "login password incorrect"
 
 
 #define MESSAGE_CREATEACCOUNT "create account"
 #define MESSAGE_CREATEACCOUNT_CURRENCY "create account currency"
 #define MESSAGE_CREATEACCOUNT_PASSWORD "create account password"
-
 
 #define MESSAGE_MENU "menu"
 
@@ -83,12 +85,14 @@ enum Languages
 
 
 #define MESSAGE_ENGLISH_LOGIN "LOGIN"
+#define MESSAGE_ENGLISH_LOGIN_LOGIN "Email or phone: "
+#define MESSAGE_ENGLISH_LOGIN_PASSWORD "Password: "
+#define MESSAGE_ENGLISH_LOGIN_PASSWORD_INCORRECT "Incorrect Password!"
 
 
 #define MESSAGE_ENGLISH_CREATEACCOUNT "CREATING AN ACCOUNT"
 #define MESSAGE_ENGLISH_CREATEACCOUNT_CURRENCY "Enter the currency: "
 #define MESSAGE_ENGLISH_CREATEACCOUNT_PASSWORD "Enter the password: "
-
 
 #define MESSAGE_ENGLISH_MENU "MENU"
 
@@ -125,6 +129,9 @@ enum Languages
 
 
 #define MESSAGE_UKRAINIAN_LOGIN "УВIЙТИ"
+#define MESSAGE_UKRAINIAN_LOGIN_LOGIN "Пошта або номер телефону: "
+#define MESSAGE_UKRAINIAN_LOGIN_PASSWORD "Пароль: "
+#define MESSAGE_UKRAINIAN_LOGIN_PASSWORD_INCORRECT "Неправильний пароль!"
 
 #define MESSAGE_UKRAINIAN_CREATEACCOUNT "СТВОРЕННЯ АКАУНТУ"
 #define MESSAGE_UKRAINIAN_CREATEACCOUNT_CURRENCY "Введiть валюту: "

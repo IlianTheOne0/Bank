@@ -62,7 +62,7 @@ Client* View::Signin_()
 			printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true);
 			continue;
 		}
-		string checkPassport = SignInUseCase::checkPassport(passportNumber);
+		string checkPassport = ClientUseCase::checkPassport(passportNumber);
 		if (checkPassport != "true")
 		{
 			INFO("View -> method Signin -> loop (phone): invalid option!;");
@@ -83,7 +83,7 @@ Client* View::Signin_()
 			printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true);
 			continue;
 		}
-		string checkPhone = SignInUseCase::checkPhoneNumber(phone);
+		string checkPhone = ClientUseCase::checkPhoneNumber(phone);
 		if (checkPhone != "true")
 		{
 			INFO("View -> method Signin -> loop (phone): invalid option!;");
@@ -105,7 +105,7 @@ Client* View::Signin_()
 			printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true);
 			continue;
 		}
-		string checkEmail = SignInUseCase::checkEmail(email);
+		string checkEmail = ClientUseCase::checkEmail(email);
 		if (checkEmail != "true")
 		{
 			INFO("View -> method Signin -> loop (phone): invalid option!;");
@@ -116,7 +116,7 @@ Client* View::Signin_()
 	} while (true);
 
 	clear;
-	return SignInUseCase::signIn(firstName, lastName, passportNumber, phone, email);
+	return ClientUseCase::signIn(firstName, lastName, passportNumber, phone, email);
 }
 
 Client* View::Login_()
@@ -126,7 +126,7 @@ Client* View::Login_()
     string identifier;
     string password;
 
-	SignInUseCase signInUseCase;
+	ClientUseCase signInUseCase;
 	
     auto printStartMessage = []()
     {
@@ -138,7 +138,7 @@ Client* View::Login_()
     do
     {
         printStartMessage();
-        print("Введите email или номер телефона:", false);
+        print(MESSAGE_LOGIN_LOGIN, false);
         cin >> identifier;
         if (identifier.empty())
         {
@@ -149,7 +149,7 @@ Client* View::Login_()
 
         if (identifier.find('@') != string::npos)
         {
-            string checkEmail = SignInUseCase::checkEmail(identifier);
+            string checkEmail = ClientUseCase::checkEmail(identifier);
             if (checkEmail != "true")
             {
                 INFO("View -> method Login -> loop (email): invalid option!;");
@@ -159,7 +159,7 @@ Client* View::Login_()
         }
         else
         {
-            string checkPhone = SignInUseCase::checkPhoneNumber(identifier);
+            string checkPhone = ClientUseCase::checkPhoneNumber(identifier);
             if (checkPhone != "true")
             {
                 INFO("View -> method Login -> loop (phone): invalid option!;");
@@ -170,28 +170,33 @@ Client* View::Login_()
         break;
     } while (true);
 
-    do
-    {
-        printStartMessage();
-        print("Введите пароль:", false);
-        cin >> password;
-        if (password.empty())
-        {
-            INFO("View -> method Login -> loop (password): invalid option!;");
-            printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true);
-            continue;
-        }
-        
-        break;
-    } while (true);
+	Client* client = nullptr;
+	do
+	{
+		do
+		{
+			printStartMessage();
+			print(MESSAGE_LOGIN_PASSWORD, false);
+			cin >> password;
+			if (password.empty())
+			{
+				INFO("View -> method Login -> loop (password): invalid option!;");
+				printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true);
+				continue;
+			}
 
-	Client* client = signInUseCase.login(identifier, password);
-    if (!client)
-    {
-        INFO("View -> method Login -> authentication failed;");
-        printWithColor("Неправильный email/телефон или пароль", Colors::LightRed, true, true);
-        return nullptr;
-    }
+			break;
+		} while (true);
+
+		client = signInUseCase.logIn(identifier, password);
+		if (client == nullptr)
+		{
+			INFO("View -> method Login -> loop (password): invalid option!;");
+			printWithColor(MESSAGE_INVALIDOPTION, Colors::LightRed, true, true);
+			continue;
+		}
+		break;
+	} while (true);
 
     return client;
 }

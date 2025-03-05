@@ -124,6 +124,27 @@ namespace Queries
                 << ";";
             return queryStream.str();
         }
+
+        string getClientByPhone(const string& phone)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT client_id "
+                << "FROM bank_system.clients "
+                << "WHERE phone = '" << phone << "'"
+                << ";";
+            return queryStream.str();
+        }
+        string getClientByEmail(const string& email)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT client_id "
+                << "FROM bank_system.clients "
+                << "WHERE email = '" << email << "'"
+                << ";";
+            return queryStream.str();
+        }
     }
 
     namespace Accounts
@@ -181,7 +202,29 @@ namespace Queries
             ostringstream queryStream;
             queryStream
                 << "SELECT client_id "
-                << "FROM bank_system.clients "
+                << "FROM bank_system.accounts "
+                << "WHERE client_id = '" << clientId << "'"
+                << ";";
+            return queryStream.str();
+        }
+
+        string checkByPassword(string password)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT password "
+                << "FROM bank_system.accounts "
+                << "WHERE password = '" << password << "'"
+                << ";";
+            return queryStream.str();
+        }
+
+        string getSaltByClientId(const size_t& clientId)
+        {
+            ostringstream queryStream;
+            queryStream
+                << "SELECT salt "
+                << "FROM bank_system.accounts "
                 << "WHERE client_id = '" << clientId << "'"
                 << ";";
             return queryStream.str();

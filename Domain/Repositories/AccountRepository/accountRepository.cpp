@@ -108,7 +108,7 @@ bool AccountRepository::deleteClass(size_t id)
 
 bool AccountRepository::checkByClientId(const size_t& clientId)
 {
-    INFO("ClientRepository -> method checkByPhone: called;");
+    INFO("AccountRepository -> method checkByClientId: called;");
 
     try
     {
@@ -119,9 +119,53 @@ bool AccountRepository::checkByClientId(const size_t& clientId)
 
         bool isExist;
         getline(iss, token, '|');
-        if (!token.empty()) { INFO("ClientRepository -> method checkByEmail -> result: false;"); return false; }
-        else { INFO("ClientRepository -> method checkByEmail -> result: true;"); return true; }
+        if (!token.empty()) { INFO("AccountRepository -> method checkByEmail -> result: false;"); return false; }
+        else { INFO("AccountRepository -> method checkByEmail -> result: true;"); return true; }
     }
-    catch (const exception& e) { ERROR(string("ClientRepository -> method checkByEmail -> try/catch (exception): ") + e.what() + ";"); return false; }
-    catch (...) { ERROR("ClientRepository -> method checkByEmail -> try/catch (...): error!;"); return false; }
+    catch (const exception& e) { ERROR(string("AccountRepository -> method checkByEmail -> try/catch (exception): ") + e.what() + ";"); return false; }
+    catch (...) { ERROR("AccountRepository -> method checkByEmail -> try/catch (...): error!;"); return false; }
+}
+
+bool AccountRepository::checkByPassword(const string& password)
+{
+    INFO("AccountRepository -> method checkByPassword: called;");
+
+    try
+    {
+        string result = Queries::executeCommand(Queries::Accounts::checkByPassword(password));
+
+        istringstream iss(result);
+        string token;
+
+        bool isExist;
+        getline(iss, token, '|');
+        if (!token.empty()) { INFO("AccountRepository -> method checkByPassword -> result: false;"); return false; }
+        else { INFO("AccountRepository -> method checkByPassword -> result: true;"); return true; }
+    }
+    catch (const exception& e) { ERROR(string("AccountRepository -> method checkByPassword -> try/catch (exception): ") + e.what() + ";"); return false; }
+    catch (...) { ERROR("AccountRepository -> method checkByPassword -> try/catch (...): error!;"); return false; }
+}
+
+string AccountRepository::getSaltByClientId(const size_t& clientId)
+{
+    INFO("ClientRepository -> method getClientByPhone: called;");
+
+    try
+    {
+        string result = Queries::executeCommand(Queries::Accounts::getSaltByClientId(clientId));
+
+        size_t pos = result.find('\n');
+        if (pos != string::npos) { result = result.substr(pos + 1); }
+
+        istringstream iss(result);
+        string token;
+        string salt;
+
+        getline(iss, token, '|'); salt = token;
+
+        INFO("ClientRepository -> method getClientByPhone -> result: success;");
+        return salt;
+    }
+    catch (const exception& e) { ERROR(string("ClientRepository -> method getClientByPhone -> try/catch (exception): ") + e.what() + ";"); return ""; }
+    catch (...) { ERROR("ClientRepository -> method getClientByPhone -> try/catch (...): error!;"); return ""; }
 }

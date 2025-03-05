@@ -65,6 +65,11 @@ void print(const string& message, const bool& isEnd, const bool& isPause)
 			else if (message == MESSAGE_CREATEACCOUNT_PASSWORD) { printMessage(MESSAGE_ENGLISH_CREATEACCOUNT_PASSWORD); }
 
 
+			else if (message == MESSAGE_LOGIN) { printMessage(MESSAGE_ENGLISH_LOGIN); }
+			else if (message == MESSAGE_LOGIN_LOGIN) { printMessage(MESSAGE_ENGLISH_LOGIN_LOGIN); }
+			else if (message == MESSAGE_LOGIN_PASSWORD) { printMessage(MESSAGE_ENGLISH_LOGIN_PASSWORD); }
+			
+
 			else if (message == MESSAGE_MENU) { printMessage(MESSAGE_ENGLISH_MENU); }
 
 			else { printMessageWithColor("Error: " + string(TRANSLATION_ERROR), Colors::LightRed); }
@@ -106,6 +111,8 @@ void print(const string& message, const bool& isEnd, const bool& isPause)
 
 
 			else if (message == MESSAGE_LOGIN) { printMessage(MESSAGE_UKRAINIAN_LOGIN); }
+			else if (message == MESSAGE_LOGIN_LOGIN) { printMessage(MESSAGE_UKRAINIAN_LOGIN_LOGIN); }
+			else if (message == MESSAGE_LOGIN_PASSWORD) { printMessage(MESSAGE_UKRAINIAN_LOGIN_PASSWORD); }
 
 
 			else if (message == MESSAGE_CREATEACCOUNT) { printMessage(MESSAGE_UKRAINIAN_CREATEACCOUNT); }

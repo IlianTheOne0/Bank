@@ -156,3 +156,51 @@ bool ClientRepository::checkByEmail(const string& email)
     catch (const exception& e) { ERROR(string("ClientRepository -> method checkByEmail -> try/catch (exception): ") + e.what() + ";"); return false; }
     catch (...) { ERROR("ClientRepository -> method checkByEmail -> try/catch (...): error!;"); return false; }
 }
+
+size_t ClientRepository::getClientByEmail(const string& email)
+{
+    INFO("ClientRepository -> method getClientByEmail: called;");
+
+    try
+    {
+        string result = Queries::executeCommand(Queries::Clients::getClientByEmail(email));
+
+        size_t pos = result.find('\n');
+        if (pos != string::npos) { result = result.substr(pos + 1); }
+
+        istringstream iss(result);
+        string token;
+        size_t clientId;
+
+        getline(iss, token, '|'); clientId = stoi(token);
+
+        INFO("ClientRepository -> method getClientByEmail -> result: success;");
+        return clientId;
+    }
+    catch (const exception& e) { ERROR(string("ClientRepository -> method getClientByEmail -> try/catch (exception): ") + e.what() + ";"); return -1; }
+    catch (...) { ERROR("ClientRepository -> method getClientByEmail -> try/catch (...): error!;"); return -1; }
+}
+
+size_t ClientRepository::getClientByPhone(const string& phone)
+{
+    INFO("ClientRepository -> method getClientByPhone: called;");
+
+    try
+    {
+        string result = Queries::executeCommand(Queries::Clients::getClientByPhone(phone));
+
+        size_t pos = result.find('\n');
+        if (pos != string::npos) { result = result.substr(pos + 1); }
+
+        istringstream iss(result);
+        string token;
+        size_t clientId;
+
+        getline(iss, token, '|'); clientId = stoi(token);
+
+        INFO("ClientRepository -> method getClientByPhone -> result: success;");
+        return clientId;
+    }
+    catch (const exception& e) { ERROR(string("ClientRepository -> method getClientByPhone -> try/catch (exception): ") + e.what() + ";"); return -1; }
+    catch (...) { ERROR("ClientRepository -> method getClientByPhone -> try/catch (...): error!;"); return -1; }
+}

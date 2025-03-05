@@ -1,10 +1,11 @@
-#include "SignInUseCase.h"
-#include "../../Repositories/ClientRepository/ClientRepository.h"
+#include "ClientUseCase.h"
+#include "../AccountUseCase/accountUseCase.h"
+#include "../../../Repositories/ClientRepository/ClientRepository.h"
 
-#include "../../../Core/Libs/domainConfig.h"
-#include "../../../Presentation/presentation.h"
+#include "../../../../Core/Libs/domainConfig.h"
+#include "../../../../Presentation/presentation.h"
 
-string SignInUseCase::checkPassport(const string& passportNumber)
+string ClientUseCase::checkPassport(const string& passportNumber)
 {
     INFO("SignInUseCase -> static method checkPassport: called;");
 
@@ -16,7 +17,7 @@ string SignInUseCase::checkPassport(const string& passportNumber)
 	else { return MESSAGE_SINGIN_PASSPORT_EXIST; }
 }
 
-string SignInUseCase::checkPhoneNumber(const string& phoneNumber)
+string ClientUseCase::checkPhoneNumber(const string& phoneNumber)
 {
     INFO("SignInUseCase -> static method checkPhoneNumber: called;");
 
@@ -37,25 +38,29 @@ string SignInUseCase::checkPhoneNumber(const string& phoneNumber)
     return "true";
 }
 
-string SignInUseCase::checkEmail(const string& email) {
+string ClientUseCase::checkEmail(const string& email)
+{
     INFO("SignInUseCase -> static method checkEmail: called;");
 
     size_t atPos = email.find('@');
     size_t dotPos = email.find('.', atPos);
 
-    if (atPos != string::npos && dotPos != string::npos && dotPos > atPos) { return "true"; }
-    else { return MESSAGE_SIGNIN_EMAIL_INVALID; }
+    if (atPos == string::npos || dotPos == string::npos || dotPos < atPos + 2 || dotPos == email.length() - 1 || email.find("..") != string::npos) { return MESSAGE_SIGNIN_EMAIL_INVALID; }
+
 
     ClientRepository clientRepo;
     if (!clientRepo.checkByEmail(email)) { return MESSAGE_SIGNIN_EMAIL_EXIST; }
+    return "true";
 }
 
-Client* SignInUseCase::signIn(const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email) {
+Client* ClientUseCase::signIn(const string& firstName, const string& lastName, const string& passportNumber, const string& phone, const string& email)
+{
     ClientRepository clientRepo;
 
     if (checkPassport(passportNumber) == "true" &&
         checkPhoneNumber(phone) == "true" &&
-        checkEmail(email) == "true") {
+        checkEmail(email) == "true")
+    {
 
         size_t clientId = clientRepo.add(firstName, lastName, passportNumber, phone, email);
         Client* client = clientRepo.get(clientId);
@@ -64,8 +69,16 @@ Client* SignInUseCase::signIn(const string& firstName, const string& lastName, c
     else { return nullptr; }
 }
 
-Client* SignInUseCase::login(const string& identifier, const string& password) {
-    //BankUseCase bankUseCase;
+Client* ClientUseCase::logIn(const string& identifier, const string& password)
+{
+    ClientRepository clientRepo;
+    AccountRepository accountRepo;
+    Client* client = nullptr;
 
-    return nullptr;
+    if (checkEmail(identifier) == "true") { client = clientRepo.get(clientRepo.getClientByEmail(identifier)); }
+    else { client = clientRepo.get(clientRepo.getClientByPhone(identifier)); }
+    
+    Account* account = accountRepo.get(client->getClientId());
+    if (AccountUseCase::encryptPassword(password, accountRepo.getSaltByClientId(client->getClientId())).first == account->getPassword()) { return client; }
+    else { return nullptr; }
 }

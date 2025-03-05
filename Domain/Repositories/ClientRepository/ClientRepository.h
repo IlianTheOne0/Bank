@@ -19,9 +19,11 @@ public:
 	bool update(const Client* class_) override;
 	bool deleteClass(size_t id) override;
 
-	bool checkByPassport(const string& passportNumber);
-	bool checkByPhone(const string& phoneNumber);
-	bool checkByEmail(const string& email);
+	virtual bool checkByPassport(const string& passportNumber);
+	virtual bool checkByPhone(const string& phoneNumber);
+	virtual bool checkByEmail(const string& email);
+	virtual size_t getClientByPhone(const string& phone);
+	virtual size_t getClientByEmail(const string& email);
 };
 
 #endif

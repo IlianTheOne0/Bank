@@ -13,7 +13,7 @@
 #include "Repositories/OperationRepository/operationRepository.h"
 #include "Repositories/TransactionRepository/transactionRepository.h"
 
-#include "UseCases/Registration/signinUseCase.h"
-#include "UseCases/Registration/createAccountUseCase.h"
+#include "UseCases/Registration/ClientUseCase/ClientUseCase.h"
+#include "UseCases/Registration/AccountUseCase/accountUseCase.h"
 
 #endif

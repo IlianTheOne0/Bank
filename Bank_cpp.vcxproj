@@ -143,8 +143,8 @@
     <ClCompile Include="Domain\Repositories\OperationRepository\operationRepository.cpp" />
     <ClCompile Include="Domain\Repositories\TransactionRepository\transactionRepository.cpp" />
     <ClCompile Include="Domain\UseCases\BankUseCase\BankUseCase.cpp" />
-    <ClCompile Include="Domain\UseCases\Registration\createAccountUseCase.cpp" />
-    <ClCompile Include="Domain\UseCases\Registration\signinUseCase.cpp" />
+    <ClCompile Include="Domain\UseCases\Registration\AccountUseCase\accountUseCase.cpp" />
+    <ClCompile Include="Domain\UseCases\Registration\ClientUseCase\ClientUseCase.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\randomGenerator.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\RepositoriesTests\accountRepositoryTest.cpp" />
@@ -191,8 +191,8 @@
     <ClInclude Include="Domain\Repositories\OperationRepository\operationRepository.h" />
     <ClInclude Include="Domain\Repositories\TransactionRepository\transactionRepository.h" />
     <ClInclude Include="Domain\UseCases\BankUseCase\BankUseCase.h" />
-    <ClInclude Include="Domain\UseCases\Registration\createAccountUseCase.h" />
-    <ClInclude Include="Domain\UseCases\Registration\signinUseCase.h" />
+    <ClInclude Include="Domain\UseCases\Registration\AccountUseCase\accountUseCase.h" />
+    <ClInclude Include="Domain\UseCases\Registration\ClientUseCase\ClientUseCase.h" />
     <ClInclude Include="Presentation\Config\presentationConfig.h" />
     <ClInclude Include="Presentation\presentation.h" />
     <ClInclude Include="Presentation\Tests\tests.h" />

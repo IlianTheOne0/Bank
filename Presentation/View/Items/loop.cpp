@@ -17,6 +17,7 @@ void View::Loop()
 			case 1: { client = Signin_(); } break;
 			case 2: { client = Login_(); } break;
 		}
+
 		result = Menu_(client);
 		if (result == 0) { break; }
 		switch (result)
@@ -27,3 +28,5 @@ void View::Loop()
 		break;
 	} while (true);
 };
+
+// theStrongestPasswordEver!001
