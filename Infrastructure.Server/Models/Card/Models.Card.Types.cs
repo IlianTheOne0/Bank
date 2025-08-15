@@ -6,6 +6,6 @@ using Supabase.Postgrest.Models;
 [Table("CardTypes")]
 public class ModelsCardTypes : BaseModel
 {
-    [PrimaryKey("Id")] int Id { get; set; }
-    [Column("Type")] string Type { get; set; }
+    [PrimaryKey("Id")] public int Id { get; set; }
+    [Column("Type")] public string Type { get; set; }
 }
