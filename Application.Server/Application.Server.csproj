@@ -8,14 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Confluent.Kafka" Version="2.11.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.8" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.8" />
-    <PackageReference Include="Supabase" Version="1.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.8" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application.Server\Application.Server.csproj" />
     <ProjectReference Include="..\Infrastructure.Server\Infrastructure.Server.csproj" />
   </ItemGroup>
 

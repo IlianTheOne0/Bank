@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -9,14 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="Confluent.Kafka" Version="2.11.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.8" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Supabase" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application.Server\Application.Server.csproj" />
-    <ProjectReference Include="..\Infrastructure.Server\Infrastructure.Server.csproj" />
+    <None Include=".env\app_config.json" />
+    <None Include=".env\docker-compose.yml" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,66 @@
+﻿namespace Database.CommandsHandler.Transactions;
+
+using Database.Interfaces.CommandsHandler;
+using Database.Interfaces.Repositories.Supabase.Commands;
+
+using ApplicationServer.Commands.Auth;
+using ApplicationServer.Responses.Database;
+
+using InfrastructureServer.Models.User.Model;
+
+using static Supabase.Postgrest.Constants;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using System.Diagnostics;
+
+public class CommandsHandlerAuth : InterfacesCommandsHandler
+{
+    private readonly InterfacesRepositoriesSupabaseCommands _repositorySupabase;
+    private readonly ILogger<CommandsHandlerAuth> _logger;
+
+    public CommandsHandlerAuth(InterfacesRepositoriesSupabaseCommands RepositorySupabase, ILogger<CommandsHandlerAuth> Logger = null!)
+    {
+        _repositorySupabase = RepositorySupabase ?? throw new ArgumentNullException(nameof(RepositorySupabase), "Supabase commands repository cannot be null. Please provide a valid repository instance.");
+        _logger = Logger ?? NullLogger<CommandsHandlerAuth>.Instance;
+    }
+
+    public async Task<ResponsesDatabase> Handle<TModel>(TModel Command)
+    {
+        var stopwatch = Stopwatch.StartNew();
+        string modelType = typeof(TModel).Name;
+        ResponsesDatabase response;
+
+        try
+        {
+            _logger?.LogDebug($"Starting auth handling for {modelType}");
+
+            if (Command == null) { throw new ArgumentNullException($"Cannot process null {modelType} command. Please provide a valid command instance.", nameof(Command)); }
+
+            if (Command is CommandsAuth auth) { response = await HandleAuth(auth); }
+            else { throw new NotSupportedException($"Command type {modelType} is not supported by this handler. This handler only processes ModelsTransaction commands."); }
+
+            _logger?.LogInformation($"Successfully processed {modelType} command in {stopwatch.ElapsedMilliseconds}ms");
+
+            return response;
+        }
+        catch (Exception E)
+        {
+            _logger?.LogError($"Failed to process {modelType} command after {stopwatch.ElapsedMilliseconds}ms. Error: {E.Message}", E);
+            throw;
+        }
+    }
+
+    private async Task<ResponsesDatabase> HandleAuth(CommandsAuth Auth)
+    {
+        var usersTableResult = await _repositorySupabase.FilterAsync<ModelsUser>("Username", Operator.Equals, Auth.Username!);
+        if (usersTableResult == null) { return ResponsesDatabase.Fail("Argument null Error", $"The username {Auth.Username} does not exist!"); }
+        if (usersTableResult.Count == 0) { return ResponsesDatabase.Fail("Argument null Error", $"The username {Auth.Username} does not exist!"); }
+        var user = usersTableResult.FirstOrDefault();
+        if (user == null) { return ResponsesDatabase.Fail("Runtime Error", $"Could not retrieve user details for username: {Auth.Username}"); }
+
+        if (Auth.Password != user.Password) { return ResponsesDatabase.Fail("Runtime Error", $"The password is incorrect!"); }
+
+        _logger?.LogDebug($"Processed user (Username: {Auth.Username ?? "N/A"})");
+        return ResponsesDatabase.Ok(user);
+    }
+}
