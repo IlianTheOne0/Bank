@@ -1,17 +1,15 @@
 ﻿namespace Database.CommandsHandler.Transactions;
 
-using Database.Interfaces.CommandsHandler;
-using Database.Interfaces.Repositories.Supabase.Commands;
-
 using ApplicationServer.Commands.Auth;
 using ApplicationServer.Responses.Database;
-
+using Database.Interfaces.CommandsHandler;
+using Database.Interfaces.Repositories.Supabase.Commands;
 using InfrastructureServer.Models.User.Model;
-
-using static Supabase.Postgrest.Constants;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
+using Newtonsoft.Json;
 using System.Diagnostics;
+using static Supabase.Postgrest.Constants;
 
 public class CommandsHandlerAuth : InterfacesCommandsHandler
 {

@@ -12,7 +12,9 @@ internal class ElementsUIMainMenu
     
     public static async Task ShowMainMenu()
     {
-        var mainMenu = new ElementsMenu($"Welcome {_user!.FullName}")
+        
+        
+        var mainMenu = new ElementsMenu($"Welcome, {_user!.FullName}")
         {
             BorderColor = ConsoleColor.DarkCyan,
             TitleColor = ConsoleColor.Cyan,

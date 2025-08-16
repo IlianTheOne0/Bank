@@ -11,6 +11,7 @@ using InfrastructureClient.Interfaces.KafkaProducer;
 
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.Text.Json;
 
 public class ServicesOrchestratorAuth : InterfacesServicesOrchestrators
 {
@@ -56,8 +57,16 @@ public class ServicesOrchestratorAuth : InterfacesServicesOrchestrators
                 {
                     if (databaseResponse.Data != null)
                     {
-                        var json = databaseResponse.Data.ToString();
-                        if (!string.IsNullOrWhiteSpace(json)) { user = System.Text.Json.JsonSerializer.Deserialize<EntitiesUser>(json); }
+                        if (databaseResponse.Data is EntitiesUser userObj) { user = userObj; }
+                        else if (databaseResponse.Data is string jsonString)
+                        {
+                            if (!string.IsNullOrWhiteSpace(jsonString)) { user = JsonSerializer.Deserialize<EntitiesUser>(jsonString); }
+                        }
+                        else if (databaseResponse.Data is JsonElement jsonElement)
+                        {
+                            var json = jsonElement.GetRawText();
+                            if (!string.IsNullOrWhiteSpace(json)) { user = JsonSerializer.Deserialize<EntitiesUser>(json); }
+                        }
                     }
                 }
                 catch (Exception E) { _logger?.LogError(E, "Failed to deserialize user data from authentication response"); }
@@ -67,7 +76,7 @@ public class ServicesOrchestratorAuth : InterfacesServicesOrchestrators
                     Success = databaseResponse.Success,
                     Message = databaseResponse.Message,
                     Error = databaseResponse.Error,
-                    UserId = user?.Id ?? Guid.Empty,
+                    User = user!,
                     CorrelationId = correlationId
                 };
 
