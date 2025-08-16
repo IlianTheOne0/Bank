@@ -77,7 +77,7 @@ public class KafkaConsumerService : IDisposable
 
             if (Cr.Topic.EndsWith("auth-commands"))
             {
-                var command = System.Text.Json.JsonSerializer.Deserialize<CommandsAuth>(Cr.Message.Value);
+                var command = JsonConvert.DeserializeObject<CommandsAuth>(Cr.Message.Value);
                 orchestrator?.HandleAuthCommand(command!);
             }
         }
