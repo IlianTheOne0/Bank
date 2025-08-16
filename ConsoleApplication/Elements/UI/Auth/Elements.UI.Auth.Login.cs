@@ -44,7 +44,7 @@ internal class ElementsUiAuthLogin
                         var result = await ProcessLogin(Services, username, password);
                         if (result.Success)
                         {
-                            user = new EntitiesUser { Id = result.UserId, FullName = username };
+                            user = result.User;
                         }
                         else { await StatusMenusError.Execute($"Login failed: {result.Error}"); }
                     }
@@ -57,7 +57,7 @@ internal class ElementsUiAuthLogin
 
         if (choice == 3) { return null; }
 
-        return user;
+        return user;    
     }
 
     private static async Task<ResponsesAuth> ProcessLogin(IServiceProvider Services, string Username, string Password)

@@ -1,15 +1,16 @@
 ﻿namespace ApplicationServer.Services.KafkaConsumer;
 
 using ApplicationServer.Commands.Auth;
-using ApplicationServer.Responses.Envelope;
 using ApplicationServer.Services.Orchestrators.Server;
 
 using InfrastructureServer.Interfaces.Messaging.KafkaProducer;
 
+using Confluent.Kafka;
+using Newtonsoft.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Confluent.Kafka;
-using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 
 public class KafkaConsumerService : IDisposable
 {
@@ -44,17 +45,21 @@ public class KafkaConsumerService : IDisposable
 
     public void Start() => Task.Run(ConsumeMessages);
 
-    private void ConsumeMessages()
+    private async Task ConsumeMessages()
     {
         try
         {
-            while (!_cts.IsCancellationRequested) { var cr = _consumer.Consume(_cts.Token); ProcessMessage(cr); }
+            while (!_cts.IsCancellationRequested)
+            {
+                var cr = _consumer.Consume(_cts.Token);
+                await ProcessMessage(cr).ConfigureAwait(false);
+            }
         }
         catch (OperationCanceledException) { _logger.LogInformation("Consumption cancelled"); }
         catch (Exception E) { _logger.LogCritical(E, "Fatal error in consumer"); }
     }
 
-    private void ProcessMessage(ConsumeResult<string, string> Cr)
+    private async Task ProcessMessage(ConsumeResult<string, string> Cr)
     {
         try
         {
@@ -62,19 +67,17 @@ public class KafkaConsumerService : IDisposable
 
             using var scope = _serviceProvider.CreateScope();
             var orchestrator = scope.ServiceProvider.GetRequiredService<ServicesOrchestratorsServer>();
-            
+
             if (Cr.Topic == "database-responses")
             {
-                var response = JsonSerializer.Deserialize<ResponsesEnvelope>(Cr.Message.Value);
-                _producer.ProduceAsync
-                (
-                    response!.ResponseTopic!,
-                    response
-                );
+                var response = JsonConvert.DeserializeObject<ApplicationServer.Responses.Envelope.ResponsesEnvelope>(Cr.Message.Value);
+                if (response != null) { await _producer.ProduceAsync(response.ResponseTopic!, response).ConfigureAwait(false); }
+                else { _logger?.LogError("Failed to deserialize envelope with Newtonsoft for value: {Value}", Cr.Message.Value); }
             }
+
             if (Cr.Topic.EndsWith("auth-commands"))
             {
-                var command = JsonSerializer.Deserialize<CommandsAuth>(Cr.Message.Value);
+                var command = System.Text.Json.JsonSerializer.Deserialize<CommandsAuth>(Cr.Message.Value);
                 orchestrator?.HandleAuthCommand(command!);
             }
         }
