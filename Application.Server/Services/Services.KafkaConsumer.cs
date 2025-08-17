@@ -6,11 +6,13 @@ using ApplicationServer.Services.Orchestrators.Server;
 using InfrastructureServer.Interfaces.Messaging.KafkaProducer;
 
 using Confluent.Kafka;
-using Newtonsoft.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
+using ApplicationServer.Responses.Envelope;
+using Newtonsoft.Json;
+using Application.Server.Commands;
 
 public class KafkaConsumerService : IDisposable
 {
@@ -68,17 +70,24 @@ public class KafkaConsumerService : IDisposable
             using var scope = _serviceProvider.CreateScope();
             var orchestrator = scope.ServiceProvider.GetRequiredService<ServicesOrchestratorsServer>();
 
-            if (Cr.Topic == "database-responses")
+            if (Cr.Topic.EndsWith("database-responses"))
             {
-                var response = JsonConvert.DeserializeObject<ApplicationServer.Responses.Envelope.ResponsesEnvelope>(Cr.Message.Value);
-                if (response != null) { await _producer.ProduceAsync(response.ResponseTopic!, response).ConfigureAwait(false); }
-                else { _logger?.LogError("Failed to deserialize envelope with Newtonsoft for value: {Value}", Cr.Message.Value); }
+                var responseEnvelope = JsonConvert.DeserializeObject<ResponsesEnvelope>(Cr.Message.Value);
+                if (responseEnvelope != null)
+                {
+                    var producer = scope.ServiceProvider.GetRequiredService<InterfacesKafkaProducer>();
+                    await producer.ProduceAsync(responseEnvelope.ResponseTopic, responseEnvelope);
+                }
             }
-
-            if (Cr.Topic.EndsWith("auth-commands"))
+            else if (Cr.Topic.EndsWith("auth-commands"))
             {
                 var command = JsonConvert.DeserializeObject<CommandsAuth>(Cr.Message.Value);
                 orchestrator?.HandleAuthCommand(command!);
+            }
+            else if (Cr.Topic.EndsWith("cards-commands"))
+            {
+                var command = JsonConvert.DeserializeObject<CommandsCards>(Cr.Message.Value);
+                orchestrator?.HandleCardsCommand(command!);
             }
         }
         catch (Exception E) { _logger.LogError(E, "Error processing message"); }

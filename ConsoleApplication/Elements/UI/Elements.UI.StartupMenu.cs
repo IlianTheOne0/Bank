@@ -14,10 +14,10 @@ internal class ElementsUIStartupMenu
             Console.Clear();
             while (true)
             {
-                EntitiesUser? user = await ElementsUiAuthMain.ShowAuthMenu(Services);
+                EntitiesUser? user = await ElementsUIAuthMain.ShowAuthMenu(Services);
                 if (user is null) { return 1; }
                 ElementsUIMainMenu.SetUser(user);
-                await ElementsUIMainMenu.ShowMainMenu();
+                await ElementsUIMainMenu.ShowMainMenu(Services);
             }
         }
         catch (Exception) { return 1; }

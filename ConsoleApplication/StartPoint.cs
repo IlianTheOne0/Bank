@@ -12,6 +12,7 @@ using ApplicationClient.Services.ResponseConsumer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Collections.Concurrent;
+using ApplicationClient.Responses.Cards;
 
 internal static partial class ConsoleApplicationLoop
 {
@@ -52,18 +53,21 @@ internal static partial class ConsoleApplicationLoop
 
         var pendingTransactionResponses = new ConcurrentDictionary<Guid, TaskCompletionSource<ResponsesDatabase>>();
         var pendingAuthResponses = new ConcurrentDictionary<Guid, TaskCompletionSource<ResponsesAuth>>();
+        var pendingCardsResponses = new ConcurrentDictionary<Guid, TaskCompletionSource<ResponsesCards>>();
 
         services.AddSingleton(pendingTransactionResponses);
         services.AddSingleton(pendingAuthResponses);
+        services.AddSingleton(pendingCardsResponses);
 
         services.AddSingleton<ResponseConsumerService>
         (
             provider => new ResponseConsumerService
             (
                 config.BootstrapServers,
-                new[] { config.Topics["TransactionResponse"], config.Topics["AuthResponse"] },
+                new[] { config.Topics["AuthResponse"], config.Topics["CardsResponse"] },
                 provider.GetRequiredService<ConcurrentDictionary<Guid, TaskCompletionSource<ResponsesDatabase>>>(),
                 provider.GetRequiredService<ConcurrentDictionary<Guid, TaskCompletionSource<ResponsesAuth>>>(),
+                provider.GetRequiredService<ConcurrentDictionary<Guid, TaskCompletionSource<ResponsesCards>>>(),
                 provider.GetService<ILogger<ResponseConsumerService>>()!
             )
         );

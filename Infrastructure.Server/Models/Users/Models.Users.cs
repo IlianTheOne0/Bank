@@ -13,7 +13,6 @@ public class ModelsUser : BaseModel
     [Column("Password")] public string Password { get; set; }
     [Column("PhoneNumber")] public string PhoneNumber { get; set; }
     [Column("Sex")] public bool Sex { get; set; }
-    [Column("Age")] public ushort Age { get; set; }
     [Column("DateOfBirth")] public DateTime DateOfBirth { get; set; }
     [Column("CreatedAt")] public DateTime CreatedAt { get; set; }
     [Column("UpdatedAt")] public DateTime UpdatedAt { get; set; }

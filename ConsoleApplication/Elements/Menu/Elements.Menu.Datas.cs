@@ -29,6 +29,15 @@ internal class ElementsMenuInputOption : ElementsMenuOption
     }
 }
 
+internal class ElementsMenuActionOption : ElementsMenuOption
+{
+    public Func<bool>? ActionReturningBool { get; }
+    public Func<Task<bool>>? AsyncActionReturningBool { get; }
+
+    public ElementsMenuActionOption(string text, Func<bool> actionReturningBool) : base(text) => ActionReturningBool = actionReturningBool;
+    public ElementsMenuActionOption(string text, Func<Task<bool>> asyncActionReturningBool) : base(text) => AsyncActionReturningBool = asyncActionReturningBool;
+}
+
 internal class ElementsMenu
 {
     public string Title { get; }

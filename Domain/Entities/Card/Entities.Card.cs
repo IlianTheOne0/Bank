@@ -15,4 +15,5 @@ public class EntitiesCard
     public Guid UserId { get; set; }
     public EntitiesCardTypes Type { get; set; }
     public EntitiesCardStatuses Status { get; set; }
+    public string PinHash { get; set; }
 }

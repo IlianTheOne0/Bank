@@ -1,13 +1,11 @@
 ﻿namespace ApplicationClient.Extensions.ServiceCollection;
 
-using ApplicationClient.Services.Orchestrators.Auth;
 using ApplicationClient.Services.ApplicationResponseHandler;
-
+using ApplicationClient.Services.Orchestrators.Auth;
+using ApplicationClient.Services.Orchestrators.Cards;
 using Domain.Entities.Services.Kafka;
-
 using InfrastructureClient.Interfaces.KafkaProducer;
 using InfrastructureClient.Messaging.KafkaProducer;
-
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -41,7 +39,7 @@ public static class ExtensionsServiceCollection
             provider => new ServicesApplicationResponseHandler
             (
                 BootstrapServers,
-                Config.Topics["AuthResponse"],
+                new[] { Config.Topics["AuthResponse"], Config.Topics["CardsResponse"] },
                 provider.GetService<ILogger<ServicesApplicationResponseHandler>>()!
             )
         );
@@ -57,6 +55,17 @@ public static class ExtensionsServiceCollection
                 provider.GetRequiredService<ServicesApplicationResponseHandler>(),
                 Config.Topics["AuthTopic"],
                 provider.GetService<ILogger<ServicesOrchestratorAuth>>()!
+            )
+        );
+
+        Services.AddScoped<ServicesOrchestratorCards>
+        (
+            provider => new ServicesOrchestratorCards
+            (
+                provider.GetRequiredService<InterfacesKafkaProducer>(),
+                provider.GetRequiredService<ServicesApplicationResponseHandler>(),
+                Config.Topics["CardsTopic"],
+                provider.GetService<ILogger<ServicesOrchestratorCards>>()!
             )
         );
     }

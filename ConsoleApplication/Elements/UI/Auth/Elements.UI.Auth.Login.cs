@@ -13,7 +13,7 @@ using Domain.Entities.User.Model;
 using Microsoft.Extensions.DependencyInjection;
 
 
-internal class ElementsUiAuthLogin
+internal class ElementsUIAuthLogin
 {
     public static async Task<EntitiesUser?> ShowLoginMenu(IServiceProvider Services)
     {
@@ -42,22 +42,22 @@ internal class ElementsUiAuthLogin
                         var password = ((ElementsMenuInputOption)loginMenu.Options[1]).Input;
 
                         var result = await ProcessLogin(Services, username, password);
-                        if (result.Success)
-                        {
-                            user = result.User;
-                        }
-                        else { await StatusMenusError.Execute($"Login failed: {result.Error}"); }
+
+                        if (result.Success) { user = result.User; }
+                        else { await StatusMenusError.Execute($"Login failed: {result.Message}"); }
                     }
                 );
             }
         ));
         loginMenu.Options.Add(new ElementsMenuOption("Back", () => { }));
 
-        int choice = await MenuRenderer.Render(loginMenu);
+        while (user == null)
+        {
+            int choice = await MenuRenderer.Render(loginMenu);
+            if (choice == 3) { return null; }
+        }
 
-        if (choice == 3) { return null; }
-
-        return user;    
+        return user;
     }
 
     private static async Task<ResponsesAuth> ProcessLogin(IServiceProvider Services, string Username, string Password)

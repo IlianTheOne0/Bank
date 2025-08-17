@@ -16,7 +16,7 @@ public class ServicesApplicationResponseHandler : IDisposable
     private readonly Task _consumingTask;
     private readonly ILogger<ServicesApplicationResponseHandler> _logger;
 
-    public ServicesApplicationResponseHandler(string BootstrapServers, string ResponseTopic, ILogger<ServicesApplicationResponseHandler> Logger)
+    public ServicesApplicationResponseHandler(string BootstrapServers, IEnumerable<string> ResponseTopics, ILogger<ServicesApplicationResponseHandler> Logger)
     {
         _logger = Logger;
 
@@ -28,7 +28,7 @@ public class ServicesApplicationResponseHandler : IDisposable
         };
 
         _consumer = new ConsumerBuilder<string, string>(config).Build();
-        _consumer.Subscribe(ResponseTopic);
+        _consumer.Subscribe(ResponseTopics);
 
         _consumingTask = Task.Run(ConsumeResponses);
     }

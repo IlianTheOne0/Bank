@@ -14,12 +14,13 @@ public class ResponsesDatabase : ResponsesBase
             Message = Message
         };
 
-    public static ResponsesDatabase Fail(string Error, string Message = "")
+    public static ResponsesDatabase Fail(string Error, string Message = "", object Data = null)
         => new ResponsesDatabase
         {
             Success = false,
             Error = Error,
-            Message = Message
+            Message = Message,
+            Data = Data
         };
 }
 

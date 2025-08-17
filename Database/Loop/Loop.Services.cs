@@ -5,11 +5,11 @@ using Database.Interfaces.Repositories.Supabase.Auth;
 using Database.Interfaces.Repositories.Supabase.Commands;
 using Database.Interfaces.Repositories.Supabase.Init;
 using Database.Repositories.Supabase;
-
+using Infrastructure.Server.Interfaces.Utils.Hasher;
 using InfrastructureServer.Interfaces.Messaging.KafkaProducer;
 using InfrastructureServer.Messaging.KafkaProducer;
 using InfrastructureServer.Models.Config;
-
+using InfrastructureServer.Utils.Hasher;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -68,12 +68,30 @@ internal partial class DatabaseLoop
                     provider => provider.GetRequiredService<RepositoriesSupabase>()
                 );
 
+            Services.AddSingleton<InterfacesUtilsHasher, UtilsHasher>
+            (
+                provider => new UtilsHasher
+                (
+                    provider.GetService<ILogger<UtilsHasher>>() ?? loggerFactory.CreateLogger<UtilsHasher>()
+                )
+            );
+
             Services.AddScoped<CommandsHandlerAuth>
             (
                 provider => new CommandsHandlerAuth
                 (
                     provider.GetRequiredService<InterfacesRepositoriesSupabaseCommands>(),
                     provider.GetService<ILogger<CommandsHandlerAuth>>() ?? loggerFactory.CreateLogger<CommandsHandlerAuth>()
+                )
+            );
+
+            Services.AddScoped<CommandsHandlerCards>
+            (
+                provider => new CommandsHandlerCards
+                (
+                    provider.GetRequiredService<InterfacesRepositoriesSupabaseCommands>(),
+                    provider.GetRequiredService<InterfacesUtilsHasher>(),
+                    provider.GetService<ILogger<CommandsHandlerCards>>() ?? loggerFactory.CreateLogger<CommandsHandlerCards>()
                 )
             );
         }

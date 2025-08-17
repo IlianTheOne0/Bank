@@ -17,5 +17,5 @@ public class ModelsTransaction : BaseModel
     [Column("ReceiverUserId")] public Guid ReceiverUserId { get; set; }
     [Column("SenderCardId")] public int SenderCardId { get; set; }
     [Column("ReceiverCardId")] public int ReceiverCardId { get; set; }
-    [Column("Type")] public ModelsTransactionTypes Type { get; set; } = new ModelsTransactionTypes();
+    [Column("TypeId")] public ModelsTransactionTypes Type { get; set; } = new ModelsTransactionTypes();
 }

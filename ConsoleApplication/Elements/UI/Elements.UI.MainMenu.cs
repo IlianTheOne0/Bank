@@ -1,7 +1,8 @@
 ﻿namespace ConsoleApplication.Elements.UI.MainMenu;
 
 using ConsoleApplication.Elements.Menu;
-
+using ConsoleApplication.Elements.UI.Functions.Cards;
+using ConsoleApplication.Elements.UI.StatusMenus.Processing;
 using Domain.Entities.User.Model;
 
 internal class ElementsUIMainMenu
@@ -10,7 +11,7 @@ internal class ElementsUIMainMenu
 
     public static void SetUser(EntitiesUser? User) => _user = User;
     
-    public static async Task ShowMainMenu()
+    public static async Task ShowMainMenu(IServiceProvider Services)
     {
         
         
@@ -23,9 +24,10 @@ internal class ElementsUIMainMenu
             HighlightBackground = ConsoleColor.Cyan
         };
 
+        mainMenu.Options.Add(new ElementsMenuOption("View Cards", async () => { await ElementsUIFunctionsCards.ShowCardsMenu(Services, _user!.Id); }));
         mainMenu.Options.Add(new ElementsMenuOption("Logout", () => { _user = null; }));
         mainMenu.Options.Add(new ElementsMenuOption("Exit", () => Environment.Exit(0)));
 
-        while (_user != null) { int choice = await MenuRenderer.Render(mainMenu); }
+        while (_user != null) { await MenuRenderer.Render(mainMenu); }
     }
 }

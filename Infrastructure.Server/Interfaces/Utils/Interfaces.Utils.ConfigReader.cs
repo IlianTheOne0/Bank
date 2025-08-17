@@ -1,4 +1,4 @@
-﻿namespace InfrastructureServer.Interfaces.Utils.ConfigReader;
+﻿namespace Infrastructure.Server.Interfaces.Utils.ConfigReader;
 
 public interface InterfacesUtilsConfigReader
 {

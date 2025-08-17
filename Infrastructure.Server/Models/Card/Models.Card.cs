@@ -1,8 +1,5 @@
 ﻿namespace InfrastructureServer.Models.Card.Model;
 
-using InfrastructureServer.Models.Card.Statuses;
-using InfrastructureServer.Models.Card.Types;
-
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 
@@ -15,8 +12,9 @@ public class ModelsCard : BaseModel
     [Column("CVV")] public ushort CVV { get; set; }
     [Column("IssueDate")] public DateTime IssueDate { get; set; }
     [Column("ExpirationDate")] public DateTime ExpirationDate { get; set; }
-    [Column("Currency")] public string Currency { get; set; }
     [Column("UserId")] public Guid UserId { get; set; }
-    [Column("Type")] public ModelsCardTypes Type { get; set; }
-    [Column("Status")] public ModelsCardStatuses Status { get; set; }
+    [Column("CurrencyId")] public int CurrencyId { get; set; }
+    [Column("TypeId")] public int TypeId { get; set; }
+    [Column("StatusId")] public int StatusId { get; set; }
+    [Column("PinHash")] public string PinHash { get; set; }
 }

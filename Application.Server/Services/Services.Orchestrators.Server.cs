@@ -1,7 +1,7 @@
 ﻿namespace ApplicationServer.Services.Orchestrators.Server;
 
+using Application.Server.Commands;
 using ApplicationServer.Commands.Auth;
-
 using InfrastructureServer.Interfaces.Messaging.KafkaProducer;
 
 using Microsoft.Extensions.Logging;
@@ -33,5 +33,23 @@ public class ServicesOrchestratorsServer
             );
         }
         catch (Exception E) { _logger.LogError(E, "Error forwarding auth command"); }
+    }
+
+    public async Task HandleCardsCommand(CommandsCards Command)
+    {
+        try
+        {
+            _logger.LogInformation("Forwarding cards command for user with id {UserId}", Command.UserId);
+            await _producer.ProduceAsync
+            (
+                "database-commands",
+                new
+                {
+                    CommandType = "Cards",
+                    Command = Command
+                }
+            );
+        }
+        catch (Exception E) { _logger.LogError(E, "Error forwarding cards command"); }
     }
 }

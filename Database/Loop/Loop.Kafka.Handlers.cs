@@ -10,6 +10,7 @@ using InfrastructureServer.Models.Config;
 
 using Newtonsoft.Json;
 using Microsoft.Extensions.DependencyInjection;
+using Application.Server.Commands;
 
 internal partial class DatabaseLoop
 {
@@ -26,6 +27,7 @@ internal partial class DatabaseLoop
                 switch (commandType)
                 {
                     case "Auth": { await HandleAuthCommand(Config, commandJson, Provider, Cts); } break;
+                    case "Cards": { await HandleCardsCommand(Config, commandJson, Provider, Cts); } break;
                     default: { throw new Exception("Unknown command type!"); }
                 }
             }
@@ -45,11 +47,33 @@ internal partial class DatabaseLoop
 
         await producer.ProduceAsync
         (
-            Config.Kafka.Topics["DatabaseResponses"],
+            Config.Kafka.Topics["DatabaseResponse"],
             new ResponsesEnvelope
             {
                 Response = response,
                 ResponseTopic = Config.Kafka.Topics["AuthResponse"],
+                CorrelationId = cmd!.CorrelationId
+            }
+        );
+    }
+
+    private static async Task HandleCardsCommand(AppConfig Config, string Json, ServiceProvider Provider, CancellationToken Cts)
+    {
+        var cmd = JsonConvert.DeserializeObject<CommandsCards>(Json);
+        using var scope = Provider.CreateScope();
+        var serviceProvider = scope.ServiceProvider;
+        var authHandler = serviceProvider.GetRequiredService<CommandsHandlerCards>();
+        var response = await authHandler.Handle(cmd);
+
+        var producer = serviceProvider.GetRequiredService<InterfacesKafkaProducer>();
+
+        await producer.ProduceAsync
+        (
+            Config.Kafka.Topics["DatabaseResponse"],
+            new ResponsesEnvelope
+            {
+                Response = response,
+                ResponseTopic = Config.Kafka.Topics["CardsResponse"],
                 CorrelationId = cmd!.CorrelationId
             }
         );

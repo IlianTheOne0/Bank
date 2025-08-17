@@ -28,8 +28,18 @@ internal static class MenuRenderer
 
             int maxWidth = CalculateMenuWidth(Menu);
             int height = Menu.Options.Count + 6;
-            int left = (Console.WindowWidth - maxWidth) / 2;
-            int top = (Console.WindowHeight - height) / 2;
+
+            int consoleWidth = Math.Max(Console.WindowWidth, 1);
+            int consoleHeight = Math.Max(Console.WindowHeight, 1);
+
+            int width = Math.Min(maxWidth, consoleWidth - 2);
+            if (width < 10) width = Math.Max(4, consoleWidth - 2);
+
+            height = Math.Min(height, consoleHeight - 2);
+            if (height < 4) height = Math.Max(4, consoleHeight - 2);
+
+            int left = Math.Max(0, (consoleWidth - width) / 2);
+            int top = Math.Max(0, (consoleHeight - height) / 2);
 
             bool selectionChanged = true;
             int selectedIndex = 0;
@@ -53,7 +63,9 @@ internal static class MenuRenderer
         }
         catch (Exception E)
         {
-            if (_debugMode) { Console.WriteLine($"Menu rendering error: {E.Message}"); }
+            Console.ResetColor();
+            if (_debugMode) { Console.WriteLine($"Menu rendering error: {E}"); }
+            else { Console.Error.WriteLine($"Menu rendering error: {E.Message}"); }
             return -1;
         }
     }
@@ -78,34 +90,36 @@ internal static class MenuRenderer
 
     private static void DrawMenuFrame(ElementsMenu Menu, int Width, int Height, int Left, int Top)
     {
+int horizLen = Math.Max(0, Width - 2);
+        string horiz = new string('─', horizLen);
+
         Console.ForegroundColor = Menu.BorderColor;
 
-        // Top border
-        Console.SetCursorPosition(Left, Top);
-        Console.Write("┌" + new string('─', Width - 2) + "┐");
+        SetCursor(Left, Top);
+        Console.Write("┌" + horiz + "┐");
 
-        // Title area
-        Console.SetCursorPosition(Left, Top + 1);
+        SetCursor(Left, Top + 1);
         Console.Write("│");
         Console.ForegroundColor = Menu.TitleColor;
-        Console.Write(CenterText(Menu.Title, Width - 2));
+        Console.Write(CenterText(Menu.Title, Math.Max(0, Width - 2)));
         Console.ForegroundColor = Menu.BorderColor;
         Console.Write("│");
 
-        // Title separator
-        Console.SetCursorPosition(Left, Top + 2);
-        Console.Write("├" + new string('─', Width - 2) + "┤");
+        SetCursor(Left, Top + 2);
+        Console.Write("├" + horiz + "┤");
 
-        // Bottom border
-        Console.SetCursorPosition(Left, Top + Height - 3);
-        Console.Write("└" + new string('─', Width - 2) + "┘");
+        SetCursor(Left, Top + Height - 3);
+        Console.Write("└" + horiz + "┘");
     }
 
     private static void DrawOptions(ElementsMenu Menu, int Width, int Left, int Top, int SelectedIndex, bool IsEditingInput)
     {
         for (int i = 0; i < Menu.Options.Count; i++)
         {
-            Console.SetCursorPosition(Left, Top + 3 + i);
+            int row = Top + 3 + i;
+            if (row < 0 || row >= Console.WindowHeight) continue;
+            int col = Math.Min(Math.Max(0, Left), Math.Max(0, Console.WindowWidth - 1));
+            Console.SetCursorPosition(col, row);
 
             bool isSelected = i == SelectedIndex;
             bool isInputOption = Menu.Options[i] is ElementsMenuInputOption;
@@ -118,7 +132,7 @@ internal static class MenuRenderer
             SetOptionColors(Menu, i, isSelected, IsEditingInput);
 
             string displayText = GetDisplayText(Menu, i, isSelected, IsEditingInput);
-            Console.Write(CenterText(displayText, Width - 2));
+            Console.Write(CenterText(displayText, Math.Max(0, Width - 2)));
 
             Console.ForegroundColor = Menu.BorderColor;
             Console.Write("│");
@@ -217,5 +231,12 @@ internal static class MenuRenderer
         int padding = Width - Text.Length;
         int leftPadding = padding / 2;
         return new string(' ', leftPadding) + Text + new string(' ', padding - leftPadding);
+    }
+
+    private static void SetCursor(int left, int top)
+    {
+        if (left < 0 || top < 0) { return; }
+        if (left >= Console.WindowWidth || top >= Console.WindowHeight) { return; }
+        Console.SetCursorPosition(left, top);
     }
 }

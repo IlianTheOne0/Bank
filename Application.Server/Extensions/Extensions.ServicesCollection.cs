@@ -6,7 +6,7 @@ using ApplicationServer.Services.Orchestrators.Server;
 using InfrastructureServer.Interfaces.Messaging.KafkaProducer;
 using InfrastructureServer.Messaging.KafkaProducer;
 using InfrastructureServer.Models.Config;
-
+using InfrastructureServer.Utils.Hasher;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
@@ -33,8 +33,9 @@ public static class ServiceCollectionExtensions
                 BootstrapServers,
                 new[]
                 {
+                    Config.Kafka.Topics["DatabaseResponse"],
                     Config.Kafka.Topics["AuthTopic"],
-                    Config.Kafka.Topics["DatabaseResponses"]
+                    Config.Kafka.Topics["CardsTopic"]
                 },
                 provider,
                 provider.GetService<ILogger<KafkaConsumerService>>()!

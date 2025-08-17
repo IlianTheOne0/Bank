@@ -2,10 +2,10 @@
 
 using ConsoleApplication.Elements.Menu;
 using ConsoleApplication.Elements.UI.Auth.Login;
-
+using ConsoleApplication.Elements.UI.Auth.Signin;
 using Domain.Entities.User.Model;
 
-internal class ElementsUiAuthMain
+internal class ElementsUIAuthMain
 {
     public static async Task<EntitiesUser?> ShowAuthMenu(IServiceProvider Services)
     {
@@ -33,10 +33,14 @@ internal class ElementsUiAuthMain
             {
                 case 0:
                 {
-                    user = await ElementsUiAuthLogin.ShowLoginMenu(Services);
+                    user = await ElementsUIAuthLogin.ShowLoginMenu(Services);
                     if (user == null) { continue; }
                 } break;
-                case 1: { } break;
+                case 1:
+                {
+                    user = await ElementsUIAuthSignin.ShowSigninMenu(Services);
+                    if (user == null) { continue; }
+                } break;
             }
         }
 

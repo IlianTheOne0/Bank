@@ -1,6 +1,8 @@
 ﻿namespace ApplicationClient.Services.ResponseConsumer;
 
+
 using ApplicationClient.Responses.Auth;
+using ApplicationClient.Responses.Cards;
 using ApplicationClient.Responses.Database;
 using ApplicationClient.Responses.Envelope;
 
@@ -17,17 +19,20 @@ public class ResponseConsumerService : IDisposable
     
     private readonly ConcurrentDictionary<Guid, TaskCompletionSource<ResponsesDatabase>> _pendingTransactionResponses;
     private readonly ConcurrentDictionary<Guid, TaskCompletionSource<ResponsesAuth>> _pendingAuthResponses;
+    private readonly ConcurrentDictionary<Guid, TaskCompletionSource<ResponsesCards>> _pendingCardsResponses;
 
     public ResponseConsumerService
     (
         string bootstrapServers, IEnumerable<string> Topics,
         ConcurrentDictionary<Guid, TaskCompletionSource<ResponsesDatabase>> TransactionResponses,
         ConcurrentDictionary<Guid, TaskCompletionSource<ResponsesAuth>> AuthResponses,
+        ConcurrentDictionary<Guid, TaskCompletionSource<ResponsesCards>> CardsResponses,
         ILogger<ResponseConsumerService> Logger
     )
     {
         _pendingTransactionResponses = TransactionResponses;
         _pendingAuthResponses = AuthResponses;
+        _pendingCardsResponses = CardsResponses;
         _logger = Logger;
 
         var config = new ConsumerConfig
@@ -69,23 +74,22 @@ public class ResponseConsumerService : IDisposable
         try
         {
             _logger.LogDebug("Received message from {Topic}", Cr.Topic);
-
-            if (Cr.Topic.EndsWith("transaction-responses"))
-            {
-                var envelope = JsonSerializer.Deserialize<ResponsesEnvelope>(Cr.Message.Value);
-                if (envelope != null && _pendingTransactionResponses.TryRemove(envelope.CorrelationId, out var tcs))
-                {
-                    tcs.SetResult(envelope.Response);
-                    _logger.LogInformation("Processed transaction response for {CorrelationId}", envelope.CorrelationId);
-                }
-            }
-            else if (Cr.Topic.EndsWith("auth-responses"))
+            if (Cr.Topic.EndsWith("auth-responses"))
             {
                 var response = JsonSerializer.Deserialize<ResponsesAuth>(Cr.Message.Value);
                 if (response != null && _pendingAuthResponses.TryRemove(response.CorrelationId, out var tcs))
                 {
                     tcs.SetResult(response);
                     _logger.LogInformation("Processed auth response for {CorrelationId}", response.CorrelationId);
+                }
+            }
+            else if (Cr.Topic.EndsWith("cards-responses"))
+            {
+                var response = JsonSerializer.Deserialize<ResponsesCards>(Cr.Message.Value);
+                if (response != null && _pendingCardsResponses.TryRemove(response.CorrelationId, out var tcs))
+                {
+                    tcs.SetResult(response);
+                    _logger.LogInformation("Processed cards response for {CorrelationId}", response.CorrelationId);
                 }
             }
             else { _logger.LogWarning("Received message from unknown topic: {Topic}", Cr.Topic); }

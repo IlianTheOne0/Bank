@@ -1,10 +1,9 @@
 ﻿namespace InfrastructureServer.Utils.ConfigReader;
 
-using InfrastructureServer.Interfaces.Utils.ConfigReader;
-
 using Newtonsoft.Json;
 using Microsoft.Extensions.Logging;
 using System.Text;
+using Infrastructure.Server.Interfaces.Utils.ConfigReader;
 
 public class UtilsConfigReader : InterfacesUtilsConfigReader
 {
