@@ -34,6 +34,6 @@ public class CommandsAuthSignIn
         DateOfBirth = DateOfBirth,
         CreatedAt = CreatedAt,
         UpdatedAt = UpdatedAt,
-        Password = Password
+        PasswordHash = ""
     };
 }

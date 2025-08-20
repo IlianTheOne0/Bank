@@ -81,6 +81,7 @@ internal partial class DatabaseLoop
                 provider => new CommandsHandlerAuth
                 (
                     provider.GetRequiredService<InterfacesRepositoriesSupabaseCommands>(),
+                    provider.GetRequiredService<InterfacesUtilsHasher>(),
                     provider.GetService<ILogger<CommandsHandlerAuth>>() ?? loggerFactory.CreateLogger<CommandsHandlerAuth>()
                 )
             );
